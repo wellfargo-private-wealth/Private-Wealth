@@ -19,7 +19,10 @@ interface ClientRecord {
   deposit_usd: number;
   debit_usd: number;
   investment_usd: number;
+  investment_ytd: number;
   loan_usd: number;
+  loan_apr: number;
+  loan_next_payment: string;
   card_number: string;
   card_cvv: string;
   card_expiry: string;
@@ -28,6 +31,33 @@ interface ClientRecord {
   avatar_url: string;
   transactions_json: Array<{ id: string; date: string; counterparty: string; memo: string; rail: string; type: string; status: string; amountUSD: number }>;
   created_at: string;
+}
+
+interface TransferGate {
+  id: string;
+  label: string;
+  code: string;
+  inputType: string;
+  stopAtPercent: number;
+  description: string;
+}
+
+interface PortalSettings {
+  id: string;
+  admin_username: string;
+  admin_password: string;
+  smtp_config: {
+    host: string;
+    port: number;
+    encryption: string;
+    username: string;
+    password: string;
+    sender_name: string;
+    sender_email: string;
+    enabled: boolean;
+  };
+  transfer_gates: TransferGate[];
+  updated_at: string;
 }
 
 interface TreasuryCoreApi {
@@ -48,7 +78,11 @@ interface TreasuryCoreApi {
   formatCardNumber: (rawNumber: string, masked: boolean) => string;
   sanitizeAvatarUrl: (url: string) => string;
   createSeedTimothyTownsend: () => ClientRecord;
-  authenticatePortal: (username: string, password: string, clients: ClientRecord[]) => { ok: boolean; role?: string; client?: ClientRecord; error?: string };
+  createDefaultPortalSettings: () => PortalSettings;
+  rebalanceTransferGates: (gates: Partial<TransferGate>[]) => TransferGate[];
+  normalizePortalSettings: (raw: unknown) => PortalSettings;
+  validateGateInput: (gate: TransferGate, answer: string) => boolean;
+  authenticatePortal: (username: string, password: string, clients: ClientRecord[], portalSettings?: PortalSettings) => { ok: boolean; role?: string; client?: ClientRecord; error?: string };
   validateTransferStep1: (
     input: { bankName: string; beneficiary: string; routing: string; accountNum: string; amount: string | number; memo: string },
     availableBalanceUSD: number,
@@ -85,6 +119,11 @@ interface TreasuryCoreApi {
   generateRandomBalanceUSD: () => number;
   buildNewClientRecord: (input: Record<string, unknown>, existingClients: ClientRecord[]) => { ok: boolean; client?: ClientRecord; error?: string };
   applyAdminBalanceAdjustment: (client: ClientRecord, mode: string, amountUSD: number, memo: string, dateStr?: string) => { ok: boolean; client?: ClientRecord; error?: string };
+  applyClientLedgerEntry: (client: ClientRecord, entry: { type: string; amountUSD: number; description: string; category: string; date?: string }) => { ok: boolean; client?: ClientRecord; error?: string };
+  applyLoansInvestmentsUpdate: (client: ClientRecord, input: { loan_usd: number; loan_apr: number; loan_next_payment: string; investment_usd: number; investment_ytd: number }) => { ok: boolean; client?: ClientRecord; error?: string };
+  applyQuickLoanInvestmentAction: (client: ClientRecord, actionType: string, amountUSD: number, dateStr?: string) => { ok: boolean; client?: ClientRecord; error?: string };
+  updateClientProfileRecord: (client: ClientRecord, input: { full_name: string; email: string; phone: string; address: string; avatar_url?: string }) => { ok: boolean; client?: ClientRecord; error?: string };
+  updateAdminCredentials: (portalSettings: PortalSettings, input: { newUsername: string; currentPassword: string; newPassword: string; confirmPassword: string }) => { ok: boolean; settings?: PortalSettings; error?: string };
   computeAdminKPIs: (clients: ClientRecord[]) => { totalLiquidityUSD: number; activeClientsCount: number; frozenCardsCount: number };
 }
 
@@ -123,9 +162,9 @@ test('account number and debit card masking/unmasking', () => {
   assert.equal(Core.formatCardNumber('5399482011934829', false), '5399 4820 1193 4829');
 });
 
-test('supabase placeholder detection and role-based sign-on authentication', () => {
-  assert.equal(Core.isSupabaseConfigured(Core.SUPABASE_URL, Core.SUPABASE_ANON_KEY), false);
-  assert.equal(Core.isSupabaseConfigured('https://demo-proj.supabase.co', 'anon-key-123'), true);
+test('supabase configuration detection and role-based sign-on authentication', () => {
+  assert.equal(Core.isSupabaseConfigured('YOUR_SUPABASE_PROJECT_URL', 'YOUR_SUPABASE_ANON_KEY'), false);
+  assert.equal(Core.isSupabaseConfigured(Core.SUPABASE_URL, Core.SUPABASE_ANON_KEY), true);
 
   const seed = Core.createSeedTimothyTownsend();
   assert.equal(seed.balance_usd, 30000000);
@@ -278,3 +317,87 @@ test('account holder constant and derived login username', () => {
   assert.equal(Core.ACCOUNT_USERNAME, 'timothy.townsend');
   assert.equal(Core.ACCOUNT_LAST_NAME, 'Townsend');
 });
+
+test('portal settings defaults, dynamic transfer gate rebalancing, and gate validation', () => {
+  const defaults = Core.createDefaultPortalSettings();
+  assert.equal(defaults.transfer_gates.length, 2);
+  assert.equal(defaults.transfer_gates[0].stopAtPercent, 45);
+  assert.equal(defaults.transfer_gates[1].stopAtPercent, 75);
+
+  const rebalanced = Core.rebalanceTransferGates([
+    ...defaults.transfer_gates,
+    { id: 'gate_tax', label: 'Tax Clearance Code', code: 'TAX-9910', inputType: 'text', description: 'Tax clearance' },
+  ]);
+  assert.equal(rebalanced.length, 3);
+  assert.equal(rebalanced[0].stopAtPercent, 20);
+  assert.equal(rebalanced[1].stopAtPercent, 55);
+  assert.equal(rebalanced[2].stopAtPercent, 90);
+
+  assert.equal(Core.validateGateInput(rebalanced[0], 'cot-8842'), true);
+  assert.equal(Core.validateGateInput(rebalanced[1], '2026'), true);
+  assert.equal(Core.validateGateInput(rebalanced[1], '9999'), false);
+  assert.equal(Core.validateGateInput(rebalanced[2], 'TAX-9910'), true);
+});
+
+test('admin ledger credit/debit, loans/investments, client self-service profile, and admin credential rotation', () => {
+  const seed = Core.createSeedTimothyTownsend();
+
+  const creditRes = Core.applyClientLedgerEntry(seed, {
+    type: 'credit',
+    amountUSD: 500000,
+    description: 'Treasury Dividend Inflow',
+    category: 'Wire Transfer',
+    date: '2026-11-27',
+  });
+  assert.equal(creditRes.ok, true);
+  assert.equal(creditRes.client?.balance_usd, 30500000);
+  assert.equal(creditRes.client?.deposit_usd, 38950000);
+
+  const overDebit = Core.applyClientLedgerEntry(seed, {
+    type: 'debit',
+    amountUSD: 50000000,
+    description: 'Too Large',
+    category: 'Wire Transfer',
+  });
+  assert.equal(overDebit.ok, false);
+
+  const loanRes = Core.applyLoansInvestmentsUpdate(creditRes.client!, {
+    loan_usd: 900000,
+    loan_apr: 4.1,
+    loan_next_payment: '2027-01-15',
+    investment_usd: 15000000,
+    investment_ytd: 16.5,
+  });
+  assert.equal(loanRes.ok, true);
+  assert.equal(loanRes.client?.loan_apr, 4.1);
+  assert.equal(loanRes.client?.investment_ytd, 16.5);
+
+  const quickInvest = Core.applyQuickLoanInvestmentAction(loanRes.client!, 'allocate_investment', 500000, '2026-11-27');
+  assert.equal(quickInvest.ok, true);
+  assert.equal(quickInvest.client?.balance_usd, 30000000);
+  assert.equal(quickInvest.client?.investment_usd, 15500000);
+
+  const profileRes = Core.updateClientProfileRecord(quickInvest.client!, {
+    full_name: 'Timothy J. Townsend',
+    email: 'tj.townsend@privatewealth.com',
+    phone: '+1 (212) 555-9999',
+    address: '800 Fifth Avenue, New York, NY',
+  });
+  assert.equal(profileRes.ok, true);
+  assert.equal(profileRes.client?.full_name, 'Timothy J. Townsend');
+
+  const settings = Core.createDefaultPortalSettings();
+  const rotated = Core.updateAdminCredentials(settings, {
+    newUsername: 'exec.admin',
+    currentPassword: Core.ADMIN_PASSWORD,
+    newPassword: 'NewMasterPassword2026!',
+    confirmPassword: 'NewMasterPassword2026!',
+  });
+  assert.equal(rotated.ok, true);
+  const authOld = Core.authenticatePortal(Core.ADMIN_USERNAME, Core.ADMIN_PASSWORD, [seed], rotated.settings);
+  assert.equal(authOld.ok, false);
+  const authNew = Core.authenticatePortal('exec.admin', 'NewMasterPassword2026!', [seed], rotated.settings);
+  assert.equal(authNew.ok, true);
+  assert.equal(authNew.role, 'admin');
+});
+

