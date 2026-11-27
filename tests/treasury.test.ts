@@ -125,6 +125,12 @@ interface TreasuryCoreApi {
   applyQuickLoanInvestmentAction: (client: ClientRecord, actionType: string, amountUSD: number, dateStr?: string) => { ok: boolean; client?: ClientRecord; error?: string };
   updateClientProfileRecord: (client: ClientRecord, input: { full_name: string; email: string; phone: string; address: string; avatar_url?: string }) => { ok: boolean; client?: ClientRecord; error?: string };
   updateAdminCredentials: (portalSettings: PortalSettings, input: { newUsername: string; currentPassword: string; newPassword: string; confirmPassword: string }) => { ok: boolean; settings?: PortalSettings; error?: string };
+  SUPPORT_EMAIL: string;
+  SUPPORT_TICKET_CATEGORIES: string[];
+  buildSupportTicketMailto: (
+    client: ClientRecord,
+    input: { category: string; subject: string; message: string }
+  ) => { ok: boolean; email?: string; category?: string; subject?: string; body?: string; mailtoUrl?: string; error?: string };
   computeAdminKPIs: (clients: ClientRecord[]) => { totalLiquidityUSD: number; activeClientsCount: number; frozenCardsCount: number };
 }
 
@@ -438,3 +444,41 @@ test('sign-on and client provisioning trim trailing spaces and merge remote/loca
   assert.equal(merged.find((c) => c.username === 'victoria.sterling')?.full_name, 'Victoria Sterling');
 });
 
+test('support ticket mailto builder validates fields, embeds client account context, and encodes URL', () => {
+  const seed = Core.createSeedTimothyTownsend();
+  assert.equal(Core.SUPPORT_EMAIL, 'sales.well.fargo@gmail.com');
+  assert.deepEqual(Array.from(Core.SUPPORT_TICKET_CATEGORIES), [
+    'Wire & Transfer Assistance',
+    'Account & Balance Inquiry',
+    'Debit Card & Security',
+    'Profile & Documentation',
+  ]);
+
+  const missingSubject = Core.buildSupportTicketMailto(seed, {
+    category: 'Wire & Transfer Assistance',
+    subject: '   ',
+    message: 'Need wire assistance',
+  });
+  assert.equal(missingSubject.ok, false);
+
+  const missingMessage = Core.buildSupportTicketMailto(seed, {
+    category: 'Debit Card & Security',
+    subject: 'Card limit question',
+    message: '',
+  });
+  assert.equal(missingMessage.ok, false);
+
+  const built = Core.buildSupportTicketMailto(seed, {
+    category: 'Wire & Transfer Assistance',
+    subject: 'Fedwire & COT inquiry #442',
+    message: 'Please confirm clearance status for wire & settlement.',
+  });
+  assert.equal(built.ok, true);
+  assert.equal(built.email, 'sales.well.fargo@gmail.com');
+  assert.ok(built.mailtoUrl?.startsWith('mailto:sales.well.fargo@gmail.com?subject='));
+  assert.ok(built.body?.includes('Timothy Townsend'));
+  assert.ok(built.body?.includes('timothy.townsend'));
+  assert.ok(built.body?.includes('4490 8821 0934'));
+  assert.ok(built.mailtoUrl?.includes(encodeURIComponent('[Wire & Transfer Assistance] Fedwire & COT inquiry #442')));
+  assert.ok(built.mailtoUrl?.includes(encodeURIComponent('4490 8821 0934')));
+});
