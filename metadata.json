@@ -1,0 +1,6 @@
+{
+  "name": "Meridian Treasury",
+  "description": "Executive banking and treasury demo portal with multi-currency liquidity tracking, cash flow analytics, and verified external transfers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

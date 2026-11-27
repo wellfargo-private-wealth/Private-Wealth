@@ -1,0 +1,2359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Wealth &amp; Executive Treasury Portal</title>
+  <meta name="description" content="Executive banking and treasury portal with multi-currency liquidity tracking, cash flow analytics, and verified external transfers." />
+  <meta property="og:title" content="Private Wealth &amp; Executive Treasury Portal" />
+  <meta property="og:description" content="Executive banking and treasury portal with multi-currency liquidity tracking, cash flow analytics, and verified external transfers." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+            sans: ['"Inter"', '"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              red: '#C8102E',
+              deep: '#8B0015',
+              tint: '#FEF2F2',
+              gold: '#F59E0B',
+              warm: '#FAF8F6',
+              canvas: '#F9FAFB',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Chart.js & Lucide Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --brand-red: #C8102E;
+      --brand-deep: #8B0015;
+      --brand-gold: #F59E0B;
+      --warm-bg: #FAF8F6;
+      --dash-bg: #F9FAFB;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .font-display {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .text-balance {
+      text-wrap: balance;
+    }
+
+    .modal-panel {
+      transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .progress-bar-fill {
+      transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    a:focus-visible {
+      outline: 2px solid #C8102E;
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#FAF8F6] text-slate-900 antialiased selection:bg-[#C8102E] selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 1: PUBLIC LANDING PAGE                                           -->
+  <!-- ===================================================================== -->
+  <div id="landingView" class="min-h-screen flex flex-col bg-[#FAF8F6]">
+    <!-- Top Crimson Header Bar with 3px Gold/Amber Accent Line -->
+    <header class="bg-[#C8102E] text-white border-b-[3px] border-[#F59E0B] md:sticky md:top-0 z-30 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4 sm:gap-8">
+        <!-- Logo Placement Zone -->
+        <a href="#top" class="flex items-center whitespace-nowrap shrink-0 rounded-lg py-1" aria-label="Home">
+          <div class="flex items-center">
+            <img src="./logo.png" alt="Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div style="display:none;" class="px-3.5 py-2 rounded-lg border border-dashed border-white/75 bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
+              Logo Placement
+            </div>
+          </div>
+        </a>
+
+        <!-- Navigation Links (Desktop) -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-red-50">
+          <a href="#treasury-offer" class="hover:text-white hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">Treasury Checking</a>
+          <a href="#clearing-rails" class="hover:text-white hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">Clearing Rails</a>
+          <a href="#fx-liquidity" class="hover:text-white hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">Global FX</a>
+          <a href="#security-gates" class="hover:text-white hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0">Security</a>
+        </nav>
+
+        <!-- Primary Action -->
+        <div class="flex items-center gap-3 shrink-0">
+          <button
+            type="button"
+            id="landingSignOnBtn"
+            class="bg-white text-[#C8102E] hover:bg-[#FEF2F2] active:scale-[0.99] font-semibold text-sm px-5 py-2.5 rounded-full shadow-sm transition-all whitespace-nowrap shrink-0"
+          >
+            Sign On
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Hero Section on Warm Neutral #FAF8F6 -->
+    <main id="top" class="flex-1">
+      <section id="treasury-offer" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-14 lg:pt-16 lg:pb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          <!-- Left Editorial Proposition + Treasury Checking Offer Card -->
+          <div class="lg:col-span-7 flex flex-col justify-between gap-8">
+            <div class="space-y-4">
+              <p class="text-xs sm:text-sm font-medium text-[#8B0015] tracking-wide">
+                Private Wealth &amp; Corporate Liquidity &middot; Multi-Currency Treasury Desk
+              </p>
+              <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-[1.08] text-balance">
+                Institutional liquidity, built for executive precision.
+              </h1>
+              <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+                Consolidate operating cash, direct-clearing wires, and multi-currency reserves across USD, GBP, and EUR with dual-gate authorization controls.
+              </p>
+            </div>
+
+            <!-- Featured Treasury Checking Offer Card -->
+            <div class="bg-white border border-stone-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+              <div class="flex flex-wrap items-start justify-between gap-4 pb-6 border-b border-stone-100">
+                <div>
+                  <span class="inline-block bg-[#FEF2F2] text-[#C8102E] text-xs font-semibold px-3 py-1 rounded-full mb-2.5">
+                    Executive Treasury Checking
+                  </span>
+                  <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900">
+                    Wellfargo Private Wealth Checking
+                  </h2>
+                  <p class="text-sm text-slate-600 mt-1">
+                    High-yield operating liquidity with zero-fee ACH and priority Fedwire settlement.
+                  </p>
+                </div>
+                <div class="text-left sm:text-right">
+                  <div class="font-display text-3xl font-bold text-[#C8102E] tabular-nums">4.85% <span class="text-base font-semibold text-slate-700">APY</span></div>
+                  <p class="text-xs text-slate-500 mt-0.5">Balances $250,000+</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-b border-stone-100">
+                <div>
+                  <div class="text-xs font-medium text-slate-500">ACH &amp; Direct Deposit</div>
+                  <div class="font-display text-lg font-semibold text-slate-900 tabular-nums mt-1">$0.00 Fee</div>
+                  <div class="text-xs text-slate-500 mt-0.5">1&ndash;3 business day clearing</div>
+                </div>
+                <div>
+                  <div class="text-xs font-medium text-slate-500">Fedwire / SWIFT</div>
+                  <div class="font-display text-lg font-semibold text-slate-900 tabular-nums mt-1">Same-Day</div>
+                  <div class="text-xs text-slate-500 mt-0.5">SWIFT WFBIUS6SXXX</div>
+                </div>
+                <div>
+                  <div class="text-xs font-medium text-slate-500">Settlement Security</div>
+                  <div class="font-display text-lg font-semibold text-slate-900 mt-1">COT + PIN</div>
+                  <div class="text-xs text-slate-500 mt-0.5">Dual-stage release gate</div>
+                </div>
+              </div>
+
+              <div class="pt-6 flex items-center justify-end">
+                <button
+                  type="button"
+                  id="heroGetStartedBtn"
+                  class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm sm:text-base px-7 py-3.5 rounded-full shadow-sm transition-colors inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
+                >
+                  <span>Get started &gt;&gt;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Institutional Global Treasury & Custody Standards Card -->
+          <div class="lg:col-span-5 flex">
+            <div class="w-full rounded-2xl bg-gradient-to-br from-[#8B0015] via-[#A90C24] to-[#C8102E] text-white p-7 sm:p-9 shadow-lg flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-48 h-48 rounded-full border border-white/10 -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+              <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full border border-[#F59E0B]/20 translate-y-1/2 -translate-x-1/3 pointer-events-none"></div>
+
+              <div class="relative space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                  <span class="text-xs font-semibold tracking-wider uppercase text-amber-200">Institutional Standards</span>
+                  <span class="font-mono text-xs text-red-100">WFBIUS6SXXX</span>
+                </div>
+
+                <div>
+                  <h2 class="font-display text-2xl sm:text-[1.75rem] font-bold tracking-tight text-white leading-snug text-balance">
+                    Global Treasury &amp; Custody Standards
+                  </h2>
+                  <p class="text-xs sm:text-sm text-red-100/90 mt-2 leading-relaxed">
+                    Built for executive balance sheets requiring verified clearing rails and multi-currency liquidity oversight.
+                  </p>
+                </div>
+
+                <ol class="space-y-4 pt-4 border-t border-white/15">
+                  <li class="space-y-1">
+                    <div class="font-display text-sm font-bold text-white">1. Segregated Treasury Custody</div>
+                    <p class="text-xs text-red-100/90 leading-relaxed">
+                      Tier-1 institutional reserve protection with real-time ledger reconciliation.
+                    </p>
+                  </li>
+                  <li class="space-y-1 pt-3 border-t border-white/10">
+                    <div class="font-display text-sm font-bold text-white">2. Direct Multi-Currency FX Desk</div>
+                    <p class="text-xs text-red-100/90 leading-relaxed">
+                      Instant settlement and conversion across USD ($), GBP (&pound;), and EUR (&euro;).
+                    </p>
+                  </li>
+                  <li class="space-y-1 pt-3 border-t border-white/10">
+                    <div class="font-display text-sm font-bold text-white">3. Dual-Gate Transfer Authorization</div>
+                    <p class="text-xs text-red-100/90 leading-relaxed">
+                      Mandatory Certificate of Transfer (COT) and PIN verification on all external disbursements.
+                    </p>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="relative pt-6 mt-6 border-t border-white/15">
+                <button
+                  type="button"
+                  id="previewSignOnBtn"
+                  class="w-full bg-white text-[#C8102E] hover:bg-[#FEF2F2] font-semibold text-sm px-5 py-3 rounded-full shadow-sm transition-colors whitespace-nowrap"
+                >
+                  Sign On to Client Portal
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Treasury Capabilities & Proof Sections -->
+      <section id="clearing-rails" class="bg-white border-t border-stone-200 py-14 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-2xl mb-10">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 text-balance">
+              Three institutional settlement rails in one workflow
+            </h2>
+            <p class="text-sm sm:text-base text-slate-600 mt-2">
+              Route capital across domestic clearing, international Fedwire/SWIFT, or scheduled treasury credits with transparent fee schedules.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-[#FAF8F6] border border-stone-200 rounded-2xl p-6 flex flex-col justify-between gap-4">
+              <div>
+                <div class="text-xs font-semibold text-[#C8102E] mb-2">01. Domestic Clearing</div>
+                <h3 class="font-display text-lg font-bold text-slate-900">ACH Transfer</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                  Batch-cleared corporate payables and vendor disbursements with zero transaction fees.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-stone-200 flex items-center justify-between text-xs font-medium text-slate-700 tabular-nums">
+                <span>1&ndash;3 Business Days</span>
+                <span class="text-[#8B0015] font-semibold">$0.00 Fee</span>
+              </div>
+            </div>
+
+            <div class="bg-[#FAF8F6] border border-stone-200 rounded-2xl p-6 flex flex-col justify-between gap-4">
+              <div>
+                <div class="text-xs font-semibold text-[#C8102E] mb-2">02. Priority Settlement</div>
+                <h3 class="font-display text-lg font-bold text-slate-900">Wire Transfer</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                  Real-time gross settlement via Fedwire and SWIFT WFBIUS6SXXX for time-critical capital calls.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-stone-200 flex items-center justify-between text-xs font-medium text-slate-700 tabular-nums">
+                <span>Same-Day Fedwire / SWIFT</span>
+                <span class="text-[#8B0015] font-semibold">$25.00 Fee</span>
+              </div>
+            </div>
+
+            <div class="bg-[#FAF8F6] border border-stone-200 rounded-2xl p-6 flex flex-col justify-between gap-4">
+              <div>
+                <div class="text-xs font-semibold text-[#C8102E] mb-2">03. Automated Disbursement</div>
+                <h3 class="font-display text-lg font-bold text-slate-900">Direct Deposit</h3>
+                <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                  Scheduled executive payroll, dividend distributions, and recurring treasury allocations.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-stone-200 flex items-center justify-between text-xs font-medium text-slate-700 tabular-nums">
+                <span>Scheduled Treasury Credit</span>
+                <span class="text-[#8B0015] font-semibold">$0.00 Fee</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="fx-liquidity" class="bg-[#FAF8F6] border-t border-stone-200 py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div class="space-y-3">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 text-balance">
+              Live multi-currency reporting across USD, GBP, and EUR
+            </h2>
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+              Toggle the dashboard reporting currency globally to inspect operating balances, cash flow charts, and ledger settlements in US Dollars, British Pounds, or Euros.
+            </p>
+          </div>
+          <div id="security-gates" class="bg-white border border-stone-200 rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <p class="text-xs font-medium text-slate-500">Gate A &middot; 45% Progress</p>
+              <p class="font-display text-base font-bold text-slate-900 mt-1">COT Verification</p>
+              <p class="text-xs text-slate-600 mt-1">Certificate of Transfer release code halts settlement until verified.</p>
+            </div>
+            <div>
+              <p class="text-xs font-medium text-slate-500">Gate B &middot; 75% Progress</p>
+              <p class="font-display text-base font-bold text-slate-900 mt-1">Security PIN Gate</p>
+              <p class="text-xs text-slate-600 mt-1">4-digit executive security PIN authorizes final ledger posting.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Quiet Footer -->
+    <footer class="bg-white border-t border-stone-200 py-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div class="flex items-center gap-3">
+          <span class="font-display font-semibold text-slate-800">Private Wealth Treasury</span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Institutional Custody &amp; Clearing</span>
+        </div>
+        <div class="flex items-center gap-5">
+          <span>SWIFT: WFBIUS6SXXX</span>
+          <button type="button" id="footerSignOnBtn" class="text-[#C8102E] font-semibold hover:underline">
+            Sign On to Client Portal
+          </button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 2: EXECUTIVE TREASURY DASHBOARD                                  -->
+  <!-- ===================================================================== -->
+  <div id="dashboardView" class="hidden min-h-screen flex flex-col bg-[#F9FAFB]">
+    <!-- Top Crimson Dashboard Bar -->
+    <header class="bg-[#C8102E] text-white border-b-[3px] border-[#F59E0B] md:sticky md:top-0 z-30 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+        <!-- Logo Placement Zone -->
+        <div class="flex items-center whitespace-nowrap shrink-0">
+          <div class="flex items-center">
+            <img src="./logo.png" alt="Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div style="display:none;" class="px-3.5 py-2 rounded-lg border border-dashed border-white/75 bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
+              Logo Placement
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Controls: Currency Switcher, Transfer Funds, Sign Out -->
+        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <!-- Global Currency Switcher ($ USD | £ GBP | € EUR) -->
+          <div
+            role="group"
+            aria-label="Global reporting currency"
+            class="inline-flex items-center bg-white/95 rounded-full p-1 shadow-sm shrink-0"
+          >
+            <button
+              type="button"
+              data-currency="USD"
+              class="currency-pill px-3 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap"
+            >
+              $ USD
+            </button>
+            <button
+              type="button"
+              data-currency="GBP"
+              class="currency-pill px-3 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap"
+            >
+              &pound; GBP
+            </button>
+            <button
+              type="button"
+              data-currency="EUR"
+              class="currency-pill px-3 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap"
+            >
+              &euro; EUR
+            </button>
+          </div>
+
+          <button
+            type="button"
+            id="headerTransferBtn"
+            class="bg-white text-[#C8102E] hover:bg-[#FEF2F2] font-semibold text-xs sm:text-sm px-4 py-2 rounded-full shadow-sm transition-colors inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
+          >
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            <span>Transfer Funds</span>
+          </button>
+
+          <button
+            type="button"
+            id="signOutBtn"
+            class="bg-[#8B0015] hover:bg-[#6E0010] text-white border border-white/25 font-medium text-xs sm:text-sm px-4 py-2 rounded-full transition-colors inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
+          >
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+      <!-- Executive Hero Card -->
+      <section class="rounded-2xl bg-gradient-to-br from-[#8B0015] via-[#A60D25] to-[#C8102E] text-white p-6 sm:p-8 shadow-md relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-72 h-72 rounded-full border border-white/10 -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+        <div class="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="space-y-4">
+            <div class="flex flex-wrap items-center gap-2 text-xs text-red-100">
+              <span class="font-medium tracking-wide uppercase text-amber-200">Private Wealth Treasury</span>
+              <span aria-hidden="true">&middot;</span>
+              <span>Reporting in <strong id="activeCurrencyLabel" class="text-white">USD ($)</strong></span>
+            </div>
+
+            <div class="flex items-start sm:items-center gap-4">
+              <!-- Profile Picture Upload Slot -->
+              <div class="relative shrink-0">
+                <button
+                  type="button"
+                  id="profileAvatarTrigger"
+                  aria-label="Upload profile photo"
+                  title="Click to upload profile photo"
+                  class="w-14 h-14 rounded-full border-2 border-red-200 overflow-hidden cursor-pointer relative bg-[#8B0015] flex items-center justify-center group shadow-sm"
+                >
+                  <img
+                    id="profileAvatarImg"
+                    src="./profile.jpg"
+                    alt="Profile avatar"
+                    class="w-full h-full object-cover"
+                    onerror="this.style.display='none'; document.getElementById('profileAvatarInitials').style.display='flex';"
+                  />
+                  <span
+                    id="profileAvatarInitials"
+                    style="display: none;"
+                    class="w-full h-full items-center justify-center font-display font-bold text-base text-white tracking-wide"
+                  >
+                    TT
+                  </span>
+                </button>
+                <span
+                  aria-hidden="true"
+                  class="pointer-events-none absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full bg-white text-[#C8102E] border border-red-200 flex items-center justify-center shadow"
+                >
+                  <i data-lucide="camera" class="w-3 h-3"></i>
+                </span>
+                <input
+                  type="file"
+                  id="profilePhotoInput"
+                  accept="image/*"
+                  class="hidden"
+                  aria-label="Choose profile photo file"
+                />
+              </div>
+
+              <div>
+                <h1 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white" data-account-holder></h1>
+                <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-red-50">
+                  <div class="flex items-center gap-2">
+                    <span class="text-red-200 text-xs">Account:</span>
+                    <span id="accountNumberDisplay" class="font-mono font-medium tabular-nums tracking-wider">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0934</span>
+                    <button
+                      type="button"
+                      id="toggleAccountMaskBtn"
+                      aria-label="Show account number"
+                      class="inline-flex items-center gap-1 rounded-md bg-white/15 hover:bg-white/25 px-2 py-1 text-xs font-medium text-white transition-colors"
+                    >
+                      <i data-lucide="eye" id="accountMaskIcon" class="w-3.5 h-3.5"></i>
+                      <span id="accountMaskLabel">Show</span>
+                    </button>
+                    <button
+                      type="button"
+                      id="copyAccountBtn"
+                      aria-label="Copy account number"
+                      class="inline-flex items-center gap-1 rounded-md bg-white/15 hover:bg-white/25 px-2 py-1 text-xs font-medium text-white transition-colors"
+                    >
+                      <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                      <span id="copyAccountLabel">Copy</span>
+                    </button>
+                  </div>
+                  <div class="flex items-center gap-1.5 text-xs text-red-100">
+                    <span class="text-red-200">Routing / SWIFT:</span>
+                    <span class="font-mono font-semibold text-white">WFBIUS6SXXX</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Available Balance & Primary Transfer Action -->
+          <div class="flex flex-col sm:flex-row sm:items-end lg:flex-col lg:items-end justify-between gap-4 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/15">
+            <div class="lg:text-right">
+              <p class="text-xs font-medium uppercase tracking-wider text-red-100">Total Available Balance</p>
+              <p id="heroAvailableBalance" class="font-display text-3xl sm:text-4xl font-bold tracking-tight tabular-nums mt-1">$30,000,000.00</p>
+            </div>
+            <button
+              type="button"
+              id="heroTransferBtn"
+              class="bg-white text-[#C8102E] hover:bg-[#FEF2F2] font-semibold text-sm px-5 py-2.5 rounded-full shadow-sm transition-colors inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
+            >
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Transfer Funds</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4-Column Financial Summary Strip -->
+      <section aria-label="Financial Summary" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-medium text-slate-500">Total Deposit (Inflow)</span>
+            <span class="inline-flex items-center rounded-full bg-[#FEF2F2] px-2.5 py-0.5 text-[11px] font-semibold text-[#C8102E] whitespace-nowrap shrink-0">
+              YTD Credit
+            </span>
+          </div>
+          <p id="kpiTotalDeposit" class="font-display text-2xl font-bold text-slate-900 tabular-nums mt-3">$38,450,000.00</p>
+          <p class="text-xs text-slate-500 mt-1">Treasury inflows across rails</p>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-medium text-slate-500">Total Debit (Outflow)</span>
+            <span class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-700 whitespace-nowrap shrink-0">
+              Settled
+            </span>
+          </div>
+          <p id="kpiTotalDebit" class="font-display text-2xl font-bold text-slate-900 tabular-nums mt-3">$8,450,000.00</p>
+          <p class="text-xs text-slate-500 mt-1">Updates live on transfer completion</p>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-medium text-slate-500">Active Investment Portfolio</span>
+            <span class="inline-flex items-center rounded-full bg-[#FEF2F2] px-2.5 py-0.5 text-[11px] font-semibold text-[#C8102E] tabular-nums whitespace-nowrap shrink-0">
+              +14.2% YTD
+            </span>
+          </div>
+          <p id="kpiInvestmentPortfolio" class="font-display text-2xl font-bold text-slate-900 tabular-nums mt-3">$12,500,000.00</p>
+          <p class="text-xs text-slate-500 mt-1">Fixed income &amp; sovereign treasuries</p>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-medium text-slate-500">Active Loan Balance</span>
+            <span class="inline-flex items-center rounded-full bg-amber-50 border border-amber-200 px-2.5 py-0.5 text-[11px] font-semibold text-amber-800 tabular-nums whitespace-nowrap shrink-0">
+              3.85% APR
+            </span>
+          </div>
+          <p id="kpiLoanBalance" class="font-display text-2xl font-bold text-slate-900 tabular-nums mt-3">$1,200,000.00</p>
+          <p class="text-xs text-slate-500 mt-1">Executive credit line facility</p>
+        </div>
+      </section>
+
+      <!-- Charts & Live Currency Converter Grid -->
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <!-- Monthly Cash Flow Bar Chart -->
+        <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 flex flex-col">
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 class="font-display text-base font-bold text-slate-900">Monthly Cash Flow</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Deposits vs. Debits (6-month liquidity trend)</p>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-600">
+              <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#C8102E]"></span>Deposits</span>
+              <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#8B0015]"></span>Debits</span>
+            </div>
+          </div>
+          <div class="relative flex-1 min-h-[240px]">
+            <canvas id="cashFlowChart" data-testid="cash-flow-chart"></canvas>
+          </div>
+        </div>
+
+        <!-- Asset Allocation Doughnut Chart -->
+        <div class="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 flex flex-col">
+          <div class="mb-4">
+            <h2 class="font-display text-base font-bold text-slate-900">Asset Allocation</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Liquidity, portfolio &amp; credit exposure</p>
+          </div>
+          <div class="relative flex-1 min-h-[240px] flex items-center justify-center">
+            <canvas id="allocationChart" data-testid="allocation-chart"></canvas>
+          </div>
+        </div>
+
+        <!-- Live Currency Converter Widget -->
+        <div class="lg:col-span-3 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between gap-2">
+              <div>
+                <h2 class="font-display text-base font-bold text-slate-900">Live FX Converter</h2>
+                <p class="text-xs text-slate-500 mt-0.5">Desk benchmark rates</p>
+              </div>
+              <span class="font-mono text-[11px] font-medium text-[#C8102E] bg-[#FEF2F2] px-2 py-0.5 rounded-full">Spot</span>
+            </div>
+
+            <div>
+              <label for="fxAmountInput" class="block text-xs font-medium text-slate-600 mb-1">Amount</label>
+              <input
+                type="number"
+                id="fxAmountInput"
+                min="0"
+                step="1000"
+                value="100000"
+                class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-900 tabular-nums focus:border-[#C8102E] focus:outline-none"
+              />
+            </div>
+
+            <div class="grid grid-cols-[1fr_auto_1fr] items-end gap-2">
+              <div>
+                <label for="fxFromSelect" class="block text-xs font-medium text-slate-600 mb-1">From</label>
+                <select
+                  id="fxFromSelect"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-2.5 py-2 text-xs font-semibold text-slate-900 focus:border-[#C8102E] focus:outline-none"
+                >
+                  <option value="USD" selected>USD ($)</option>
+                  <option value="GBP">GBP (&pound;)</option>
+                  <option value="EUR">EUR (&euro;)</option>
+                </select>
+              </div>
+
+              <button
+                type="button"
+                id="fxSwapBtn"
+                aria-label="Swap currencies"
+                class="mb-0.5 h-9 w-9 rounded-xl border border-slate-200 hover:border-[#C8102E] hover:text-[#C8102E] flex items-center justify-center text-slate-600 transition-colors"
+              >
+                <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+              </button>
+
+              <div>
+                <label for="fxToSelect" class="block text-xs font-medium text-slate-600 mb-1">To</label>
+                <select
+                  id="fxToSelect"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-2.5 py-2 text-xs font-semibold text-slate-900 focus:border-[#C8102E] focus:outline-none"
+                >
+                  <option value="USD">USD ($)</option>
+                  <option value="GBP">GBP (&pound;)</option>
+                  <option value="EUR" selected>EUR (&euro;)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="rounded-xl bg-[#FAF8F6] border border-stone-200 p-3.5">
+              <p class="text-[11px] font-medium text-slate-500">Converted Equivalent</p>
+              <p id="fxResultDisplay" class="font-display text-xl font-bold text-slate-900 tabular-nums mt-0.5">&euro;92,000.00</p>
+              <p id="fxRateCaption" class="text-[11px] text-slate-500 font-mono tabular-nums mt-1">1 USD = 0.9200 EUR</p>
+            </div>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-mono tabular-nums">
+            <span>USD 1.00</span>
+            <span>GBP 0.79</span>
+            <span>EUR 0.92</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filterable Transactions Table -->
+      <section class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+        <div class="p-5 sm:p-6 border-b border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="font-display text-lg font-bold text-slate-900">Treasury Activity Ledger</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Verified inflows and external settlements for <span data-account-holder></span></p>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div class="relative">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+              <input
+                type="search"
+                id="txSearchInput"
+                placeholder="Search counterparty or ref..."
+                aria-label="Search transactions"
+                class="w-full sm:w-56 rounded-full border border-slate-300 pl-9 pr-4 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+              />
+            </div>
+
+            <!-- Segmented Filter Tabs -->
+            <div role="tablist" aria-label="Filter transactions by type" class="inline-flex items-center bg-slate-100 rounded-full p-1 self-start sm:self-auto">
+              <button
+                type="button"
+                role="tab"
+                data-tx-filter="all"
+                aria-selected="true"
+                class="tx-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                role="tab"
+                data-tx-filter="deposit"
+                aria-selected="false"
+                class="tx-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap"
+              >
+                Deposits
+              </button>
+              <button
+                type="button"
+                role="tab"
+                data-tx-filter="debit"
+                aria-selected="false"
+                class="tx-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap"
+              >
+                Debits
+              </button>
+            </div>
+
+            <button
+              type="button"
+              id="ledgerTransferBtn"
+              class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-xs px-4 py-2 rounded-full transition-colors inline-flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0"
+            >
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span>New Transfer</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                <th class="py-3 px-5 whitespace-nowrap">Date</th>
+                <th class="py-3 px-4 whitespace-nowrap">Reference ID</th>
+                <th class="py-3 px-4">Counterparty &amp; Memo</th>
+                <th class="py-3 px-4 whitespace-nowrap">Rail</th>
+                <th class="py-3 px-4 whitespace-nowrap">Status</th>
+                <th class="py-3 px-5 text-right whitespace-nowrap">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsTableBody" class="divide-y divide-slate-100 text-sm">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="transactionsEmptyState" class="hidden py-12 px-6 text-center">
+          <p class="font-display text-sm font-semibold text-slate-800">No matching treasury transactions found</p>
+          <p class="text-xs text-slate-500 mt-1">Adjust your search term or reset the category filter to view all entries.</p>
+          <button
+            type="button"
+            id="clearTxFiltersBtn"
+            class="mt-4 inline-flex items-center px-4 py-1.5 rounded-full border border-slate-300 text-xs font-semibold text-slate-700 hover:border-[#C8102E] hover:text-[#C8102E] transition-colors"
+          >
+            Clear Filters
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 1: SIGN-ON OVERLAY                                              -->
+  <!-- ===================================================================== -->
+  <div
+    id="signOnModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="signOnGreeting"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/65"
+  >
+    <div class="modal-panel w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden border border-stone-200">
+      <!-- Crimson Top Header Strip with Logo Placement Slot -->
+      <div class="bg-[#C8102E] px-6 py-3.5 border-b-[3px] border-[#F59E0B] flex items-center justify-between gap-3 text-white">
+        <div class="flex items-center">
+          <img src="./logo.png" alt="Logo" class="h-10 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div style="display:none;" class="px-3.5 py-2 rounded-lg border border-dashed border-white/75 bg-white/10 text-white text-xs font-bold uppercase tracking-wider">
+            Logo Placement
+          </div>
+        </div>
+        <button
+          type="button"
+          id="closeSignOnModalBtn"
+          aria-label="Close sign on modal"
+          class="rounded-full p-1.5 text-red-100 hover:text-white hover:bg-[#8B0015] transition-colors"
+        >
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-6 sm:p-7 space-y-5">
+        <div>
+          <h2 id="signOnGreeting" class="font-display text-2xl font-bold text-slate-900">Good afternoon</h2>
+          <p class="text-sm text-slate-600 mt-1">Sign on to access <span data-account-holder></span>&rsquo;s Private Wealth Treasury portal.</p>
+        </div>
+
+        <form id="signOnForm" class="space-y-4" novalidate>
+          <div>
+            <label for="loginUsername" class="block text-xs font-semibold text-slate-700 mb-1.5">Username</label>
+            <input
+              type="text"
+              id="loginUsername"
+              name="username"
+              autocomplete="username"
+              placeholder="Username"
+              class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="loginPassword" class="block text-xs font-semibold text-slate-700 mb-1.5">Password</label>
+            <div class="relative">
+              <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                autocomplete="current-password"
+                placeholder="Password"
+                class="w-full rounded-xl border border-slate-300 pl-4 pr-16 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+              <button
+                type="button"
+                id="togglePasswordBtn"
+                aria-label="Show password"
+                class="absolute right-2.5 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-slate-600 hover:text-[#C8102E] transition-colors"
+              >
+                <i data-lucide="eye" id="passwordEyeIcon" class="w-3.5 h-3.5"></i>
+                <span id="passwordToggleText">Show</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between gap-2">
+            <label class="inline-flex items-center gap-2 text-xs text-slate-700 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                id="saveUsernameCheck"
+                class="h-4 w-4 rounded border-slate-300 text-[#C8102E] focus:ring-[#C8102E]"
+              />
+              <span>Save username</span>
+            </label>
+            <span class="text-xs text-slate-500">Dual-gate transfer enabled</span>
+          </div>
+
+          <!-- Inline Login Error -->
+          <div id="loginError" role="alert" class="hidden rounded-xl bg-[#FEF2F2] border border-red-200 px-3.5 py-2.5 text-xs font-medium text-[#8B0015]"></div>
+
+          <button
+            type="submit"
+            id="signOnSubmitBtn"
+            class="w-full bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm py-3 rounded-full shadow-sm transition-colors"
+          >
+            Sign on
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 2: EXTERNAL BANK TRANSFER (ACH, WIRE, DIRECT DEPOSIT + GATES)   -->
+  <!-- ===================================================================== -->
+  <div
+    id="transferModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="transferModalTitle"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/65 overflow-y-auto"
+  >
+    <div class="modal-panel w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-stone-200 my-auto">
+      <!-- Modal Header -->
+      <div class="bg-[#C8102E] px-6 py-4 border-b-[3px] border-[#F59E0B] flex items-center justify-between gap-3 text-white">
+        <div class="flex items-center gap-2.5">
+          <i data-lucide="landmark" class="w-5 h-5 text-amber-200"></i>
+          <h2 id="transferModalTitle" class="font-display font-bold text-base sm:text-lg tracking-tight">External Bank Transfer</h2>
+        </div>
+        <button
+          type="button"
+          id="closeTransferModalBtn"
+          aria-label="Close transfer modal"
+          class="rounded-full p-1.5 text-red-100 hover:text-white hover:bg-[#8B0015] transition-colors"
+        >
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- STEP 1: SELECT RAIL & DESTINATION DETAILS -->
+      <div id="transferStep1" class="p-6 sm:p-7 space-y-5">
+        <!-- Sender Account Bar (Dynamically bound to ACCOUNT_HOLDER) -->
+        <div class="rounded-xl bg-[#FAF8F6] border border-stone-200 px-4 py-3 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div class="text-slate-600">
+            Originating Account: <strong class="text-slate-900" data-account-holder></strong> <span class="font-mono text-slate-500">(&bull;&bull;&bull;&bull; 0934)</span>
+          </div>
+          <div class="font-mono font-semibold text-[#C8102E] tabular-nums" id="txSenderBalanceHint">
+            Available: $30,000,000.00
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2.5">Step 1 of 3 &middot; Select Transfer Rail</p>
+          <div role="tablist" aria-label="Transfer rail options" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <button
+              type="button"
+              role="tab"
+              data-rail="ACH Transfer"
+              aria-selected="true"
+              class="rail-tab text-left rounded-xl border p-3.5 transition-all"
+            >
+              <div class="font-display text-sm font-bold">ACH Transfer</div>
+              <div class="text-[11px] mt-1 opacity-85">1&ndash;3 Business Days &bull; $0.00 Fee</div>
+            </button>
+            <button
+              type="button"
+              role="tab"
+              data-rail="Wire Transfer"
+              aria-selected="false"
+              class="rail-tab text-left rounded-xl border p-3.5 transition-all"
+            >
+              <div class="font-display text-sm font-bold">Wire Transfer</div>
+              <div class="text-[11px] mt-1 opacity-85">Same-Day Fedwire / SWIFT &bull; $25.00 Fee</div>
+            </button>
+            <button
+              type="button"
+              role="tab"
+              data-rail="Direct Deposit"
+              aria-selected="false"
+              class="rail-tab text-left rounded-xl border p-3.5 transition-all"
+            >
+              <div class="font-display text-sm font-bold">Direct Deposit</div>
+              <div class="text-[11px] mt-1 opacity-85">Scheduled Payroll / Treasury Credit &bull; $0.00 Fee</div>
+            </button>
+          </div>
+        </div>
+
+        <form id="transferDetailsForm" class="space-y-4" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="txBankName" class="block text-xs font-semibold text-slate-700 mb-1">External Bank Name</label>
+              <input
+                type="text"
+                id="txBankName"
+                placeholder="e.g. JPMorgan Chase Bank, N.A."
+                class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label for="txBeneficiary" class="block text-xs font-semibold text-slate-700 mb-1">Account Holder / Beneficiary Name</label>
+              <input
+                type="text"
+                id="txBeneficiary"
+                placeholder="e.g. Vanguard Institutional Capital"
+                class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="txRouting" class="block text-xs font-semibold text-slate-700 mb-1">Routing / IBAN Number</label>
+              <input
+                type="text"
+                id="txRouting"
+                placeholder="e.g. 021000021"
+                class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label for="txAccountNum" class="block text-xs font-semibold text-slate-700 mb-1">Account Number</label>
+              <input
+                type="text"
+                id="txAccountNum"
+                placeholder="e.g. 8830194420"
+                class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label for="txAmount" class="block text-xs font-semibold text-slate-700">Transfer Amount (USD)</label>
+                <span id="txAvailableHint" class="text-[11px] font-medium text-slate-500 tabular-nums">Avail: $30,000,000.00</span>
+              </div>
+              <input
+                type="number"
+                id="txAmount"
+                min="1"
+                step="0.01"
+                placeholder="250000.00"
+                class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-semibold text-slate-900 tabular-nums placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label for="txMemo" class="block text-xs font-semibold text-slate-700 mb-1">Reference Memo</label>
+              <input
+                type="text"
+                id="txMemo"
+                placeholder="e.g. Q4 Liquidity Rebalance"
+                class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <div id="step1Error" role="alert" class="hidden rounded-xl bg-[#FEF2F2] border border-red-200 px-4 py-2.5 text-xs font-medium text-[#8B0015]"></div>
+
+          <div class="pt-2 flex flex-col-reverse sm:flex-row items-center justify-between gap-3 border-t border-slate-100">
+            <div class="text-xs text-slate-500">
+              Selected: <strong id="selectedRailSummary" class="text-slate-800">ACH Transfer ($0.00 Fee)</strong>
+            </div>
+            <div class="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+              <button
+                type="button"
+                id="cancelStep1Btn"
+                class="px-5 py-2.5 rounded-full border border-slate-300 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                id="initiateTransferBtn"
+                class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-sm transition-colors inline-flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <span>Initiate Transfer</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 2: ANIMATED PROGRESS BAR + COT (45%) & PIN (75%) GATES -->
+      <div id="transferStep2" class="hidden p-6 sm:p-7 space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Step 2 of 3 &middot; Security Clearance</p>
+            <h3 id="step2Headline" class="font-display text-lg font-bold text-slate-900 mt-0.5">Processing External Transfer</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Originating Holder: <span class="font-medium text-slate-700" data-account-holder></span></p>
+          </div>
+          <div class="text-right">
+            <div id="step2AmountBadge" class="font-display text-lg font-bold text-[#C8102E] tabular-nums">$0.00</div>
+            <div id="step2RailBadge" class="text-xs text-slate-500">ACH Transfer</div>
+          </div>
+        </div>
+
+        <!-- 4-Stage Step Indicators -->
+        <div class="grid grid-cols-4 gap-2 text-center text-[11px] font-medium">
+          <div id="stageBadge1" class="rounded-lg py-2 px-1 bg-[#FEF2F2] text-[#C8102E] font-semibold">1. Compliance Check</div>
+          <div id="stageBadge2" class="rounded-lg py-2 px-1 bg-slate-100 text-slate-500">2. COT Verification</div>
+          <div id="stageBadge3" class="rounded-lg py-2 px-1 bg-slate-100 text-slate-500">3. Security PIN</div>
+          <div id="stageBadge4" class="rounded-lg py-2 px-1 bg-slate-100 text-slate-500">4. Settlement</div>
+        </div>
+
+        <!-- Animated Progress Bar -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-semibold">
+            <span id="transferStatusText" class="text-slate-700">Running OFAC &amp; compliance verification...</span>
+            <span id="transferProgressPct" class="font-mono text-[#C8102E] tabular-nums">0%</span>
+          </div>
+          <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
+            <div
+              id="transferProgressBar"
+              class="progress-bar-fill h-full bg-gradient-to-r from-[#8B0015] to-[#C8102E] rounded-full"
+              style="width: 0%;"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Gate A: COT Verification (Pauses at 45%) -->
+        <div id="cotGatePanel" class="hidden rounded-2xl bg-[#FAF8F6] border border-stone-200 p-5 space-y-4">
+          <div>
+            <h4 id="cotPromptTitle" class="font-display text-base font-bold text-slate-900">COT Verification Required (45%)</h4>
+            <p id="cotPromptSubtitle" class="text-xs text-slate-600 mt-0.5">
+              Enter your Certificate of Transfer (COT) authorization code to release this settlement.
+            </p>
+          </div>
+
+          <form id="cotForm" class="flex flex-col sm:flex-row gap-3" novalidate>
+            <div class="flex-1">
+              <label for="cotInput" class="sr-only">COT Authorization Code</label>
+              <input
+                type="text"
+                id="cotInput"
+                placeholder="Enter COT authorization code"
+                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-mono uppercase text-slate-900 placeholder:text-slate-400 focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              id="verifyCotBtn"
+              class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm px-6 py-2.5 rounded-full transition-colors whitespace-nowrap shrink-0"
+            >
+              Verify COT Code
+            </button>
+          </form>
+
+          <div id="cotError" role="alert" class="hidden rounded-xl bg-[#FEF2F2] border border-red-200 px-3.5 py-2 text-xs font-medium text-[#8B0015]"></div>
+        </div>
+
+        <!-- Gate B: Account Security PIN (Pauses at 75%) -->
+        <div id="pinGatePanel" class="hidden rounded-2xl bg-[#FAF8F6] border border-stone-200 p-5 space-y-4">
+          <div>
+            <h4 class="font-display text-base font-bold text-slate-900">Account Security PIN Required (75%)</h4>
+            <p class="text-xs text-slate-600 mt-0.5">
+              Confirm your 4-digit executive treasury PIN to authorize final clearing and ledger debit.
+            </p>
+          </div>
+
+          <form id="pinForm" class="flex flex-col sm:flex-row gap-3" novalidate>
+            <div class="flex-1">
+              <label for="pinInput" class="sr-only">4-Digit Security PIN</label>
+              <input
+                type="password"
+                id="pinInput"
+                maxlength="4"
+                inputmode="numeric"
+                placeholder="Enter 4-digit security PIN"
+                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-mono tracking-widest text-slate-900 placeholder:text-slate-400 placeholder:tracking-normal focus:border-[#C8102E] focus:outline-none"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              id="verifyPinBtn"
+              class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm px-6 py-2.5 rounded-full transition-colors whitespace-nowrap shrink-0"
+            >
+              Authorize &amp; Settle
+            </button>
+          </form>
+
+          <div id="pinError" role="alert" class="hidden rounded-xl bg-[#FEF2F2] border border-red-200 px-3.5 py-2 text-xs font-medium text-[#8B0015]"></div>
+        </div>
+      </div>
+
+      <!-- STEP 3: TRANSFER CONFIRMATION & LIVE LEDGER RECEIPT -->
+      <div id="transferStep3" class="hidden p-6 sm:p-7 space-y-5">
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shrink-0">
+            <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-emerald-700">Step 3 of 3 &middot; Settlement Completed</p>
+            <h3 class="font-display text-xl font-bold text-slate-900 mt-0.5">External Transfer Confirmed</h3>
+            <p class="text-xs text-slate-600 mt-1">
+              <span data-account-holder></span>&rsquo;s Treasury Balance and Activity Ledger have been updated immediately.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-2xl bg-[#FAF8F6] border border-stone-200 p-5 space-y-3 text-sm">
+          <div class="flex items-center justify-between gap-4 pb-3 border-b border-stone-200">
+            <span class="text-xs text-slate-500">Transaction Reference ID</span>
+            <span id="receiptRefId" class="font-mono font-bold text-slate-900">TXN-000000</span>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xs text-slate-500">Originating Holder</span>
+            <span class="font-semibold text-slate-900" data-account-holder></span>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xs text-slate-500">Transfer Rail</span>
+            <span id="receiptRail" class="font-semibold text-slate-900">Wire Transfer</span>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xs text-slate-500">Recipient Bank</span>
+            <span id="receiptBank" class="font-semibold text-slate-900">-</span>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xs text-slate-500">Beneficiary</span>
+            <span id="receiptBeneficiary" class="font-medium text-slate-800">-</span>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xs text-slate-500">Reference Memo</span>
+            <span id="receiptMemo" class="font-medium text-slate-800">-</span>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xs text-slate-500">Rail Processing Fee</span>
+            <span id="receiptFee" class="font-medium text-slate-700 tabular-nums">$0.00</span>
+          </div>
+          <div class="flex items-center justify-between gap-4 pt-3 border-t border-stone-200">
+            <span class="text-xs font-semibold text-slate-700">Amount Transferred</span>
+            <span id="receiptAmount" class="font-display text-lg font-bold text-[#C8102E] tabular-nums">$0.00</span>
+          </div>
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-xs text-slate-500">Updated Available Balance</span>
+            <span id="receiptNewBalance" class="font-mono font-semibold text-slate-900 tabular-nums">$0.00</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-2">
+          <button
+            type="button"
+            id="newTransferFromReceiptBtn"
+            class="w-full sm:w-auto px-5 py-2.5 rounded-full border border-slate-300 text-xs sm:text-sm font-semibold text-slate-700 hover:border-[#C8102E] hover:text-[#C8102E] transition-colors"
+          >
+            New Transfer
+          </button>
+          <button
+            type="button"
+            id="doneReceiptBtn"
+            class="w-full sm:w-auto bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-sm transition-colors"
+          >
+            Done &amp; View Ledger
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- CORE LOGIC & APPLICATION CONTROLLER (ZERO EXTERNAL JS DEPENDENCIES)   -->
+  <!-- ===================================================================== -->
+  <script id="treasury-core-logic">
+    const ACCOUNT_HOLDER = "Timothy Townsend";
+    const ACCOUNT_USERNAME = ACCOUNT_HOLDER.toLowerCase().trim().replace(/\s+/g, '.');
+    const ACCOUNT_LAST_NAME = ACCOUNT_HOLDER.trim().split(/\s+/).slice(-1)[0] || ACCOUNT_HOLDER;
+
+    (function (globalScope) {
+      'use strict';
+
+      var CURRENCY_CONFIG = {
+        USD: { code: 'USD', symbol: '$', rate: 1.00, label: 'USD ($)' },
+        GBP: { code: 'GBP', symbol: '£', rate: 0.79, label: 'GBP (£)' },
+        EUR: { code: 'EUR', symbol: '€', rate: 0.92, label: 'EUR (€)' },
+      };
+
+      var RAIL_CONFIG = {
+        'ACH Transfer': { speed: '1–3 Business Days', feeLabel: '$0.00 Fee', feeUSD: 0 },
+        'Wire Transfer': { speed: 'Same-Day Fedwire / SWIFT', feeLabel: '$25.00 Fee', feeUSD: 25 },
+        'Direct Deposit': { speed: 'Scheduled Payroll / Treasury Credit', feeLabel: '$0.00 Fee', feeUSD: 0 },
+      };
+
+      function getDynamicGreeting(hour) {
+        if (hour < 12) return 'Good morning';
+        if (hour < 18) return 'Good afternoon';
+        return 'Good evening';
+      }
+
+      function convertFromUSD(amountUSD, currencyCode) {
+        var cfg = CURRENCY_CONFIG[currencyCode] || CURRENCY_CONFIG.USD;
+        return Number(amountUSD) * cfg.rate;
+      }
+
+      function convertBetweenCurrencies(amount, fromCode, toCode) {
+        var fromCfg = CURRENCY_CONFIG[fromCode] || CURRENCY_CONFIG.USD;
+        var toCfg = CURRENCY_CONFIG[toCode] || CURRENCY_CONFIG.USD;
+        var amountInUSD = Number(amount) / fromCfg.rate;
+        return amountInUSD * toCfg.rate;
+      }
+
+      function formatCurrency(amountUSD, currencyCode, options) {
+        var cfg = CURRENCY_CONFIG[currencyCode] || CURRENCY_CONFIG.USD;
+        var converted = convertFromUSD(amountUSD, currencyCode);
+        var absVal = Math.abs(converted);
+        var decimals = options && typeof options.decimals === 'number' ? options.decimals : 2;
+        var formatted = absVal.toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        });
+        var sign = converted < 0 ? '-' : (options && options.showPlus && converted > 0 ? '+' : '');
+        return sign + cfg.symbol + formatted;
+      }
+
+      function formatRawCurrency(amount, currencyCode) {
+        var cfg = CURRENCY_CONFIG[currencyCode] || CURRENCY_CONFIG.USD;
+        var formatted = Math.abs(Number(amount) || 0).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+        return cfg.symbol + formatted;
+      }
+
+      function formatAccountNumber(rawNumber, masked) {
+        var clean = String(rawNumber || '449088210934').replace(/\s+/g, '');
+        var last4 = clean.slice(-4);
+        if (masked) {
+          return '•••• •••• ' + last4;
+        }
+        return clean.replace(/(.{4})/g, '$1 ').trim();
+      }
+
+      function validateTransferStep1(input, availableBalanceUSD) {
+        var bankName = String(input.bankName || '').trim();
+        var beneficiary = String(input.beneficiary || '').trim();
+        var routing = String(input.routing || '').trim();
+        var accountNum = String(input.accountNum || '').trim();
+        var memo = String(input.memo || '').trim();
+        var amount = Number(input.amount);
+
+        if (!bankName || !beneficiary || !routing || !accountNum || !memo) {
+          return { valid: false, error: 'Please complete all required external bank and beneficiary fields.' };
+        }
+        if (routing.length < 6) {
+          return { valid: false, error: 'Routing or IBAN number must be at least 6 characters.' };
+        }
+        if (accountNum.length < 4) {
+          return { valid: false, error: 'Destination account number must be at least 4 characters.' };
+        }
+        if (!Number.isFinite(amount) || amount <= 0) {
+          return { valid: false, error: 'Enter a valid transfer amount greater than $0.00.' };
+        }
+        if (amount > availableBalanceUSD) {
+          return { valid: false, error: 'Transfer amount exceeds ' + ACCOUNT_HOLDER + '’s available USD balance.' };
+        }
+        return { valid: true, error: '' };
+      }
+
+      function validateCotCode(code) {
+        return String(code || '').trim().toUpperCase() === 'COT-8842';
+      }
+
+      function validateSecurityPin(pin) {
+        return String(pin || '').trim() === '2026';
+      }
+
+      function applyCompletedTransfer(state, transferDetails, refId, dateStr) {
+        var amount = Number(transferDetails.amount);
+        var nextAvailable = Number((state.availableBalanceUSD - amount).toFixed(2));
+        var nextDebit = Number((state.totalDebitUSD + amount).toFixed(2));
+        var rail = transferDetails.rail;
+        var newTx = {
+          id: refId,
+          date: dateStr,
+          counterparty: transferDetails.beneficiary + ' — ' + transferDetails.bankName,
+          memo: transferDetails.memo,
+          rail: rail,
+          type: 'debit',
+          status: 'Completed',
+          amountUSD: amount,
+        };
+        return {
+          availableBalanceUSD: nextAvailable,
+          totalDepositUSD: state.totalDepositUSD,
+          totalDebitUSD: nextDebit,
+          investmentUSD: state.investmentUSD,
+          loanUSD: state.loanUSD,
+          transactions: [newTx].concat(state.transactions),
+        };
+      }
+
+      function filterTransactions(transactions, filterType, searchQuery) {
+        var q = String(searchQuery || '').trim().toLowerCase();
+        return transactions.filter(function (tx) {
+          var matchesType = filterType === 'all' || tx.type === filterType;
+          if (!matchesType) return false;
+          if (!q) return true;
+          return (
+            tx.id.toLowerCase().indexOf(q) !== -1 ||
+            tx.counterparty.toLowerCase().indexOf(q) !== -1 ||
+            tx.memo.toLowerCase().indexOf(q) !== -1 ||
+            tx.rail.toLowerCase().indexOf(q) !== -1
+          );
+        });
+      }
+
+      globalScope.TreasuryCore = {
+        ACCOUNT_HOLDER: ACCOUNT_HOLDER,
+        ACCOUNT_USERNAME: ACCOUNT_USERNAME,
+        ACCOUNT_LAST_NAME: ACCOUNT_LAST_NAME,
+        CURRENCY_CONFIG: CURRENCY_CONFIG,
+        RAIL_CONFIG: RAIL_CONFIG,
+        getDynamicGreeting: getDynamicGreeting,
+        convertFromUSD: convertFromUSD,
+        convertBetweenCurrencies: convertBetweenCurrencies,
+        formatCurrency: formatCurrency,
+        formatRawCurrency: formatRawCurrency,
+        formatAccountNumber: formatAccountNumber,
+        validateTransferStep1: validateTransferStep1,
+        validateCotCode: validateCotCode,
+        validateSecurityPin: validateSecurityPin,
+        applyCompletedTransfer: applyCompletedTransfer,
+        filterTransactions: filterTransactions,
+      };
+    })(typeof window !== 'undefined' ? window : globalThis);
+  </script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var Core = window.TreasuryCore;
+      var SESSION_AUTH_KEY = 'treasury_portal_auth';
+      var SESSION_LEDGER_KEY = 'treasury_portal_ledger';
+      var SAVED_USER_KEY = 'treasury_portal_saved_user';
+      var PROFILE_PHOTO_KEY = 'treasury_profile_avatar';
+      var ACCOUNT_RAW = '449088210934';
+
+      var DEFAULT_TRANSACTIONS = [
+        {
+          id: 'TXN-904812',
+          date: '2026-11-20',
+          counterparty: 'BlackRock Institutional Liquidity Fund',
+          memo: 'Q4 Treasury Yield Distribution',
+          rail: 'Wire Transfer',
+          type: 'deposit',
+          status: 'Completed',
+          amountUSD: 8250000.00,
+        },
+        {
+          id: 'TXN-904765',
+          date: '2026-11-18',
+          counterparty: 'Apex Commercial Logistics Corp',
+          memo: 'North America Freight Escrow Settlement',
+          rail: 'ACH Transfer',
+          type: 'debit',
+          status: 'Completed',
+          amountUSD: 1850000.00,
+        },
+        {
+          id: 'TXN-904691',
+          date: '2026-11-14',
+          counterparty: Core.ACCOUNT_LAST_NAME + ' Family Holdings LP',
+          memo: 'Capital Account Dividend Sweep',
+          rail: 'Direct Deposit',
+          type: 'deposit',
+          status: 'Completed',
+          amountUSD: 9600000.00,
+        },
+        {
+          id: 'TXN-904520',
+          date: '2026-11-10',
+          counterparty: 'Zurich Private Clearing AG',
+          memo: 'European FX Reserve Hedging Tranche',
+          rail: 'Wire Transfer',
+          type: 'debit',
+          status: 'Completed',
+          amountUSD: 2950000.00,
+        },
+        {
+          id: 'TXN-904388',
+          date: '2026-11-05',
+          counterparty: 'Vanguard Sovereign Bond Desk',
+          memo: 'Matured T-Bill Principal Credit',
+          rail: 'Wire Transfer',
+          type: 'deposit',
+          status: 'Completed',
+          amountUSD: 11400000.00,
+        },
+        {
+          id: 'TXN-904210',
+          date: '2026-11-01',
+          counterparty: 'Executive Payroll Clearing House',
+          memo: 'November Executive Disbursement',
+          rail: 'Direct Deposit',
+          type: 'debit',
+          status: 'Completed',
+          amountUSD: 1750000.00,
+        },
+        {
+          id: 'TXN-904099',
+          date: '2026-10-27',
+          counterparty: 'Pacific Rim Real Estate Trust',
+          memo: 'Commercial Lease Portfolio Proceeds',
+          rail: 'ACH Transfer',
+          type: 'deposit',
+          status: 'Completed',
+          amountUSD: 9200000.00,
+        },
+        {
+          id: 'TXN-903940',
+          date: '2026-10-22',
+          counterparty: 'Deloitte Advisory & Tax LLP',
+          memo: 'Annual Cross-Border Audit Retainer',
+          rail: 'ACH Transfer',
+          type: 'debit',
+          status: 'Completed',
+          amountUSD: 1900000.00,
+        },
+      ];
+
+      function createInitialLedgerState() {
+        return {
+          availableBalanceUSD: 30000000.00,
+          totalDepositUSD: 38450000.00,
+          totalDebitUSD: 8450000.00,
+          investmentUSD: 12500000.00,
+          loanUSD: 1200000.00,
+          transactions: DEFAULT_TRANSACTIONS.slice(),
+        };
+      }
+
+      var appState = {
+        authenticated: false,
+        currency: 'USD',
+        accountMasked: true,
+        txFilter: 'all',
+        txSearch: '',
+        ledger: createInitialLedgerState(),
+        transferDraft: {
+          rail: 'ACH Transfer',
+          bankName: '',
+          beneficiary: '',
+          routing: '',
+          accountNum: '',
+          amount: 0,
+          memo: '',
+        },
+        progressTimer: null,
+        cashFlowChart: null,
+        allocationChart: null,
+      };
+
+      var MONTHLY_CASHFLOW_USD = {
+        labels: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+        deposits: [5200000, 6100000, 4950000, 6800000, 8200000, 7200000],
+        debits: [1150000, 1420000, 1080000, 1550000, 1750000, 1500000],
+      };
+
+      var landingView = document.getElementById('landingView');
+      var dashboardView = document.getElementById('dashboardView');
+      var signOnModal = document.getElementById('signOnModal');
+      var transferModal = document.getElementById('transferModal');
+
+      function refreshIcons() {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      }
+
+      function saveLedgerToSession() {
+        try {
+          sessionStorage.setItem(SESSION_LEDGER_KEY, JSON.stringify(appState.ledger));
+        } catch (e) {
+          // Ignore storage errors
+        }
+      }
+
+      function loadLedgerFromSession() {
+        try {
+          var raw = sessionStorage.getItem(SESSION_LEDGER_KEY);
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed && typeof parsed.availableBalanceUSD === 'number' && Array.isArray(parsed.transactions)) {
+              appState.ledger = parsed;
+              return;
+            }
+          }
+        } catch (e) {
+          // Fallback
+        }
+        appState.ledger = createInitialLedgerState();
+      }
+
+      function loadProfileAvatar() {
+        var img = document.getElementById('profileAvatarImg');
+        var initialsEl = document.getElementById('profileAvatarInitials');
+        var initials = Core.ACCOUNT_HOLDER
+          .split(/\s+/)
+          .filter(Boolean)
+          .slice(0, 2)
+          .map(function (part) { return part.charAt(0).toUpperCase(); })
+          .join('');
+        initialsEl.textContent = initials || 'TT';
+
+        try {
+          var savedPhoto = localStorage.getItem(PROFILE_PHOTO_KEY);
+          if (savedPhoto) {
+            img.src = savedPhoto;
+            img.style.display = 'block';
+            initialsEl.style.display = 'none';
+            return;
+          }
+        } catch (e) {
+          // Ignore
+        }
+        img.src = './profile.jpg';
+      }
+
+      function openSignOnModal() {
+        var greetingEl = document.getElementById('signOnGreeting');
+        greetingEl.textContent = Core.getDynamicGreeting(new Date().getHours());
+
+        var savedUser = '';
+        try {
+          savedUser = localStorage.getItem(SAVED_USER_KEY) || '';
+        } catch (e) {
+          savedUser = '';
+        }
+
+        var userInput = document.getElementById('loginUsername');
+        var passInput = document.getElementById('loginPassword');
+        var saveCheck = document.getElementById('saveUsernameCheck');
+        var errorEl = document.getElementById('loginError');
+
+        if (savedUser) {
+          userInput.value = savedUser;
+          saveCheck.checked = true;
+        } else {
+          userInput.value = '';
+          saveCheck.checked = false;
+        }
+        passInput.value = '';
+        passInput.type = 'password';
+        document.getElementById('passwordToggleText').textContent = 'Show';
+        errorEl.classList.add('hidden');
+        errorEl.textContent = '';
+
+        signOnModal.classList.remove('hidden');
+        setTimeout(function () {
+          userInput.focus();
+        }, 40);
+        refreshIcons();
+      }
+
+      function closeSignOnModal() {
+        signOnModal.classList.add('hidden');
+      }
+
+      function completeSignOn(username) {
+        var saveCheck = document.getElementById('saveUsernameCheck');
+        try {
+          if (saveCheck.checked) {
+            localStorage.setItem(SAVED_USER_KEY, username);
+          } else {
+            localStorage.removeItem(SAVED_USER_KEY);
+          }
+          sessionStorage.setItem(SESSION_AUTH_KEY, JSON.stringify({ user: username, signedInAt: Date.now() }));
+        } catch (e) {
+          // Ignore storage errors
+        }
+
+        appState.authenticated = true;
+        closeSignOnModal();
+        showDashboard();
+      }
+
+      function showLanding() {
+        dashboardView.classList.add('hidden');
+        landingView.classList.remove('hidden');
+        window.scrollTo(0, 0);
+        refreshIcons();
+      }
+
+      function showDashboard() {
+        landingView.classList.add('hidden');
+        dashboardView.classList.remove('hidden');
+        renderDashboard();
+        window.scrollTo(0, 0);
+        refreshIcons();
+      }
+
+      function renderCurrencyPills() {
+        var pills = document.querySelectorAll('.currency-pill');
+        pills.forEach(function (btn) {
+          var code = btn.getAttribute('data-currency');
+          var isActive = code === appState.currency;
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          if (isActive) {
+            btn.className = 'currency-pill px-3 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap bg-[#C8102E] text-white shadow-sm';
+          } else {
+            btn.className = 'currency-pill px-3 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap text-slate-700 hover:text-[#C8102E]';
+          }
+        });
+        document.getElementById('activeCurrencyLabel').textContent = Core.CURRENCY_CONFIG[appState.currency].label;
+      }
+
+      function renderKPIs() {
+        var cur = appState.currency;
+        var l = appState.ledger;
+        document.getElementById('heroAvailableBalance').textContent = Core.formatCurrency(l.availableBalanceUSD, cur);
+        document.getElementById('kpiTotalDeposit').textContent = Core.formatCurrency(l.totalDepositUSD, cur);
+        document.getElementById('kpiTotalDebit').textContent = Core.formatCurrency(l.totalDebitUSD, cur);
+        document.getElementById('kpiInvestmentPortfolio').textContent = Core.formatCurrency(l.investmentUSD, cur);
+        document.getElementById('kpiLoanBalance').textContent = Core.formatCurrency(l.loanUSD, cur);
+        document.getElementById('txAvailableHint').textContent = 'Avail: ' + Core.formatCurrency(l.availableBalanceUSD, 'USD');
+        document.getElementById('txSenderBalanceHint').textContent = 'Available: ' + Core.formatCurrency(l.availableBalanceUSD, 'USD');
+      }
+
+      function renderAccountMask() {
+        var display = document.getElementById('accountNumberDisplay');
+        var label = document.getElementById('accountMaskLabel');
+        var toggleBtn = document.getElementById('toggleAccountMaskBtn');
+        var icon = document.getElementById('accountMaskIcon');
+
+        display.textContent = Core.formatAccountNumber(ACCOUNT_RAW, appState.accountMasked);
+        label.textContent = appState.accountMasked ? 'Show' : 'Hide';
+        toggleBtn.setAttribute('aria-label', appState.accountMasked ? 'Show account number' : 'Hide account number');
+        icon.setAttribute('data-lucide', appState.accountMasked ? 'eye' : 'eye-off');
+        refreshIcons();
+      }
+
+      function renderTransactionsTable() {
+        var tbody = document.getElementById('transactionsTableBody');
+        var emptyState = document.getElementById('transactionsEmptyState');
+        var filtered = Core.filterTransactions(appState.ledger.transactions, appState.txFilter, appState.txSearch);
+
+        document.querySelectorAll('.tx-filter-btn').forEach(function (btn) {
+          var val = btn.getAttribute('data-tx-filter');
+          var active = val === appState.txFilter;
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+          if (active) {
+            btn.className = 'tx-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap bg-[#C8102E] text-white shadow-sm';
+          } else {
+            btn.className = 'tx-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors whitespace-nowrap text-slate-600 hover:text-slate-900';
+          }
+        });
+
+        if (filtered.length === 0) {
+          tbody.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+        var cur = appState.currency;
+
+        tbody.innerHTML = filtered.map(function (tx) {
+          var isDeposit = tx.type === 'deposit';
+          var amountFormatted = Core.formatCurrency(isDeposit ? tx.amountUSD : -tx.amountUSD, cur, { showPlus: isDeposit });
+          var amountClass = isDeposit ? 'text-emerald-700' : 'text-slate-900';
+          return (
+            '<tr class="hover:bg-slate-50/80 transition-colors">' +
+              '<td class="py-3.5 px-5 text-xs text-slate-600 font-mono tabular-nums whitespace-nowrap">' + escapeHtml(tx.date) + '</td>' +
+              '<td class="py-3.5 px-4 text-xs font-mono text-slate-700 whitespace-nowrap">' + escapeHtml(tx.id) + '</td>' +
+              '<td class="py-3.5 px-4">' +
+                '<div class="font-semibold text-slate-900 text-xs sm:text-sm">' + escapeHtml(tx.counterparty) + '</div>' +
+                '<div class="text-xs text-slate-500 mt-0.5">' + escapeHtml(tx.memo) + '</div>' +
+              '</td>' +
+              '<td class="py-3.5 px-4 text-xs font-medium text-slate-700 whitespace-nowrap">' + escapeHtml(tx.rail) + '</td>' +
+              '<td class="py-3.5 px-4 whitespace-nowrap">' +
+                '<span class="inline-flex items-center rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700">' +
+                  escapeHtml(tx.status) +
+                '</span>' +
+              '</td>' +
+              '<td class="py-3.5 px-5 text-right font-mono font-semibold text-xs sm:text-sm tabular-nums whitespace-nowrap ' + amountClass + '">' +
+                escapeHtml(amountFormatted) +
+              '</td>' +
+            '</tr>'
+          );
+        }).join('');
+      }
+
+      function formatAxisValue(val, symbol) {
+        if (val >= 1000000) {
+          return symbol + (val / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+        }
+        return symbol + Math.round(val / 1000) + 'k';
+      }
+
+      function renderCharts() {
+        if (typeof window.Chart === 'undefined') return;
+        var cur = appState.currency;
+        var cfg = Core.CURRENCY_CONFIG[cur];
+
+        var depositsConverted = MONTHLY_CASHFLOW_USD.deposits.map(function (v) {
+          return Number((v * cfg.rate).toFixed(2));
+        });
+        var debitsConverted = MONTHLY_CASHFLOW_USD.debits.map(function (v) {
+          return Number((v * cfg.rate).toFixed(2));
+        });
+
+        var extraDebit = Math.max(0, appState.ledger.totalDebitUSD - 8450000.00);
+        if (extraDebit > 0) {
+          debitsConverted[debitsConverted.length - 1] = Number(
+            ((MONTHLY_CASHFLOW_USD.debits[MONTHLY_CASHFLOW_USD.debits.length - 1] + extraDebit) * cfg.rate).toFixed(2)
+          );
+        }
+
+        var cashFlowCtx = document.getElementById('cashFlowChart').getContext('2d');
+        if (appState.cashFlowChart) {
+          appState.cashFlowChart.data.datasets[0].data = depositsConverted;
+          appState.cashFlowChart.data.datasets[1].data = debitsConverted;
+          appState.cashFlowChart.options.scales.y.ticks.callback = function (val) {
+            return formatAxisValue(val, cfg.symbol);
+          };
+          appState.cashFlowChart.options.plugins.tooltip.callbacks.label = function (ctx) {
+            return ctx.dataset.label + ': ' + Core.formatRawCurrency(ctx.parsed.y, cur);
+          };
+          appState.cashFlowChart.update('none');
+        } else {
+          appState.cashFlowChart = new window.Chart(cashFlowCtx, {
+            type: 'bar',
+            data: {
+              labels: MONTHLY_CASHFLOW_USD.labels,
+              datasets: [
+                {
+                  label: 'Deposits',
+                  data: depositsConverted,
+                  backgroundColor: '#C8102E',
+                  borderRadius: 6,
+                  barPercentage: 0.72,
+                },
+                {
+                  label: 'Debits',
+                  data: debitsConverted,
+                  backgroundColor: '#8B0015',
+                  borderRadius: 6,
+                  barPercentage: 0.72,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  backgroundColor: '#0F172A',
+                  padding: 10,
+                  callbacks: {
+                    label: function (ctx) {
+                      return ctx.dataset.label + ': ' + Core.formatRawCurrency(ctx.parsed.y, appState.currency);
+                    },
+                  },
+                },
+              },
+              scales: {
+                x: {
+                  grid: { display: false },
+                  ticks: { color: '#64748B', font: { size: 11, family: 'Inter' } },
+                },
+                y: {
+                  beginAtZero: true,
+                  grid: { color: 'rgba(148, 163, 184, 0.16)' },
+                  ticks: {
+                    color: '#64748B',
+                    font: { size: 11, family: 'JetBrains Mono' },
+                    callback: function (val) {
+                      return formatAxisValue(val, Core.CURRENCY_CONFIG[appState.currency].symbol);
+                    },
+                  },
+                },
+              },
+            },
+          });
+        }
+
+        var allocValues = [
+          Number((appState.ledger.availableBalanceUSD * cfg.rate).toFixed(2)),
+          Number((appState.ledger.investmentUSD * cfg.rate).toFixed(2)),
+          Number((appState.ledger.loanUSD * cfg.rate).toFixed(2)),
+        ];
+
+        var allocCtx = document.getElementById('allocationChart').getContext('2d');
+        if (appState.allocationChart) {
+          appState.allocationChart.data.datasets[0].data = allocValues;
+          appState.allocationChart.options.plugins.tooltip.callbacks.label = function (ctx) {
+            return ctx.label + ': ' + Core.formatRawCurrency(ctx.parsed, appState.currency);
+          };
+          appState.allocationChart.update('none');
+        } else {
+          appState.allocationChart = new window.Chart(allocCtx, {
+            type: 'doughnut',
+            data: {
+              labels: ['Liquid Operating Cash', 'Investment Portfolio', 'Credit Facility'],
+              datasets: [
+                {
+                  data: allocValues,
+                  backgroundColor: ['#C8102E', '#F59E0B', '#334155'],
+                  borderColor: '#FFFFFF',
+                  borderWidth: 3,
+                  hoverOffset: 4,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              cutout: '66%',
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                  labels: {
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    padding: 14,
+                    color: '#334155',
+                    font: { size: 11, family: 'Inter', weight: '600' },
+                  },
+                },
+                tooltip: {
+                  backgroundColor: '#0F172A',
+                  padding: 10,
+                  callbacks: {
+                    label: function (ctx) {
+                      return ctx.label + ': ' + Core.formatRawCurrency(ctx.parsed, appState.currency);
+                    },
+                  },
+                },
+              },
+            },
+          });
+        }
+      }
+
+      function renderFxConverter() {
+        var amount = parseFloat(document.getElementById('fxAmountInput').value);
+        var from = document.getElementById('fxFromSelect').value;
+        var to = document.getElementById('fxToSelect').value;
+
+        if (!Number.isFinite(amount) || amount < 0) amount = 0;
+        var converted = Core.convertBetweenCurrencies(amount, from, to);
+        var unitRate = Core.convertBetweenCurrencies(1, from, to);
+
+        document.getElementById('fxResultDisplay').textContent = Core.formatRawCurrency(converted, to);
+        document.getElementById('fxRateCaption').textContent = '1 ' + from + ' = ' + unitRate.toFixed(4) + ' ' + to;
+      }
+
+      function renderDashboard() {
+        renderCurrencyPills();
+        renderKPIs();
+        renderAccountMask();
+        renderTransactionsTable();
+        renderFxConverter();
+        renderCharts();
+      }
+
+      function setActiveRail(railName) {
+        appState.transferDraft.rail = railName;
+        var railMeta = Core.RAIL_CONFIG[railName] || Core.RAIL_CONFIG['ACH Transfer'];
+        document.getElementById('selectedRailSummary').textContent = railName + ' (' + railMeta.feeLabel + ')';
+
+        document.querySelectorAll('.rail-tab').forEach(function (tab) {
+          var isSelected = tab.getAttribute('data-rail') === railName;
+          tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+          if (isSelected) {
+            tab.className = 'rail-tab text-left rounded-xl border-2 border-[#C8102E] bg-[#FEF2F2] text-[#8B0015] p-3.5 transition-all';
+          } else {
+            tab.className = 'rail-tab text-left rounded-xl border border-slate-200 bg-white text-slate-700 hover:border-slate-300 p-3.5 transition-all';
+          }
+        });
+      }
+
+      function setTransferStep(stepNum) {
+        document.getElementById('transferStep1').classList.toggle('hidden', stepNum !== 1);
+        document.getElementById('transferStep2').classList.toggle('hidden', stepNum !== 2);
+        document.getElementById('transferStep3').classList.toggle('hidden', stepNum !== 3);
+      }
+
+      function updateStageBadges(activeStage) {
+        var badges = [
+          document.getElementById('stageBadge1'),
+          document.getElementById('stageBadge2'),
+          document.getElementById('stageBadge3'),
+          document.getElementById('stageBadge4'),
+        ];
+        badges.forEach(function (el, idx) {
+          var stage = idx + 1;
+          if (stage < activeStage) {
+            el.className = 'rounded-lg py-2 px-1 bg-emerald-50 text-emerald-700 font-semibold';
+          } else if (stage === activeStage) {
+            el.className = 'rounded-lg py-2 px-1 bg-[#FEF2F2] text-[#C8102E] font-semibold ring-1 ring-[#C8102E]/30';
+          } else {
+            el.className = 'rounded-lg py-2 px-1 bg-slate-100 text-slate-500';
+          }
+        });
+      }
+
+      function setProgress(pct, statusText) {
+        document.getElementById('transferProgressBar').style.width = pct + '%';
+        document.getElementById('transferProgressPct').textContent = pct + '%';
+        document.getElementById('transferStatusText').textContent = statusText;
+      }
+
+      function openTransferModal() {
+        if (appState.progressTimer) {
+          clearTimeout(appState.progressTimer);
+          appState.progressTimer = null;
+        }
+
+        document.getElementById('transferDetailsForm').reset();
+        document.getElementById('step1Error').classList.add('hidden');
+        document.getElementById('cotInput').value = '';
+        document.getElementById('cotError').classList.add('hidden');
+        document.getElementById('pinInput').value = '';
+        document.getElementById('pinError').classList.add('hidden');
+        document.getElementById('cotGatePanel').classList.add('hidden');
+        document.getElementById('pinGatePanel').classList.add('hidden');
+
+        setActiveRail('ACH Transfer');
+        setTransferStep(1);
+        renderKPIs();
+        transferModal.classList.remove('hidden');
+        refreshIcons();
+      }
+
+      function closeTransferModal() {
+        if (appState.progressTimer) {
+          clearTimeout(appState.progressTimer);
+          appState.progressTimer = null;
+        }
+        transferModal.classList.add('hidden');
+      }
+
+      function startGateProgressWorkflow() {
+        var draft = appState.transferDraft;
+        setTransferStep(2);
+        document.getElementById('step2Headline').textContent = 'Transfer to ' + draft.bankName;
+        document.getElementById('step2AmountBadge').textContent = Core.formatCurrency(draft.amount, 'USD');
+        document.getElementById('step2RailBadge').textContent = draft.rail;
+
+        document.getElementById('cotGatePanel').classList.add('hidden');
+        document.getElementById('pinGatePanel').classList.add('hidden');
+        document.getElementById('cotInput').value = '';
+        document.getElementById('pinInput').value = '';
+        document.getElementById('cotError').classList.add('hidden');
+        document.getElementById('pinError').classList.add('hidden');
+
+        updateStageBadges(1);
+        setProgress(15, 'Initializing compliance & counterparty verification...');
+
+        appState.progressTimer = setTimeout(function () {
+          setProgress(45, 'Paused at 45% — COT Verification required for ' + draft.rail);
+          updateStageBadges(2);
+          document.getElementById('cotPromptTitle').textContent =
+            'COT Verification Required for ' + draft.rail + ' (45%)';
+          document.getElementById('cotPromptSubtitle').textContent =
+            'Enter the Certificate of Transfer (COT) code authorized for this ' + draft.rail + ' disbursement.';
+          document.getElementById('cotGatePanel').classList.remove('hidden');
+          document.getElementById('cotInput').focus();
+        }, 550);
+      }
+
+      function finalizeTransferSettlement() {
+        var draft = appState.transferDraft;
+        var refId = 'TXN-' + Math.floor(100000 + Math.random() * 899999);
+        var today = new Date().toISOString().slice(0, 10);
+
+        appState.ledger = Core.applyCompletedTransfer(appState.ledger, draft, refId, today);
+        saveLedgerToSession();
+        renderDashboard();
+
+        var railMeta = Core.RAIL_CONFIG[draft.rail] || Core.RAIL_CONFIG['ACH Transfer'];
+        document.getElementById('receiptRefId').textContent = refId;
+        document.getElementById('receiptRail').textContent = draft.rail;
+        document.getElementById('receiptBank').textContent = draft.bankName;
+        document.getElementById('receiptBeneficiary').textContent = draft.beneficiary;
+        document.getElementById('receiptMemo').textContent = draft.memo;
+        document.getElementById('receiptFee').textContent =
+          railMeta.feeUSD > 0 ? '$25.00 (Waived — Private Wealth)' : '$0.00';
+        document.getElementById('receiptAmount').textContent = Core.formatCurrency(draft.amount, 'USD');
+        document.getElementById('receiptNewBalance').textContent = Core.formatCurrency(
+          appState.ledger.availableBalanceUSD,
+          appState.currency
+        );
+
+        setTransferStep(3);
+        refreshIcons();
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function bindEvents() {
+        document.getElementById('landingSignOnBtn').addEventListener('click', openSignOnModal);
+        document.getElementById('heroGetStartedBtn').addEventListener('click', openSignOnModal);
+        document.getElementById('previewSignOnBtn').addEventListener('click', openSignOnModal);
+        document.getElementById('footerSignOnBtn').addEventListener('click', openSignOnModal);
+        document.getElementById('closeSignOnModalBtn').addEventListener('click', closeSignOnModal);
+
+        // Profile Photo Upload Slot
+        var avatarBtn = document.getElementById('profileAvatarTrigger');
+        var photoInput = document.getElementById('profilePhotoInput');
+        avatarBtn.addEventListener('click', function () {
+          photoInput.click();
+        });
+        photoInput.addEventListener('change', function () {
+          var file = this.files && this.files[0];
+          if (!file) return;
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            var dataUrl = evt.target && evt.target.result;
+            if (typeof dataUrl === 'string') {
+              var img = document.getElementById('profileAvatarImg');
+              var initialsEl = document.getElementById('profileAvatarInitials');
+              img.src = dataUrl;
+              img.style.display = 'block';
+              initialsEl.style.display = 'none';
+              try {
+                localStorage.setItem(PROFILE_PHOTO_KEY, dataUrl);
+              } catch (e) {
+                // Ignore quota error
+              }
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+
+        // Password Show/Hide Toggle
+        document.getElementById('togglePasswordBtn').addEventListener('click', function () {
+          var input = document.getElementById('loginPassword');
+          var textEl = document.getElementById('passwordToggleText');
+          var iconEl = document.getElementById('passwordEyeIcon');
+          var show = input.type === 'password';
+          input.type = show ? 'text' : 'password';
+          textEl.textContent = show ? 'Hide' : 'Show';
+          this.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+          iconEl.setAttribute('data-lucide', show ? 'eye-off' : 'eye');
+          refreshIcons();
+        });
+
+        // Sign-On Form Submit
+        document.getElementById('signOnForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var username = document.getElementById('loginUsername').value.trim();
+          var password = document.getElementById('loginPassword').value;
+          var errorEl = document.getElementById('loginError');
+
+          if (!username || !password) {
+            errorEl.textContent = 'Please enter both your username and password.';
+            errorEl.classList.remove('hidden');
+            return;
+          }
+          if (username !== Core.ACCOUNT_USERNAME || password !== 'Treasury2026!') {
+            errorEl.textContent = 'Invalid credentials. Please verify your username and password.';
+            errorEl.classList.remove('hidden');
+            return;
+          }
+          errorEl.classList.add('hidden');
+          completeSignOn(username);
+        });
+
+        // Sign Out
+        document.getElementById('signOutBtn').addEventListener('click', function () {
+          try {
+            sessionStorage.removeItem(SESSION_AUTH_KEY);
+          } catch (e) {
+            // Ignore
+          }
+          appState.authenticated = false;
+          showLanding();
+        });
+
+        // Global Currency Switcher
+        document.querySelectorAll('.currency-pill').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            appState.currency = this.getAttribute('data-currency');
+            renderDashboard();
+          });
+        });
+
+        // Account Number Mask & Copy
+        document.getElementById('toggleAccountMaskBtn').addEventListener('click', function () {
+          appState.accountMasked = !appState.accountMasked;
+          renderAccountMask();
+        });
+
+        document.getElementById('copyAccountBtn').addEventListener('click', function () {
+          var label = document.getElementById('copyAccountLabel');
+          var formatted = Core.formatAccountNumber(ACCOUNT_RAW, false);
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(formatted).catch(function () {});
+          }
+          label.textContent = 'Copied';
+          setTimeout(function () {
+            label.textContent = 'Copy';
+          }, 1800);
+        });
+
+        // FX Converter Listeners
+        document.getElementById('fxAmountInput').addEventListener('input', renderFxConverter);
+        document.getElementById('fxFromSelect').addEventListener('change', renderFxConverter);
+        document.getElementById('fxToSelect').addEventListener('change', renderFxConverter);
+        document.getElementById('fxSwapBtn').addEventListener('click', function () {
+          var fromSel = document.getElementById('fxFromSelect');
+          var toSel = document.getElementById('fxToSelect');
+          var prevFrom = fromSel.value;
+          fromSel.value = toSel.value;
+          toSel.value = prevFrom;
+          renderFxConverter();
+        });
+
+        // Transactions Filters & Search
+        document.querySelectorAll('.tx-filter-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            appState.txFilter = this.getAttribute('data-tx-filter');
+            renderTransactionsTable();
+          });
+        });
+
+        document.getElementById('txSearchInput').addEventListener('input', function () {
+          appState.txSearch = this.value;
+          renderTransactionsTable();
+        });
+
+        document.getElementById('clearTxFiltersBtn').addEventListener('click', function () {
+          appState.txFilter = 'all';
+          appState.txSearch = '';
+          document.getElementById('txSearchInput').value = '';
+          renderTransactionsTable();
+        });
+
+        // Transfer Modal Open/Close
+        document.getElementById('headerTransferBtn').addEventListener('click', openTransferModal);
+        document.getElementById('heroTransferBtn').addEventListener('click', openTransferModal);
+        document.getElementById('ledgerTransferBtn').addEventListener('click', openTransferModal);
+        document.getElementById('closeTransferModalBtn').addEventListener('click', closeTransferModal);
+        document.getElementById('cancelStep1Btn').addEventListener('click', closeTransferModal);
+
+        // Rail Tabs
+        document.querySelectorAll('.rail-tab').forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            setActiveRail(this.getAttribute('data-rail'));
+          });
+        });
+
+        // Step 1 Submit -> Step 2 Progress
+        document.getElementById('transferDetailsForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var input = {
+            rail: appState.transferDraft.rail,
+            bankName: document.getElementById('txBankName').value,
+            beneficiary: document.getElementById('txBeneficiary').value,
+            routing: document.getElementById('txRouting').value,
+            accountNum: document.getElementById('txAccountNum').value,
+            amount: document.getElementById('txAmount').value,
+            memo: document.getElementById('txMemo').value,
+          };
+          var check = Core.validateTransferStep1(input, appState.ledger.availableBalanceUSD);
+          var errEl = document.getElementById('step1Error');
+          if (!check.valid) {
+            errEl.textContent = check.error;
+            errEl.classList.remove('hidden');
+            return;
+          }
+          errEl.classList.add('hidden');
+          appState.transferDraft = {
+            rail: input.rail,
+            bankName: input.bankName.trim(),
+            beneficiary: input.beneficiary.trim(),
+            routing: input.routing.trim(),
+            accountNum: input.accountNum.trim(),
+            amount: Number(Number(input.amount).toFixed(2)),
+            memo: input.memo.trim(),
+          };
+          startGateProgressWorkflow();
+        });
+
+        // Gate A: COT Submit (45% -> 75%)
+        document.getElementById('cotForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var code = document.getElementById('cotInput').value;
+          var errEl = document.getElementById('cotError');
+          if (!Core.validateCotCode(code)) {
+            errEl.textContent = 'Invalid COT authorization code. Please verify and try again.';
+            errEl.classList.remove('hidden');
+            return;
+          }
+          errEl.classList.add('hidden');
+          document.getElementById('cotGatePanel').classList.add('hidden');
+          setProgress(75, 'COT Verified — Account Security PIN required to authorize settlement...');
+          updateStageBadges(3);
+
+          appState.progressTimer = setTimeout(function () {
+            document.getElementById('pinGatePanel').classList.remove('hidden');
+            document.getElementById('pinInput').focus();
+          }, 550);
+        });
+
+        // Gate B: Security PIN Submit (75% -> 100%)
+        document.getElementById('pinForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var pin = document.getElementById('pinInput').value;
+          var errEl = document.getElementById('pinError');
+          if (!Core.validateSecurityPin(pin)) {
+            errEl.textContent = 'Incorrect Security PIN. Please verify and try again.';
+            errEl.classList.remove('hidden');
+            return;
+          }
+          errEl.classList.add('hidden');
+          document.getElementById('pinGatePanel').classList.add('hidden');
+          updateStageBadges(4);
+          setProgress(100, 'Security PIN verified — Settling funds and posting to ledger...');
+
+          appState.progressTimer = setTimeout(function () {
+            finalizeTransferSettlement();
+          }, 600);
+        });
+
+        // Step 3 Receipt Actions
+        document.getElementById('doneReceiptBtn').addEventListener('click', closeTransferModal);
+        document.getElementById('newTransferFromReceiptBtn').addEventListener('click', openTransferModal);
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            if (!signOnModal.classList.contains('hidden')) closeSignOnModal();
+            if (!transferModal.classList.contains('hidden')) closeTransferModal();
+          }
+        });
+      }
+
+      function renderAccountHolderBindings() {
+        document.querySelectorAll('[data-account-holder]').forEach(function (el) {
+          el.textContent = Core.ACCOUNT_HOLDER;
+        });
+      }
+
+      function init() {
+        renderAccountHolderBindings();
+        loadProfileAvatar();
+        loadLedgerFromSession();
+        bindEvents();
+
+        var params = new URLSearchParams(window.location.search);
+        var hasSession = false;
+        try {
+          hasSession = Boolean(sessionStorage.getItem(SESSION_AUTH_KEY));
+        } catch (e) {
+          hasSession = false;
+        }
+
+        if (hasSession || params.get('autostart') === '1') {
+          appState.authenticated = true;
+          showDashboard();
+        } else {
+          showLanding();
+        }
+        refreshIcons();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>
