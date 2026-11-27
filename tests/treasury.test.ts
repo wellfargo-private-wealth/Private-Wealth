@@ -82,6 +82,7 @@ interface TreasuryCoreApi {
   rebalanceTransferGates: (gates: Partial<TransferGate>[]) => TransferGate[];
   normalizePortalSettings: (raw: unknown) => PortalSettings;
   validateGateInput: (gate: TransferGate, answer: string) => boolean;
+  mergeClientsLists: (remoteClients: ClientRecord[], localClients: ClientRecord[]) => ClientRecord[];
   authenticatePortal: (username: string, password: string, clients: ClientRecord[], portalSettings?: PortalSettings) => { ok: boolean; role?: string; client?: ClientRecord; error?: string };
   validateTransferStep1: (
     input: { bankName: string; beneficiary: string; routing: string; accountNum: string; amount: string | number; memo: string },
@@ -399,5 +400,41 @@ test('admin ledger credit/debit, loans/investments, client self-service profile,
   const authNew = Core.authenticatePortal('exec.admin', 'NewMasterPassword2026!', [seed], rotated.settings);
   assert.equal(authNew.ok, true);
   assert.equal(authNew.role, 'admin');
+});
+
+test('sign-on and client provisioning trim trailing spaces and merge remote/local clients', () => {
+  const seed = Core.createSeedTimothyTownsend();
+
+  const clientWithSpaces = Core.buildNewClientRecord(
+    {
+      full_name: 'Victoria Sterling',
+      username: '  Victoria.Sterling  ',
+      password: '  VaultPass2026!  ',
+      email: 'v.sterling@privatewealth.com',
+      phone: '+1 (212) 555-0199',
+      address: '900 Fifth Avenue, New York, NY',
+      account_tier: 'Corporate Treasury',
+      balance_usd: 1500000,
+    },
+    [seed]
+  );
+  assert.equal(clientWithSpaces.ok, true);
+  assert.equal(clientWithSpaces.client?.username, 'victoria.sterling');
+  assert.equal(clientWithSpaces.client?.password, 'VaultPass2026!');
+
+  const authTrimmed = Core.authenticatePortal('  VICTORIA.STERLING ', '  VaultPass2026!  ', [seed, clientWithSpaces.client!]);
+  assert.equal(authTrimmed.ok, true);
+  assert.equal(authTrimmed.role, 'client');
+  assert.equal(authTrimmed.client?.username, 'victoria.sterling');
+
+  const adminTrimmed = Core.authenticatePortal(' master.admin ', ' AdminMaster2026! ', [seed]);
+  assert.equal(adminTrimmed.ok, true);
+  assert.equal(adminTrimmed.role, 'admin');
+
+  const remoteUpdatedSeed = { ...seed, balance_usd: 31000000 };
+  const merged = Core.mergeClientsLists([remoteUpdatedSeed], [seed, clientWithSpaces.client!]);
+  assert.equal(merged.length, 2);
+  assert.equal(merged.find((c) => c.username === 'timothy.townsend')?.balance_usd, 31000000);
+  assert.equal(merged.find((c) => c.username === 'victoria.sterling')?.full_name, 'Victoria Sterling');
 });
 

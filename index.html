@@ -1098,15 +1098,17 @@
                   </div>
                 </div>
 
-                <div id="createClientError" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-4 py-3 text-xs font-medium text-[#8B0015]"></div>
+                <div id="createClientError" role="alert" class="hidden rounded-xl border border-red-300 bg-[#FEF2F2] px-4 py-3 text-xs font-semibold text-[#8B0015]"></div>
+                <div id="createClientSuccess" role="status" class="hidden rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-xs font-semibold text-emerald-800"></div>
 
                 <div class="flex justify-end">
                   <button
                     type="submit"
-                    class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm px-6 py-3 rounded-full shadow-sm transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+                    id="createClientSubmitBtn"
+                    class="bg-[#C8102E] hover:bg-[#8B0015] text-white font-semibold text-sm px-6 py-3 rounded-full shadow-sm transition-colors inline-flex items-center gap-2 whitespace-nowrap disabled:opacity-60"
                   >
                     <i data-lucide="user-plus" class="w-4 h-4"></i>
-                    <span>Provision Client Account</span>
+                    <span id="createClientSubmitLabel">Provision Client Account</span>
                   </button>
                 </div>
               </form>
@@ -1543,11 +1545,12 @@
           </label>
         </div>
 
-        <div id="loginError" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-4 py-3 text-xs font-medium text-[#8B0015]"></div>
+        <div id="loginError" role="alert" class="hidden rounded-xl border border-red-200 bg-[#FEF2F2] px-4 py-3 text-xs font-medium text-[#8B0015]"></div>
 
         <button
           type="submit"
-          class="w-full bg-[#C8102E] hover:bg-[#8B0015] text-white font-bold text-sm py-3 rounded-full shadow-sm transition-colors"
+          id="loginSubmitBtn"
+          class="w-full bg-[#C8102E] hover:bg-[#8B0015] text-white font-bold text-sm py-3 rounded-full shadow-sm transition-colors disabled:opacity-60"
         >
           Sign on
         </button>
@@ -1903,6 +1906,7 @@
       );
 
       -- If upgrading an existing public.clients table, run:
+      -- ALTER TABLE public.clients ADD COLUMN IF NOT EXISTS account_status TEXT NOT NULL DEFAULT 'Active';
       -- ALTER TABLE public.clients ADD COLUMN IF NOT EXISTS investment_ytd NUMERIC NOT NULL DEFAULT 14.2;
       -- ALTER TABLE public.clients ADD COLUMN IF NOT EXISTS loan_apr NUMERIC NOT NULL DEFAULT 3.85;
       -- ALTER TABLE public.clients ADD COLUMN IF NOT EXISTS loan_next_payment TEXT NOT NULL DEFAULT '2026-12-01';
@@ -2233,19 +2237,49 @@
         return actual.toUpperCase() === expected.toUpperCase();
       }
 
+      function mergeClientsLists(remoteClients, localClients) {
+        var merged = [];
+        var seenIds = Object.create(null);
+        var seenUsernames = Object.create(null);
+
+        (Array.isArray(remoteClients) ? remoteClients : []).forEach(function (raw) {
+          var norm = normalizeClientRecord(raw);
+          var uname = String(norm.username || "").trim().toLowerCase();
+          if (norm.id) seenIds[norm.id] = true;
+          if (uname) seenUsernames[uname] = true;
+          merged.push(norm);
+        });
+
+        (Array.isArray(localClients) ? localClients : []).forEach(function (raw) {
+          var norm = normalizeClientRecord(raw);
+          var uname = String(norm.username || "").trim().toLowerCase();
+          if ((norm.id && seenIds[norm.id]) || (uname && seenUsernames[uname])) {
+            return;
+          }
+          if (norm.id) seenIds[norm.id] = true;
+          if (uname) seenUsernames[uname] = true;
+          merged.push(norm);
+        });
+
+        merged.sort(function (a, b) {
+          return String(a.created_at || "").localeCompare(String(b.created_at || ""));
+        });
+        return merged;
+      }
+
       function authenticatePortal(usernameInput, passwordInput, clients, portalSettings) {
         var uname = String(usernameInput || "").trim();
-        var pass = String(passwordInput || "");
+        var pass = String(passwordInput || "").trim();
         if (!uname || !pass) {
           return { ok: false, error: "Invalid username or password. Please verify your credentials." };
         }
         var activeAdminUser = (portalSettings && portalSettings.admin_username) ? String(portalSettings.admin_username).trim() : ADMIN_USERNAME;
-        var activeAdminPass = (portalSettings && portalSettings.admin_password) ? String(portalSettings.admin_password) : ADMIN_PASSWORD;
+        var activeAdminPass = (portalSettings && portalSettings.admin_password) ? String(portalSettings.admin_password).trim() : ADMIN_PASSWORD;
         if (uname.toLowerCase() === activeAdminUser.toLowerCase() && pass === activeAdminPass) {
           return { ok: true, role: "admin" };
         }
         var matched = (clients || []).find(function (c) {
-          return String(c.username || "").trim().toLowerCase() === uname.toLowerCase() && String(c.password || "") === pass;
+          return String(c.username || "").trim().toLowerCase() === uname.toLowerCase() && String(c.password || "").trim() === pass;
         });
         if (!matched) {
           return { ok: false, error: "Invalid username or password. Please verify your credentials." };
@@ -2366,7 +2400,7 @@
       function buildNewClientRecord(input, existingClients) {
         var fullName = String((input && input.full_name) || "").trim();
         var username = String((input && input.username) || "").trim().toLowerCase();
-        var password = String((input && input.password) || "");
+        var password = String((input && input.password) || "").trim();
         var email = String((input && input.email) || "").trim();
         var phone = String((input && input.phone) || "").trim();
         var address = String((input && input.address) || "").trim();
@@ -2774,6 +2808,7 @@
         rebalanceTransferGates: rebalanceTransferGates,
         normalizePortalSettings: normalizePortalSettings,
         validateGateInput: validateGateInput,
+        mergeClientsLists: mergeClientsLists,
         authenticatePortal: authenticatePortal,
         validateTransferStep1: validateTransferStep1,
         validateCotCode: validateCotCode,
@@ -2944,23 +2979,24 @@
       }
 
       async function loadClientsRepository() {
+        var localClients = loadClientsFromLocalStorage();
         if (!supabaseClient) {
-          appState.clients = loadClientsFromLocalStorage();
+          appState.clients = localClients;
           appState.cloudConnected = false;
           appState.cloudError = "";
           return;
         }
         try {
-          var res = await supabaseClient.from("clients").select("*").order("created_at", { ascending: true });
+          var res = await supabaseClient.from("clients").select("*");
           if (res.error) throw res.error;
           if (Array.isArray(res.data) && res.data.length > 0) {
-            appState.clients = res.data.map(Core.normalizeClientRecord);
+            appState.clients = Core.mergeClientsLists(res.data, localClients);
             saveClientsToLocalStorage(appState.clients);
           } else {
             var seed = Core.createSeedTimothyTownsend();
             var seedRes = await supabaseClient.from("clients").upsert(seed);
             if (seedRes.error) throw seedRes.error;
-            appState.clients = [seed];
+            appState.clients = Core.mergeClientsLists([seed], localClients);
             saveClientsToLocalStorage(appState.clients);
           }
           appState.cloudConnected = true;
@@ -2968,7 +3004,48 @@
         } catch (err) {
           appState.cloudConnected = false;
           appState.cloudError = (err && err.message) ? String(err.message) : "Unable to reach Supabase clients table";
-          appState.clients = loadClientsFromLocalStorage();
+          appState.clients = localClients;
+        }
+      }
+
+      async function insertNewClientRepository(client) {
+        if (!supabaseClient) {
+          appState.clients.push(client);
+          saveClientsToLocalStorage(appState.clients);
+          return { ok: true, client: client, synced: false };
+        }
+        try {
+          var res = await supabaseClient.from("clients").insert([client]).select();
+          if (res.error) {
+            var errParts = [String(res.error.message || "Supabase insert failed")];
+            if (res.error.details) errParts.push(String(res.error.details));
+            if (res.error.hint) errParts.push(String(res.error.hint));
+            var exactMsg = errParts.join(" — ");
+            appState.cloudConnected = false;
+            appState.cloudError = String(res.error.message || exactMsg);
+            return { ok: false, error: exactMsg };
+          }
+          if (!Array.isArray(res.data) || res.data.length === 0) {
+            appState.cloudConnected = false;
+            appState.cloudError = "Insert did not return a confirmed client row.";
+            return { ok: false, error: "Supabase did not confirm the saved client row. Check your table permissions or RLS policy." };
+          }
+          var confirmedClient = Core.normalizeClientRecord(res.data[0]);
+          var existingIdx = appState.clients.findIndex(function (c) { return c.id === confirmedClient.id; });
+          if (existingIdx >= 0) {
+            appState.clients[existingIdx] = confirmedClient;
+          } else {
+            appState.clients.push(confirmedClient);
+          }
+          saveClientsToLocalStorage(appState.clients);
+          appState.cloudConnected = true;
+          appState.cloudError = "";
+          return { ok: true, client: confirmedClient, synced: true };
+        } catch (err) {
+          var msg = (err && err.message) ? String(err.message) : "Unable to insert client into Supabase.";
+          appState.cloudConnected = false;
+          appState.cloudError = msg;
+          return { ok: false, error: msg };
         }
       }
 
@@ -3897,13 +3974,53 @@
           refreshIcons();
         });
 
-        // Unified Role-Detecting Sign-On Submit
-        document.getElementById("signOnForm").addEventListener("submit", function (e) {
+        // Unified Role-Detecting Sign-On Submit (Live Supabase Query + Trim)
+        document.getElementById("signOnForm").addEventListener("submit", async function (e) {
           e.preventDefault();
           var username = document.getElementById("loginUsername").value.trim();
-          var password = document.getElementById("loginPassword").value;
+          var password = document.getElementById("loginPassword").value.trim();
           var saveChk = document.getElementById("saveUsernameCheckbox").checked;
           var errEl = document.getElementById("loginError");
+          var submitBtn = document.getElementById("loginSubmitBtn");
+
+          errEl.classList.add("hidden");
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Verifying...";
+          }
+
+          try {
+            var localClients = loadClientsFromLocalStorage();
+            if (supabaseClient) {
+              try {
+                var liveRes = await supabaseClient.from("clients").select("*");
+                if (!liveRes.error && Array.isArray(liveRes.data)) {
+                  appState.clients = Core.mergeClientsLists(liveRes.data, localClients);
+                  saveClientsToLocalStorage(appState.clients);
+                  appState.cloudConnected = true;
+                  appState.cloudError = "";
+                } else {
+                  appState.clients = localClients;
+                  if (liveRes.error) {
+                    appState.cloudConnected = false;
+                    appState.cloudError = String(liveRes.error.message || "Unable to query Supabase clients table");
+                  }
+                }
+              } catch (queryErr) {
+                appState.clients = localClients;
+                appState.cloudConnected = false;
+                appState.cloudError = (queryErr && queryErr.message) ? String(queryErr.message) : "Unable to query Supabase clients table";
+              }
+              await loadPortalSettings();
+            } else {
+              appState.clients = localClients;
+            }
+          } finally {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Sign on";
+            }
+          }
 
           var authResult = Core.authenticatePortal(username, password, appState.clients, appState.portalSettings);
           if (!authResult.ok) {
@@ -4257,12 +4374,25 @@
 
         document.getElementById("createClientForm").addEventListener("submit", async function (e) {
           e.preventDefault();
+          var formEl = this;
           var errEl = document.getElementById("createClientError");
+          var successEl = document.getElementById("createClientSuccess");
+          var submitBtn = document.getElementById("createClientSubmitBtn");
+          var submitLabel = document.getElementById("createClientSubmitLabel");
+
+          errEl.classList.add("hidden");
+          successEl.classList.add("hidden");
+
+          var trimmedUsername = document.getElementById("newClientUsername").value.trim();
+          var trimmedPassword = document.getElementById("newClientPassword").value.trim();
+          document.getElementById("newClientUsername").value = trimmedUsername;
+          document.getElementById("newClientPassword").value = trimmedPassword;
+
           var result = Core.buildNewClientRecord(
             {
               full_name: document.getElementById("newClientFullName").value,
-              username: document.getElementById("newClientUsername").value,
-              password: document.getElementById("newClientPassword").value,
+              username: trimmedUsername,
+              password: trimmedPassword,
               email: document.getElementById("newClientEmail").value,
               phone: document.getElementById("newClientPhone").value,
               address: document.getElementById("newClientAddress").value,
@@ -4278,14 +4408,33 @@
             errEl.classList.remove("hidden");
             return;
           }
-          errEl.classList.add("hidden");
-          await persistClientRecord(result.client);
-          this.reset();
+
+          if (submitBtn) submitBtn.disabled = true;
+          if (submitLabel) submitLabel.textContent = "Saving & Syncing...";
+
+          var saveResult;
+          try {
+            saveResult = await insertNewClientRepository(result.client);
+          } finally {
+            if (submitBtn) submitBtn.disabled = false;
+            if (submitLabel) submitLabel.textContent = "Provision Client Account";
+          }
+
+          if (!saveResult || !saveResult.ok) {
+            errEl.textContent = "Supabase Sync Error: " + ((saveResult && saveResult.error) || "Unable to save client row.");
+            errEl.classList.remove("hidden");
+            renderAdminDashboard();
+            return;
+          }
+
+          formEl.reset();
           document.getElementById("newClientBalance").value = "1250000";
           appState.pendingNewClientAvatar = "";
           document.getElementById("newClientAvatarThumb").classList.add("hidden");
           renderAdminDashboard();
-          showToast("Client portfolio provisioned: " + result.client.full_name);
+          successEl.textContent = "Client Created & Synced — " + saveResult.client.full_name + " (" + saveResult.client.username + ") is active for immediate sign-on.";
+          successEl.classList.remove("hidden");
+          showToast("Client Created & Synced");
         });
 
         document.getElementById("adminClientSearchInput").addEventListener("input", function () {
